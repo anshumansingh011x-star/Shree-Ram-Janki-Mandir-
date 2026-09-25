@@ -816,4 +816,4 @@ function esc(value = "") {
 $("year").textContent =
   new Date().getFullYear();
 
-</script>
+</script> 
