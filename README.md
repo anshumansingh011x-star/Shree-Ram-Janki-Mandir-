@@ -1,296 +1,105 @@
-
-<!doctype html>
+<!DOCTYPE html>
 <html lang="hi">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Shree Ram Janki Mandir Durga Puja Seva Samiti</title>
 
-<title>श्री राम जानकी मंदिर दुर्गा पूजा सेवा समिति</title>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-database-compat.js"></script>
 
 <style>
 *{box-sizing:border-box}
-
-html{scroll-behavior:smooth}
-
 body{
-margin:0;
-font-family:Arial,sans-serif;
-background:#fff8ef;
-color:#25160c;
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#f6f1e8;
+  color:#222;
 }
-
 header{
-background:linear-gradient(135deg,#651200,#d96b00);
-color:white;
-padding:18px 16px 70px;
+  background:linear-gradient(135deg,#8b0000,#e65100);
+  color:white;
+  text-align:center;
+  padding:25px 15px;
 }
-
-nav{
-max-width:1100px;
-margin:auto;
-display:flex;
-gap:20px;
-align-items:center;
+header h1{margin:0;font-size:25px}
+header p{margin:8px 0 0}
+.container{max-width:1000px;margin:auto;padding:18px}
+.card{
+  background:white;
+  padding:20px;
+  margin:15px 0;
+  border-radius:15px;
+  box-shadow:0 3px 12px #0002;
 }
-
-nav b{
-font-size:20px;
-margin-right:auto;
+button{
+  border:0;
+  padding:12px 18px;
+  border-radius:9px;
+  cursor:pointer;
+  font-weight:bold;
+  margin:4px;
 }
-
-nav a{
-color:white;
-text-decoration:none;
-font-weight:bold;
-}
-
-.hero{
-max-width:1100px;
-margin:65px auto 0;
-}
-
-.hero small{
-font-weight:bold;
-letter-spacing:2px;
-}
-
-.hero h1{
-font-size:clamp(32px,7vw,62px);
-line-height:1.08;
-margin:12px 0;
-}
-
-.hero p{
-font-size:18px;
-}
-
-.wrap{
-max-width:1100px;
-margin:auto;
-}
-
-section{
-max-width:1100px;
-margin:auto;
-padding:50px 16px;
-}
-
-.eyebrow{
-font-size:12px;
-letter-spacing:2px;
-font-weight:800;
-color:#a33a00;
-}
-
-.choices{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-gap:18px;
-}
-
-.choice{
-background:white;
-border:0;
-border-radius:18px;
-padding:25px;
-text-align:left;
-cursor:pointer;
-box-shadow:0 8px 28px #0001;
-transition:.2s;
-}
-
-.choice:hover{
-transform:translateY(-3px);
-}
-
-.choice span{
-font-size:40px;
-}
-
-.choice b{
-display:block;
-font-size:21px;
-margin:10px 0;
-}
-
-.card,.panel{
-background:white;
-border-radius:18px;
-padding:22px;
-box-shadow:0 8px 28px #0001;
-}
-
-.hidden{
-display:none!important;
-}
-
-.grid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:15px;
-}
-
-label{
-font-weight:bold;
-}
-
+.primary{background:#e65100;color:white}
+.green{background:#16803c;color:white}
+.red{background:#c62828;color:white}
+.dark{background:#333;color:white}
 input,textarea,select{
-width:100%;
-padding:13px;
-margin-top:7px;
-border:1px solid #ddd;
-border-radius:10px;
-font:inherit;
-background:#fff;
+  width:100%;
+  padding:12px;
+  margin:7px 0 14px;
+  border:1px solid #ccc;
+  border-radius:8px;
+  font-size:15px;
 }
-
-label.full{
-grid-column:1/-1;
+textarea{min-height:100px}
+.hidden{display:none}
+.center{text-align:center}
+.nav{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  justify-content:center;
+  padding:12px;
+  background:white;
+  position:sticky;
+  top:0;
+  z-index:10;
 }
-
-.btn{
-display:inline-block;
-border:0;
-border-radius:10px;
-background:#7a1600;
-color:white;
-padding:13px 19px;
-cursor:pointer;
-font-weight:bold;
-text-decoration:none;
+.nav button{background:#8b0000;color:white}
+.status{
+  display:inline-block;
+  padding:5px 10px;
+  border-radius:20px;
+  font-size:12px;
+  font-weight:bold;
 }
-
-.btn:hover{
-opacity:.9;
+.pending{background:#fff3cd;color:#856404}
+.accepted{background:#d4edda;color:#155724}
+.rejected{background:#f8d7da;color:#721c24}
+.item{
+  border:1px solid #ddd;
+  border-radius:10px;
+  padding:15px;
+  margin:10px 0;
 }
-
-.light{
-background:#eee;
-color:#222;
-}
-
-.actions{
-display:flex;
-gap:10px;
-margin-top:20px;
-flex-wrap:wrap;
-}
-
-.muted{
-color:#75665b;
-}
-
-.cards{
-display:grid;
-gap:15px;
-}
-
 .gallery{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-gap:15px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:10px;
 }
-
 .gallery img{
-width:100%;
-aspect-ratio:1;
-object-fit:cover;
-border-radius:14px;
-display:block;
+  width:100%;
+  height:160px;
+  object-fit:cover;
+  border-radius:10px;
 }
-
-.gallery p{
-margin-top:7px;
-}
-
-.app{
-padding:17px 0;
-border-top:1px solid #eee;
-line-height:1.7;
-}
-
-.danger{
-background:#a00000;
-color:white;
-border:0;
-border-radius:8px;
-padding:8px 12px;
-cursor:pointer;
-}
-
-.success{
-color:green;
-font-weight:bold;
-}
-
-.error{
-color:#b00000;
-font-weight:bold;
-}
-
 footer{
-background:#24140b;
-color:white;
-text-align:center;
-padding:30px 15px;
-line-height:1.7;
-}
-
-.admin-box{
-display:grid;
-gap:15px;
-}
-
-.stats{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:12px;
-margin:15px 0;
-}
-
-.stat{
-background:#fff7ed;
-padding:15px;
-border-radius:12px;
-text-align:center;
-}
-
-.stat b{
-font-size:25px;
-display:block;
-color:#7a1600;
-}
-
-@media(max-width:650px){
-
-nav{
-gap:10px;
-}
-
-nav b{
-font-size:16px;
-}
-
-nav a{
-font-size:13px;
-}
-
-.grid{
-grid-template-columns:1fr;
-}
-
-label.full{
-grid-column:auto;
-}
-
-.stats{
-grid-template-columns:1fr;
-}
-
-.hero{
-margin-top:45px;
-}
-
+  background:#222;
+  color:white;
+  text-align:center;
+  padding:20px;
+  margin-top:30px;
 }
 </style>
 </head>
@@ -298,1112 +107,809 @@ margin-top:45px;
 <body>
 
 <header>
-
-<nav>
-<b>श्री राम जानकी मंदिर</b>
-
-<a href="#join">Join</a>
-<a href="#newsSection">News</a>
-<a href="#gallerySection">Gallery</a>
-<a href="#admin">Admin</a>
-</nav>
-
-<div class="hero">
-
-<small>SISWA BAZAR</small>
-
-<h1>
-श्री राम जानकी मंदिर<br>
-दुर्गा पूजा सेवा समिति
-</h1>
-
-<p>सेवा • श्रद्धा • सहयोग • संस्कार</p>
-
-<a class="btn" href="#join">
-समिति से जुड़ें
-</a>
-
-</div>
-
+<h1>श्री राम जानकी मंदिर दुर्गा पूजा सेवा समिति</h1>
+<p>Siswa Bazar</p>
 </header>
 
+<div class="nav">
+<button onclick="showPage('home')">Home</button>
+<button onclick="showPage('join')">Join Us</button>
+<button onclick="showPage('news')">News</button>
+<button onclick="showPage('gallery')">Gallery</button>
+<button onclick="showPage('admin')">Admin</button>
+</div>
+
+<div class="container">
+
+<!-- HOME -->
+<section id="home">
+<div class="card center">
+<h2>जय श्री राम 🚩</h2>
+<p>श्री राम जानकी मंदिर दुर्गा पूजा सेवा समिति में आपका स्वागत है।</p>
+<button class="primary" onclick="showPage('join')">Join Committee / Volunteer</button>
+</div>
+
+<div class="card">
+<h2>हमसे जुड़ें</h2>
+<p>आप Volunteer या Committee Member के रूप में अपना विवरण भेज सकते हैं।</p>
+</div>
+
+<div class="card">
+<h2>Latest News</h2>
+<div id="homeNews">Loading...</div>
+</div>
+</section>
 
 <!-- JOIN -->
+<section id="join" class="hidden">
 
-<section id="join">
-
-<p class="eyebrow">JOIN US</p>
-
-<h2>आप किस रूप में जुड़ना चाहते हैं?</h2>
-
-<div class="choices">
-
-<button class="choice" onclick="openForm('volunteer')">
-
-<span>🙋</span>
-
-<b>Volunteer</b>
-
-<small>
-सेवा कार्यों में सहयोग करें
-</small>
-
-</button>
-
-
-<button class="choice" onclick="openForm('committee')">
-
-<span>🪔</span>
-
-<b>Committee Member</b>
-
-<small>
-समिति में जिम्मेदारी के लिए आवेदन
-</small>
-
-</button>
-
+<div class="card" id="joinChoice">
+<h2 class="center">आप किस रूप में जुड़ना चाहते हैं?</h2>
+<div class="center">
+<button class="primary" onclick="openForm('volunteer')">🙋 Volunteer</button>
+<button class="green" onclick="openForm('committee')">👥 Committee Member</button>
+</div>
 </div>
 
-</section>
-
-
-<!-- FORM -->
-
-<section id="formBox" class="hidden">
-
-<p class="eyebrow" id="typeLabel"></p>
-
+<div class="card hidden" id="joinForm">
 <h2 id="formTitle"></h2>
 
-<form id="joinForm">
+<form onsubmit="submitApplication(event)">
 
-<input type="hidden" id="type">
+<input type="hidden" id="memberType">
 
-<div class="grid">
-
-<label>
-पूरा नाम
+<label>पूरा नाम *</label>
 <input id="name" required>
-</label>
 
+<label>मोबाइल नंबर *</label>
+<input id="phone" type="tel" required>
 
-<label>
-मोबाइल नंबर
-<input id="phone" required inputmode="tel">
-</label>
+<label>पता *</label>
+<textarea id="address" required></textarea>
 
+<label>उम्र</label>
+<input id="age" type="number">
 
-<label>
-उम्र
-<input id="age" required type="number" min="10" max="100">
-</label>
+<label>आप क्या योगदान देना चाहते हैं?</label>
+<textarea id="contribution"></textarea>
 
+<label>अन्य जानकारी</label>
+<textarea id="message"></textarea>
 
-<label>
-पता
-<input id="address" required>
-</label>
-
-
-<label class="full">
-सेवा/जिम्मेदारी में रुचि
-<textarea id="interest" rows="3"
-placeholder="जैसे: व्यवस्था, प्रसाद, सजावट, सुरक्षा आदि"></textarea>
-</label>
-
-
-<label class="full" id="idWrap">
-
-Previous ID Card
-
-<input
-id="idCard"
-type="file"
-accept="image/*,.pdf"
->
-
-<small class="muted">
-केवल Volunteer के लिए • अधिकतम 500KB
-</small>
-
-</label>
-
-</div>
-
-
-<div class="actions">
-
-<button class="btn">
-Submit Application
-</button>
-
-<button
-type="button"
-class="btn light"
-onclick="closeForm()">
-Back
-</button>
-
-</div>
-
-<p id="formMsg"></p>
+<button class="primary" type="submit">Submit Application</button>
+<button type="button" onclick="backToChoice()">Back</button>
 
 </form>
+</div>
 
+<div id="submitMessage"></div>
 </section>
-
 
 <!-- NEWS -->
-
-<section id="newsSection">
-
-<p class="eyebrow">UPDATES</p>
-
-<h2>News & Announcements</h2>
-
-<div id="news" class="cards">
-
-<p class="muted">
-Loading...
-</p>
-
+<section id="news" class="hidden">
+<div class="card">
+<h2>Latest News</h2>
+<div id="newsList">Loading...</div>
 </div>
-
 </section>
-
 
 <!-- GALLERY -->
-
-<section id="gallerySection">
-
-<p class="eyebrow">MEMORIES</p>
-
+<section id="gallery" class="hidden">
+<div class="card">
 <h2>Gallery</h2>
-
-<div id="gallery" class="gallery">
-
-<p class="muted">
-Loading...
-</p>
-
+<div class="gallery" id="galleryList">Loading...</div>
 </div>
-
 </section>
 
-
 <!-- ADMIN -->
+<section id="admin" class="hidden">
 
-<section id="admin">
+<div class="card" id="adminLogin">
+<h2>🔐 Admin Login</h2>
 
-<p class="eyebrow">ADMIN</p>
+<input type="password" id="adminPassword" placeholder="Admin Password">
 
-<h2>Admin Panel</h2>
-
-
-<!-- LOGIN -->
-
-<div id="login" class="panel">
-
-<p>
-🔐 Password-only Admin Access
-</p>
-
-<input
-id="pass"
-type="password"
-placeholder="Admin password"
->
-
-<button
-class="btn"
-onclick="adminLogin()">
-Login
-</button>
+<button class="primary" onclick="adminLogin()">Login</button>
 
 <p id="loginMsg"></p>
-
 </div>
-
-
-<!-- ADMIN PANEL -->
 
 <div id="adminPanel" class="hidden">
 
-
-<div class="stats">
-
-<div class="stat">
-<b id="totalApps">0</b>
-Applications
+<div class="card">
+<h2>Admin Panel</h2>
+<p>Welcome Admin 👑</p>
+<button class="red" onclick="adminLogout()">Logout</button>
 </div>
 
-<div class="stat">
-<b id="totalVolunteers">0</b>
-Volunteers
+<div class="card">
+<h2>Applications</h2>
+
+<select id="filterStatus" onchange="loadApplications()">
+<option value="all">All</option>
+<option value="pending">Pending</option>
+<option value="accepted">Accepted</option>
+<option value="rejected">Rejected</option>
+</select>
+
+<div id="applications">Loading...</div>
 </div>
 
-<div class="stat">
-<b id="totalCommittee">0</b>
-Committee
+<div class="card">
+<h2>📰 Add News</h2>
+
+<input id="newsTitle" placeholder="News Title">
+
+<textarea id="newsText" placeholder="News Details"></textarea>
+
+<button class="primary" onclick="addNews()">Add News</button>
+
+<div id="adminNews"></div>
+</div>
+
+<div class="card">
+<h2>🖼️ Add Gallery Photo</h2>
+
+<input id="photoTitle" placeholder="Photo Title">
+
+<input id="photoUrl" placeholder="Image URL">
+
+<button class="primary" onclick="addPhoto()">Add Photo</button>
+
+<div id="adminGallery"></div>
 </div>
 
 </div>
-
-
-<!-- APPLICATIONS -->
-
-<div class="panel">
-
-<h3>📋 Applications</h3>
-
-<div class="actions">
-
-<button class="btn"
-onclick="filterApps('all')">
-All
-</button>
-
-<button class="btn"
-onclick="filterApps('volunteer')">
-Volunteers
-</button>
-
-<button class="btn"
-onclick="filterApps('committee')">
-Committee
-</button>
-
-</div>
-
-<div id="apps"></div>
-
-</div>
-
-
-<br>
-
-
-<!-- NEWS ADMIN -->
-
-<div class="panel">
-
-<h3>📰 Add News</h3>
-
-<input
-id="newsTitle"
-placeholder="News title"
->
-
-<textarea
-id="newsBody"
-rows="4"
-placeholder="Announcement"
-></textarea>
-
-<button
-class="btn"
-onclick="publishNews()">
-Publish News
-</button>
-
-</div>
-
-
-<br>
-
-
-<!-- GALLERY ADMIN -->
-
-<div class="panel">
-
-<h3>🖼️ Add Gallery Photo</h3>
-
-<input
-id="photoCaption"
-placeholder="Photo caption"
->
-
-<input
-id="photoUrl"
-placeholder="Public image URL"
->
-
-<button
-class="btn"
-onclick="publishPhoto()">
-Add Photo
-</button>
-
-<p class="muted">
-Photo URL डालकर gallery में फोटो जोड़ सकते हैं।
-</p>
-
-</div>
-
-
-</div>
-
 </section>
 
+</div>
 
 <footer>
-
-श्री राम जानकी मंदिर दुर्गा पूजा सेवा समिति
-
-<br>
-
-Siswa Bazar
-
-<br>
-
-© <span id="year"></span>
-
+<p>© 2026 Shree Ram Janki Mandir Durga Puja Seva Samiti</p>
+<p>जय श्री राम 🚩</p>
 </footer>
 
+<script>
 
-<script type="module">
-
-import {
-initializeApp
-} from
-"https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
-
-
-import {
-getDatabase,
-ref,
-push,
-onValue,
-remove
-} from
-"https://www.gstatic.com/firebasejs/12.2.1/firebase-database.js";
-
-
-/* FIREBASE CONFIG */
+/* =========================================================
+   FIREBASE CONFIG
+   ========================================================= */
 
 const firebaseConfig = {
 
-apiKey:
-"AIzaSyDLonsbRwdlq3Ru4NIvhFqLzjKEUaPnzfc",
+  apiKey: "PASTE_YOUR_API_KEY_HERE",
 
-authDomain:
-"shree-ram-janki-mandir-durga.firebaseapp.com",
+  authDomain:
+  "shree-ram-janki-mandir-durga.firebaseapp.com",
 
-databaseURL:
-"https://shree-ram-janki-mandir-durga-default-rtdb.asia-southeast1.firebasedatabase.app",
+  databaseURL:
+  "https://shree-ram-janki-mandir-durga-default-rtdb.asia-southeast1.firebasedatabase.app",
 
-projectId:
-"shree-ram-janki-mandir-durga",
+  projectId:
+  "shree-ram-janki-mandir-durga",
 
-storageBucket:
-"shree-ram-janki-mandir-durga.firebasestorage.app",
+  storageBucket:
+  "shree-ram-janki-mandir-durga.firebasestorage.app",
 
-messagingSenderId:
-"603852207772",
+  messagingSenderId:
+  "PASTE_YOUR_MESSAGING_SENDER_ID",
 
-appId:
-"1:603852207772:web:a27f2828d95284a4c69f59",
-
-measurementId:
-"G-9QQJJEMH1V"
+  appId:
+  "PASTE_YOUR_APP_ID"
 
 };
 
+firebase.initializeApp(firebaseConfig);
 
-const app = initializeApp(firebaseConfig);
-
-const db = getDatabase(app);
-
-
-/*
-IMPORTANT:
-This is only basic client-side protection.
-Later we should move admin authentication
-to Firebase Authentication.
-*/
-
-const ADMIN_PASSWORD = "12345678";
+const db = firebase.database();
 
 
-let applications = {};
+/* =========================================================
+   ADMIN PASSWORD
+   ========================================================= */
 
-let currentFilter = "all";
-
-
-/* SHORT ID FUNCTION */
-
-const $ = id => document.getElementById(id);
+const ADMIN_PASSWORD = "123456";
 
 
-/* OPEN FORM */
+/* =========================================================
+   PAGE SYSTEM
+   ========================================================= */
 
-window.openForm = function(type){
+function showPage(page){
 
-$("formBox").classList.remove("hidden");
+  document.querySelectorAll("section").forEach(x=>{
+    x.classList.add("hidden");
+  });
 
-$("type").value = type;
+  document.getElementById(page).classList.remove("hidden");
 
+  if(page==="news") loadNews();
+  if(page==="gallery") loadGallery();
+  if(page==="home") loadHomeNews();
 
-if(type === "volunteer"){
+  if(page==="admin" && sessionStorage.getItem("admin")==="yes"){
+    document.getElementById("adminLogin").classList.add("hidden");
+    document.getElementById("adminPanel").classList.remove("hidden");
+    loadApplications();
+    loadAdminNews();
+    loadAdminGallery();
+  }
 
-$("typeLabel").textContent = "VOLUNTEER";
-
-$("formTitle").textContent =
-"Volunteer Application";
-
-$("idWrap").style.display = "block";
-
-}
-
-else{
-
-$("typeLabel").textContent =
-"COMMITTEE MEMBER";
-
-$("formTitle").textContent =
-"Committee Member Application";
-
-$("idWrap").style.display = "none";
-
+  window.scrollTo(0,0);
 }
 
 
-$("formMsg").textContent = "";
+/* =========================================================
+   JOIN FORM
+   ========================================================= */
 
-location.hash = "formBox";
+function openForm(type){
 
-};
+  document.getElementById("joinChoice").classList.add("hidden");
+  document.getElementById("joinForm").classList.remove("hidden");
 
+  document.getElementById("memberType").value=type;
 
-/* CLOSE FORM */
+  if(type==="volunteer"){
+    document.getElementById("formTitle").innerText="🙋 Volunteer Registration";
+  }else{
+    document.getElementById("formTitle").innerText="👥 Committee Member Registration";
+  }
+}
 
-window.closeForm = function(){
+function backToChoice(){
 
-$("formBox").classList.add("hidden");
-
-};
-
-
-/* FORM SUBMIT */
-
-$("joinForm").addEventListener(
-"submit",
-async function(e){
-
-e.preventDefault();
-
-$("formMsg").textContent =
-"Submitting...";
-
-$("formMsg").className = "";
-
-
-try{
-
-let file =
-$("idCard").files[0];
-
-let encoded = "";
-
-
-/* ID CARD */
-
-if(file){
-
-if(file.size > 500000){
-
-$("formMsg").textContent =
-"❌ ID card 500KB से कम रखें।";
-
-$("formMsg").className = "error";
-
-return;
+  document.getElementById("joinForm").classList.add("hidden");
+  document.getElementById("joinChoice").classList.remove("hidden");
 
 }
 
+function submitApplication(e){
 
-encoded =
-await new Promise(
-(resolve,reject)=>{
+  e.preventDefault();
 
-const reader =
-new FileReader();
+  const type=document.getElementById("memberType").value;
 
-reader.onload =
-() => resolve(reader.result);
+  const data={
 
-reader.onerror =
-reject;
+    type:type,
 
-reader.readAsDataURL(file);
+    name:document.getElementById("name").value.trim(),
 
-});
+    phone:document.getElementById("phone").value.trim(),
+
+    address:document.getElementById("address").value.trim(),
+
+    age:document.getElementById("age").value,
+
+    contribution:document.getElementById("contribution").value.trim(),
+
+    message:document.getElementById("message").value.trim(),
+
+    status:"pending",
+
+    createdAt:Date.now()
+
+  };
+
+  db.ref("applications").push(data)
+
+  .then(()=>{
+
+    document.getElementById("submitMessage").innerHTML=
+    `<div class="card">
+      <h3>✅ Application Submitted</h3>
+      <p>Aapka application successfully submit ho gaya hai.</p>
+      <p>Admin verification ke baad status update karega.</p>
+    </div>`;
+
+    document.querySelector("#joinForm form").reset();
+
+  })
+
+  .catch(error=>{
+
+    alert("Submit Error: "+error.message);
+
+  });
 
 }
 
 
-/* DATA */
+/* =========================================================
+   ADMIN LOGIN
+   ========================================================= */
 
-const application = {
+function adminLogin(){
 
-type:
-$("type").value,
+  const password=document.getElementById("adminPassword").value;
 
-name:
-$("name").value.trim(),
+  if(password===ADMIN_PASSWORD){
 
-phone:
-$("phone").value.trim(),
+    sessionStorage.setItem("admin","yes");
 
-age:
-$("age").value,
+    document.getElementById("adminLogin").classList.add("hidden");
 
-address:
-$("address").value.trim(),
+    document.getElementById("adminPanel").classList.remove("hidden");
 
-interest:
-$("interest").value.trim(),
+    loadApplications();
+    loadAdminNews();
+    loadAdminGallery();
 
-idCard:
-encoded,
+  }else{
 
-createdAt:
-Date.now()
+    document.getElementById("loginMsg").innerText=
+    "❌ Wrong password";
 
-};
-
-
-/* SAVE */
-
-await push(
-ref(db,"applications"),
-application
-);
-
-
-/* RESET */
-
-$("joinForm").reset();
-
-
-$("formMsg").textContent =
-"✅ Application successfully submit हो गया!";
-
-$("formMsg").className =
-"success";
-
+  }
 
 }
 
-catch(error){
+function adminLogout(){
 
-console.error(error);
+  sessionStorage.removeItem("admin");
 
-$("formMsg").textContent =
-"❌ Submit नहीं हुआ: " +
-error.message;
+  document.getElementById("adminPanel").classList.add("hidden");
 
-$("formMsg").className =
-"error";
-
-}
-
-});
-
-
-/* APPLICATIONS */
-
-onValue(
-ref(db,"applications"),
-snapshot => {
-
-applications =
-snapshot.val() || {};
-
-renderApps();
-
-updateStats();
-
-});
-
-
-/* NEWS */
-
-onValue(
-ref(db,"news"),
-snapshot => {
-
-let list =
-Object.values(
-snapshot.val() || {}
-);
-
-
-list.sort(
-(a,b)=>
-(b.createdAt || 0) -
-(a.createdAt || 0)
-);
-
-
-if(!list.length){
-
-$("news").innerHTML =
-"<p class='muted'>अभी कोई समाचार नहीं।</p>";
-
-return;
+  document.getElementById("adminLogin").classList.remove("hidden");
 
 }
 
 
-$("news").innerHTML =
-list.map(item => `
+/* =========================================================
+   APPLICATIONS
+   ========================================================= */
 
-<article class="card">
+function loadApplications(){
 
-<h3>
-${esc(item.title)}
-</h3>
+  const filter=document.getElementById("filterStatus").value;
 
-<p>
-${esc(item.body)}
-</p>
+  db.ref("applications").on("value",snapshot=>{
 
-</article>
+    const box=document.getElementById("applications");
 
-`).join("");
+    box.innerHTML="";
 
-});
+    if(!snapshot.exists()){
+
+      box.innerHTML="<p>No applications found.</p>";
+
+      return;
+
+    }
+
+    let found=false;
+
+    snapshot.forEach(child=>{
+
+      const d=child.val();
+
+      if(filter!=="all" && d.status!==filter) return;
+
+      found=true;
+
+      const date=d.createdAt
+      ? new Date(d.createdAt).toLocaleString("en-IN")
+      : "";
+
+      box.innerHTML+=`
+
+      <div class="item">
+
+        <h3>${escapeHtml(d.name)}</h3>
+
+        <p>
+        <b>Type:</b>
+        ${d.type==="volunteer"?"Volunteer":"Committee Member"}
+        </p>
+
+        <p><b>Phone:</b> ${escapeHtml(d.phone)}</p>
+
+        <p><b>Address:</b> ${escapeHtml(d.address)}</p>
+
+        <p><b>Age:</b> ${escapeHtml(d.age||"-")}</p>
+
+        <p><b>Contribution:</b>
+        ${escapeHtml(d.contribution||"-")}</p>
+
+        <p><b>Message:</b>
+        ${escapeHtml(d.message||"-")}</p>
+
+        <p><b>Submitted:</b> ${date}</p>
+
+        <p>
+        <span class="status ${d.status}">
+        ${d.status.toUpperCase()}
+        </span>
+        </p>
+
+        <button class="green"
+        onclick="updateApplication('${child.key}','accepted')">
+        ✅ Accept
+        </button>
+
+        <button class="red"
+        onclick="updateApplication('${child.key}','rejected')">
+        ❌ Reject
+        </button>
+
+        <button class="dark"
+        onclick="deleteApplication('${child.key}')">
+        🗑️ Delete
+        </button>
+
+      </div>
+
+      `;
+
+    });
+
+    if(!found){
+      box.innerHTML="<p>No applications in this category.</p>";
+    }
+
+  });
+
+}
 
 
-/* GALLERY */
+function updateApplication(id,status){
 
-onValue(
-ref(db,"gallery"),
-snapshot => {
-
-let list =
-Object.values(
-snapshot.val() || {}
-);
-
-
-list.sort(
-(a,b)=>
-(b.createdAt || 0) -
-(a.createdAt || 0)
-);
-
-
-if(!list.length){
-
-$("gallery").innerHTML =
-"<p class='muted'>अभी कोई फोटो नहीं।</p>";
-
-return;
+  db.ref("applications/"+id).update({
+    status:status,
+    updatedAt:Date.now()
+  })
+  .then(()=>{
+    alert(
+      status==="accepted"
+      ? "Application Accepted ✅"
+      : "Application Rejected ❌"
+    );
+  })
+  .catch(err=>alert(err.message));
 
 }
 
 
-$("gallery").innerHTML =
-list.map(item => {
+function deleteApplication(id){
 
-let safeUrl =
-safeImageUrl(item.url);
+  if(!confirm("Delete this application?")) return;
 
-if(!safeUrl){
-
-return "";
-
-}
-
-return `
-
-<div>
-
-<img
-src="${esc(safeUrl)}"
-alt="${esc(item.caption || "Gallery photo")}"
-loading="lazy"
->
-
-<p>
-${esc(item.caption || "")}
-</p>
-
-</div>
-
-`;
-
-}).join("");
-
-});
-
-
-/* ADMIN LOGIN */
-
-window.adminLogin = function(){
-
-const password =
-$("pass").value;
-
-
-if(password === ADMIN_PASSWORD){
-
-$("login").classList.add("hidden");
-
-$("adminPanel").classList.remove("hidden");
-
-$("loginMsg").textContent = "";
-
-renderApps();
-
-updateStats();
-
-}
-
-else{
-
-$("loginMsg").textContent =
-"❌ Wrong password";
-
-$("loginMsg").className =
-"error";
-
-}
-
-};
-
-
-/* FILTER */
-
-window.filterApps = function(type){
-
-currentFilter = type;
-
-renderApps();
-
-};
-
-
-/* RENDER APPLICATIONS */
-
-function renderApps(){
-
-if(!$("apps")) return;
-
-
-let list =
-Object.entries(applications);
-
-
-list =
-list.filter(
-([id,item]) =>
-currentFilter === "all" ||
-item.type === currentFilter
-);
-
-
-list.sort(
-(a,b)=>
-(b[1].createdAt || 0) -
-(a[1].createdAt || 0)
-);
-
-
-if(!list.length){
-
-$("apps").innerHTML =
-"<p class='muted'>No applications.</p>";
-
-return;
+  db.ref("applications/"+id).remove();
 
 }
 
 
-$("apps").innerHTML =
-list.map(
-([id,item]) => `
+/* =========================================================
+   NEWS
+   ========================================================= */
 
-<div class="app">
+function addNews(){
 
-<b>
-${esc(item.name)}
-</b>
+  const title=document.getElementById("newsTitle").value.trim();
+  const text=document.getElementById("newsText").value.trim();
 
-<br>
+  if(!title || !text){
 
-Type:
-${item.type === "volunteer"
-? "🙋 Volunteer"
-: "🪔 Committee Member"}
+    alert("Title aur details dono bhariye.");
 
-<br>
+    return;
 
-📞 ${esc(item.phone)}
+  }
 
-&nbsp; | &nbsp;
+  db.ref("news").push({
 
-Age:
-${esc(item.age)}
+    title:title,
+    text:text,
+    createdAt:Date.now()
 
-<br>
+  })
+  .then(()=>{
 
-📍 ${esc(item.address)}
+    document.getElementById("newsTitle").value="";
+    document.getElementById("newsText").value="";
 
-<br>
+    alert("News added ✅");
 
-${esc(item.interest || "")}
-
-${item.idCard ? `
-
-<br>
-
-<a
-href="${item.idCard}"
-target="_blank"
-rel="noopener">
-📄 Previous ID Card देखें
-</a>
-
-` : ""}
-
-<br><br>
-
-<button
-class="danger"
-onclick="deleteApplication('${id}')">
-Delete
-</button>
-
-</div>
-
-`
-).join("");
+  });
 
 }
 
 
-/* DELETE */
+function loadNews(){
 
-window.deleteApplication =
-async function(id){
+  db.ref("news").orderByChild("createdAt").on("value",snapshot=>{
 
-if(
-confirm(
-"क्या आप यह application delete करना चाहते हैं?"
-)
-){
+    const box=document.getElementById("newsList");
 
-await remove(
-ref(
-db,
-"applications/" + id
-)
-);
+    box.innerHTML="";
 
-}
+    let arr=[];
 
-};
+    snapshot.forEach(child=>{
 
+      arr.push({
+        id:child.key,
+        ...child.val()
+      });
 
-/* NEWS */
+    });
 
-window.publishNews =
-async function(){
+    arr.reverse();
 
-const title =
-$("newsTitle").value.trim();
+    if(arr.length===0){
 
-const body =
-$("newsBody").value.trim();
+      box.innerHTML="<p>No news available.</p>";
 
+      return;
 
-if(!title){
+    }
 
-alert("Title डालें");
+    arr.forEach(n=>{
 
-return;
+      box.innerHTML+=`
 
-}
+      <div class="item">
 
+        <h3>${escapeHtml(n.title)}</h3>
 
-await push(
-ref(db,"news"),
-{
+        <p>${escapeHtml(n.text)}</p>
 
-title:title,
+      </div>
 
-body:body,
+      `;
 
-createdAt:Date.now()
+    });
 
-});
-
-
-$("newsTitle").value = "";
-
-$("newsBody").value = "";
-
-alert("✅ News publish हो गई!");
-
-};
-
-
-/* GALLERY */
-
-window.publishPhoto =
-async function(){
-
-const url =
-$("photoUrl").value.trim();
-
-const caption =
-$("photoCaption").value.trim();
-
-
-if(!url){
-
-alert("Image URL डालें");
-
-return;
+  });
 
 }
 
 
-const safe =
-safeImageUrl(url);
+function loadHomeNews(){
 
+  db.ref("news").orderByChild("createdAt").limitToLast(3)
+  .once("value",snapshot=>{
 
-if(!safe){
+    const box=document.getElementById("homeNews");
 
-alert(
-"Valid image URL डालें।"
-);
+    box.innerHTML="";
 
-return;
+    let arr=[];
 
-}
+    snapshot.forEach(c=>{
+      arr.push(c.val());
+    });
 
+    arr.reverse();
 
-await push(
-ref(db,"gallery"),
-{
+    if(!arr.length){
 
-url:safe,
+      box.innerHTML="<p>No news yet.</p>";
 
-caption:caption,
+      return;
 
-createdAt:Date.now()
+    }
 
-});
+    arr.forEach(n=>{
 
+      box.innerHTML+=`
 
-$("photoUrl").value = "";
+      <div class="item">
 
-$("photoCaption").value = "";
+      <h3>${escapeHtml(n.title)}</h3>
 
-alert("✅ Photo gallery में add हो गई!");
+      <p>${escapeHtml(n.text)}</p>
 
-};
+      </div>
 
+      `;
 
-/* STATS */
+    });
 
-function updateStats(){
-
-let list =
-Object.values(applications);
-
-
-let volunteers =
-list.filter(
-x => x.type === "volunteer"
-).length;
-
-
-let committee =
-list.filter(
-x => x.type === "committee"
-).length;
-
-
-$("totalApps").textContent =
-list.length;
-
-$("totalVolunteers").textContent =
-volunteers;
-
-$("totalCommittee").textContent =
-committee;
+  });
 
 }
 
 
-/* SECURITY ESCAPE */
+function loadAdminNews(){
 
-function esc(value = ""){
+  db.ref("news").on("value",snapshot=>{
 
-return String(value)
-.replace(
-/[&<>"']/g,
+    const box=document.getElementById("adminNews");
 
-function(match){
+    box.innerHTML="<hr>";
 
-return {
+    snapshot.forEach(child=>{
 
-"&":"&amp;",
-"<":"&lt;",
-">":"&gt;",
-'"':"&quot;",
-"'":"&#39;"
+      const n=child.val();
 
-}[match];
+      box.innerHTML+=`
 
-});
+      <div class="item">
 
-}
+      <b>${escapeHtml(n.title)}</b>
 
+      <p>${escapeHtml(n.text)}</p>
 
-/* IMAGE URL CHECK */
+      <button class="red"
+      onclick="deleteNews('${child.key}')">
+      Delete
+      </button>
 
-function safeImageUrl(value){
+      </div>
 
-try{
+      `;
 
-const url =
-new URL(value);
+    });
 
-
-if(
-url.protocol !== "http:" &&
-url.protocol !== "https:"
-){
-
-return "";
+  });
 
 }
 
 
-return url.href;
+function deleteNews(id){
+
+  if(confirm("Delete this news?")){
+
+    db.ref("news/"+id).remove();
+
+  }
 
 }
 
-catch{
 
-return "";
+/* =========================================================
+   GALLERY
+   ========================================================= */
+
+function addPhoto(){
+
+  const title=document.getElementById("photoTitle").value.trim();
+  const url=document.getElementById("photoUrl").value.trim();
+
+  if(!title || !url){
+
+    alert("Title aur Image URL dijiye.");
+
+    return;
+
+  }
+
+  db.ref("gallery").push({
+
+    title:title,
+    url:url,
+    createdAt:Date.now()
+
+  })
+  .then(()=>{
+
+    document.getElementById("photoTitle").value="";
+    document.getElementById("photoUrl").value="";
+
+    alert("Photo added ✅");
+
+  });
 
 }
 
+
+function loadGallery(){
+
+  db.ref("gallery").on("value",snapshot=>{
+
+    const box=document.getElementById("galleryList");
+
+    box.innerHTML="";
+
+    snapshot.forEach(child=>{
+
+      const p=child.val();
+
+      box.innerHTML+=`
+
+      <div>
+
+      <img src="${escapeAttribute(p.url)}"
+      alt="${escapeAttribute(p.title)}"
+      onerror="this.style.display='none'">
+
+      <p class="center">${escapeHtml(p.title)}</p>
+
+      </div>
+
+      `;
+
+    });
+
+    if(!snapshot.exists()){
+
+      box.innerHTML="<p>No photos available.</p>";
+
+    }
+
+  });
+
 }
 
 
-/* YEAR */
+function loadAdminGallery(){
 
-$("year").textContent =
-new Date().getFullYear();
+  db.ref("gallery").on("value",snapshot=>{
+
+    const box=document.getElementById("adminGallery");
+
+    box.innerHTML="<hr>";
+
+    snapshot.forEach(child=>{
+
+      const p=child.val();
+
+      box.innerHTML+=`
+
+      <div class="item">
+
+      <b>${escapeHtml(p.title)}</b>
+
+      <br>
+
+      <button class="red"
+      onclick="deletePhoto('${child.key}')">
+      Delete
+      </button>
+
+      </div>
+
+      `;
+
+    });
+
+  });
+
+}
+
+
+function deletePhoto(id){
+
+  if(confirm("Delete photo?")){
+
+    db.ref("gallery/"+id).remove();
+
+  }
+
+}
+
+
+/* =========================================================
+   SECURITY / DISPLAY HELPERS
+   ========================================================= */
+
+function escapeHtml(value){
+
+  return String(value ?? "")
+  .replace(/&/g,"&amp;")
+  .replace(/</g,"&lt;")
+  .replace(/>/g,"&gt;")
+  .replace(/"/g,"&quot;")
+  .replace(/'/g,"&#039;");
+
+}
+
+function escapeAttribute(value){
+
+  return String(value ?? "")
+  .replace(/"/g,"&quot;")
+  .replace(/'/g,"&#039;");
+
+}
+
+
+/* =========================================================
+   START
+   ========================================================= */
+
+showPage("home");
 
 </script>
 
