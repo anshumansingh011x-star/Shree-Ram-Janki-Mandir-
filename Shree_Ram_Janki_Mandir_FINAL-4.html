@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>श्री राम जानकी मंदिर दुर्गा पूजा सेवा समिति</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#fff8ef;color:#25160c}
+header{background:linear-gradient(135deg,#7a1600,#d66a00);color:#fff;padding:18px 16px 65px}
+nav,.wrap{max-width:1050px;margin:auto}nav{display:flex;gap:18px;align-items:center}nav b{font-size:20px;margin-right:auto}nav a{color:#fff;text-decoration:none}
+.hero{max-width:1050px;margin:65px auto 0}.hero h1{font-size:clamp(32px,7vw,60px);line-height:1.08;margin:10px 0}.hero p{font-size:18px}
+section{max-width:1050px;margin:auto;padding:45px 16px}.eyebrow{font-size:12px;letter-spacing:2px;font-weight:800;color:#a33a00}.choices{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}
+.choice,.card,.panel{background:#fff;border-radius:16px;padding:20px;box-shadow:0 8px 25px #0001}.choice{border:0;text-align:left;cursor:pointer}.choice span{font-size:35px}.choice b{display:block;font-size:20px;margin:8px 0}.muted{color:#75665b}
+.hidden{display:none!important}.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}label{font-weight:700}input,textarea{width:100%;padding:12px;margin-top:7px;border:1px solid #ddd;border-radius:10px;font:inherit}label.full{grid-column:1/-1}
+.btn{border:0;border-radius:10px;background:#7a1600;color:#fff;padding:12px 18px;cursor:pointer;font-weight:700}.light{background:#eee;color:#222}.actions{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap}
+.cards{display:grid;gap:14px}.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px}.gallery img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:12px}
+footer{background:#24140b;color:#fff;text-align:center;padding:28px}.app{padding:15px 0;border-top:1px solid #eee}.danger{background:#a00;color:#fff;border:0;border-radius:8px;padding:8px}
+@media(max-width:650px){.grid{grid-template-columns:1fr}label.full{grid-column:auto}}
+</style>
+</head>
+<body>
+<header><nav><b>श्री राम जानकी मंदिर</b><a href="#join">Join</a><a href="#admin">Admin</a></nav>
+<div class="hero"><small>SISWA BAZAR</small><h1>श्री राम जानकी मंदिर<br>दुर्गा पूजा सेवा समिति</h1><p>सेवा • श्रद्धा • सहयोग • संस्कार</p><a class="btn" href="#join">समिति से जुड़ें</a></div></header>
+
+<section id="join"><p class="eyebrow">JOIN US</p><h2>आप किस रूप में जुड़ना चाहते हैं?</h2>
+<div class="choices">
+<button class="choice" onclick="openForm('volunteer')"><span>🙋</span><b>Volunteer</b><small>सेवा कार्यों में सहयोग करें</small></button>
+<button class="choice" onclick="openForm('committee')"><span>🪔</span><b>Committee Member</b><small>समिति में जिम्मेदारी के लिए आवेदन</small></button>
+</div></section>
+
+<section id="formBox" class="hidden"><p class="eyebrow" id="typeLabel"></p><h2 id="formTitle"></h2>
+<form id="joinForm"><input type="hidden" id="type">
+<div class="grid">
+<label>पूरा नाम<input id="name" required></label>
+<label>मोबाइल नंबर<input id="phone" required inputmode="tel"></label>
+<label>उम्र<input id="age" required type="number"></label>
+<label>पता<input id="address" required></label>
+<label class="full">सेवा/जिम्मेदारी में रुचि<textarea id="interest" rows="3"></textarea></label>
+<label class="full" id="idWrap">Previous ID Card<input id="idCard" type="file" accept="image/*,.pdf"></label>
+</div><div class="actions"><button class="btn">Submit Application</button><button type="button" class="btn light" onclick="closeForm()">Back</button></div><p id="formMsg"></p>
+</form></section>
+
+<section><p class="eyebrow">UPDATES</p><h2>News & Announcements</h2><div id="news" class="cards"><p class="muted">Loading...</p></div></section>
+<section><p class="eyebrow">MEMORIES</p><h2>Gallery</h2><div id="gallery" class="gallery"><p class="muted">Loading...</p></div></section>
+
+<section id="admin"><p class="eyebrow">ADMIN</p><h2>Admin Panel</h2>
+<div id="login" class="panel"><p>Password-only admin access</p><input id="pass" type="password" placeholder="Admin password"><button class="btn" onclick="adminLogin()">Login</button><p id="loginMsg"></p></div>
+<div id="adminPanel" class="hidden">
+<div class="panel"><h3>Applications</h3><div><button class="btn" onclick="filterApps('all')">All</button> <button class="btn" onclick="filterApps('volunteer')">Volunteers</button> <button class="btn" onclick="filterApps('committee')">Committee</button></div><div id="apps"></div></div>
+<div class="panel"><h3>Add News</h3><input id="newsTitle" placeholder="Title"><textarea id="newsBody" placeholder="Announcement"></textarea><button class="btn" onclick="publishNews()">Publish</button></div>
+<div class="panel"><h3>Add Gallery Photo</h3><input id="photoCaption" placeholder="Caption"><input id="photoUrl" placeholder="Public image URL"><button class="btn" onclick="publishPhoto()">Add Photo</button></div>
+</div></section>
+<footer>श्री राम जानकी मंदिर दुर्गा पूजा सेवा समिति<br>Siswa Bazar<br>© <span id="year"></span></footer>
+
+<script type="module">
+import{initializeApp}from"https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+import{getDatabase,ref,push,onValue,remove}from"https://www.gstatic.com/firebasejs/12.2.1/firebase-database.js";
+
+const firebaseConfig={
+apiKey:"AIzaSyDLonsbRwdlq3Ru4NIvhFqLzjKEUaPnzfc",
+authDomain:"shree-ram-janki-mandir-durga.firebaseapp.com",
+databaseURL:"https://shree-ram-janki-mandir-durga-default-rtdb.asia-southeast1.firebasedatabase.app",
+projectId:"shree-ram-janki-mandir-durga",
+storageBucket:"shree-ram-janki-mandir-durga.firebasestorage.app",
+messagingSenderId:"603852207772",
+appId:"1:603852207772:web:a27f2828d95284a4c69f59",
+measurementId:"G-9QQJJEMH1V"};
+const app=initializeApp(firebaseConfig),db=getDatabase(app);
+const ADMIN_PASSWORD="12345678";
+let data={},currentFilter="all";
+
+const $=id=>document.getElementById(id);
+window.openForm=t=>{$("formBox").classList.remove("hidden");$("type").value=t;$("typeLabel").textContent=t==="volunteer"?"VOLUNTEER":"COMMITTEE MEMBER";$("formTitle").textContent=t==="volunteer"?"Volunteer Application":"Committee Member Application";$("idWrap").style.display=t==="volunteer"?"block":"none";location.hash="formBox"};
+window.closeForm=()=>{$("formBox").classList.add("hidden")};
+
+$("joinForm").addEventListener("submit",async e=>{
+e.preventDefault();$("formMsg").textContent="Submitting...";
+let f=$("idCard").files[0], encoded="";
+try{
+if(f){if(f.size>500000){$("formMsg").textContent="ID card 500KB से कम रखें.";return}encoded=await new Promise((ok,no)=>{let r=new FileReader();r.onload=()=>ok(r.result);r.onerror=no;r.readAsDataURL(f)})}
+await push(ref(db,"applications"),{type:$("type").value,name:$("name").value.trim(),phone:$("phone").value.trim(),age:$("age").value,address:$("address").value.trim(),interest:$("interest").value.trim(),idCard:encoded,createdAt:Date.now()});
+$("joinForm").reset();$("formMsg").textContent="✅ Application successfully submit हो गया!";}catch(err){console.error(err);$("formMsg").textContent="❌ Submit नहीं हुआ: "+err.message}
+});
+
+onValue(ref(db,"applications"),s=>{data=s.val()||{};renderApps()});
+onValue(ref(db,"news"),s=>{let a=Object.values(s.val()||{}).sort((x,y)=>(y.createdAt||0)-(x.createdAt||0));$("news").innerHTML=a.length?a.map(x=>`<article class="card"><h3>${esc(x.title)}</h3><p>${esc(x.body)}</p></article>`).join(""):"<p class='muted'>अभी कोई समाचार नहीं।</p>"});
+onValue(ref(db,"gallery"),s=>{let a=Object.values(s.val()||{}).sort((x,y)=>(y.createdAt||0)-(x.createdAt||0));$("gallery").innerHTML=a.length?a.map(x=>`<div><img src="${esc(x.url)}" alt=""><p>${esc(x.caption||"")}</p></div>`).join(""):"<p class='muted'>अभी कोई फोटो नहीं।</p>"});
+
+window.adminLogin=()=>{if($("pass").value===ADMIN_PASSWORD){$("login").classList.add("hidden");$("adminPanel").classList.remove("hidden");renderApps()}else $("loginMsg").textContent="❌ Wrong password"};
+window.filterApps=t=>{currentFilter=t;renderApps()};
+function renderApps(){
+let a=Object.entries(data).filter(([k,x])=>currentFilter==="all"||x.type===currentFilter).sort((a,b)=>(b[1].createdAt||0)-(a[1].createdAt||0));
+$("apps").innerHTML=a.length?a.map(([id,x])=>`<div class="app"><b>${esc(x.name)}</b> — ${esc(x.type)}<br>📞 ${esc(x.phone)} | Age: ${esc(x.age)}<br>📍 ${esc(x.address)}<br>${esc(x.interest||"")} ${x.idCard?`<br><a href="${x.idCard}" target="_blank">Previous ID Card देखें</a>`:""}<br><button class="danger" onclick="deleteApplication('${id}')">Delete</button></div>`).join(""):"<p class='muted'>No applications.</p>"
+}
+window.deleteApplication=async id=>{if(confirm("Delete this application?"))await remove(ref(db,"applications/"+id))};
+window.publishNews=async()=>{let t=$("newsTitle").value.trim(),b=$("newsBody").value.trim();if(!t)return alert("Title डालें");await push(ref(db,"news"),{title:t,body:b,createdAt:Date.now()});$("newsTitle").value="";$("newsBody").value=""};
+window.publishPhoto=async()=>{let u=$("photoUrl").value.trim(),c=$("photoCaption").value.trim();if(!u)return alert("Image URL डालें");await push(ref(db,"gallery"),{url:u,caption:c,createdAt:Date.now()});$("photoUrl").value="";$("photoCaption").value=""};
+function esc(v=""){return String(v).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]))}
+$("year").textContent=new Date().getFullYear();
+</script></body></html>
