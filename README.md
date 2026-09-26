@@ -1068,4 +1068,485 @@ function loadCommittee(){
 
           <button class="action red"
           onclick="updateStatus('committee','${v.id}','rejected')">
-       
+          ❌ Reject
+          </button>
+          `
+          :
+          ""
+        }
+
+      `;
+
+      list.appendChild(div);
+
+    });
+
+  });
+
+}
+
+
+/* =====================================================
+   ACCEPT / REJECT
+   ===================================================== */
+
+function updateStatus(type,id,status){
+
+  if(!isAdmin) return;
+
+  db.ref(type+"/"+id+"/status")
+  .set(status)
+  .then(()=>{
+
+    loadApplications();
+
+  })
+  .catch(error=>{
+
+    alert(error.message);
+
+  });
+
+}
+
+
+/* =====================================================
+   VIEW PDF
+   ===================================================== */
+
+function viewPDF(id,type){
+
+  db.ref(type+"/"+id+"/pdf")
+  .once("value")
+  .then(snapshot=>{
+
+    const pdf =
+    snapshot.val();
+
+    if(!pdf){
+
+      alert("PDF उपलब्ध नहीं है।");
+      return;
+
+    }
+
+    const win =
+    window.open();
+
+    win.document.write(`
+
+      <html>
+      <head>
+      <title>PDF</title>
+      </head>
+
+      <body style="margin:0">
+
+      <iframe
+      src="${pdf}"
+      style="width:100%;height:100vh;border:0">
+      </iframe>
+
+      </body>
+      </html>
+
+    `);
+
+  });
+
+}
+
+
+/* =====================================================
+   NEWS
+   ===================================================== */
+
+function addNews(){
+
+  if(!isAdmin) return;
+
+  const title =
+  document.getElementById("newsTitle").value.trim();
+
+  const details =
+  document.getElementById("newsDetails").value.trim();
+
+  if(!title || !details){
+
+    alert("Title और Details भरें।");
+    return;
+
+  }
+
+  const id =
+  db.ref("news").push().key;
+
+  db.ref("news/"+id).set({
+
+    id:id,
+
+    title:title,
+
+    details:details,
+
+    createdAt:Date.now()
+
+  })
+  .then(()=>{
+
+    document.getElementById("newsTitle").value="";
+    document.getElementById("newsDetails").value="";
+
+    loadNews();
+    loadAdminNews();
+
+    alert("✅ News added");
+
+  });
+
+}
+
+
+function loadNews(){
+
+  db.ref("news").once("value")
+  .then(snapshot=>{
+
+    const list =
+    document.getElementById("newsList");
+
+    list.innerHTML="";
+
+    const data=[];
+
+    snapshot.forEach(child=>{
+
+      data.push(child.val());
+
+    });
+
+    data.reverse();
+
+    if(data.length===0){
+
+      list.innerHTML=
+      "<p>अभी कोई News उपलब्ध नहीं है।</p>";
+
+      return;
+
+    }
+
+    data.forEach(n=>{
+
+      const div =
+      document.createElement("div");
+
+      div.className="card";
+
+      div.innerHTML=`
+
+        <h3>📰 ${escapeHTML(n.title)}</h3>
+
+        <p>${escapeHTML(n.details)}</p>
+
+        <p class="small">
+        ${new Date(n.createdAt).toLocaleString("hi-IN")}
+        </p>
+
+      `;
+
+      list.appendChild(div);
+
+    });
+
+  });
+
+}
+
+
+function loadAdminNews(){
+
+  if(!isAdmin) return;
+
+  db.ref("news").once("value")
+  .then(snapshot=>{
+
+    const list =
+    document.getElementById("adminNewsList");
+
+    list.innerHTML="";
+
+    snapshot.forEach(child=>{
+
+      const n=child.val();
+
+      const div=
+      document.createElement("div");
+
+      div.className="application";
+
+      div.innerHTML=`
+
+        <b>${escapeHTML(n.title)}</b>
+
+        <p>${escapeHTML(n.details)}</p>
+
+        <button class="action red"
+        onclick="deleteNews('${n.id}')">
+        🗑️ Delete
+        </button>
+
+      `;
+
+      list.prepend(div);
+
+    });
+
+  });
+
+}
+
+
+function deleteNews(id){
+
+  if(!isAdmin) return;
+
+  if(!confirm("News delete करें?"))
+    return;
+
+  db.ref("news/"+id)
+  .remove()
+  .then(()=>{
+
+    loadNews();
+    loadAdminNews();
+
+  });
+
+}
+
+
+/* =====================================================
+   GALLERY
+   ===================================================== */
+
+async function addGalleryPhoto(){
+
+  if(!isAdmin) return;
+
+  const title =
+  document.getElementById("galleryTitle").value.trim();
+
+  const file =
+  document.getElementById("galleryPhoto").files[0];
+
+  const msg =
+  document.getElementById("galleryMsg");
+
+
+  if(!file){
+
+    msg.innerHTML="⚠️ Photo select करें।";
+    return;
+
+  }
+
+  if(file.size > 300 * 1024){
+
+    msg.innerHTML=
+    "⚠️ Photo 300 KB से छोटी रखें।";
+
+    return;
+
+  }
+
+  msg.innerHTML="⏳ Upload हो रहा है...";
+
+
+  try{
+
+    const image =
+    await fileToBase64(file);
+
+    const id =
+    db.ref("gallery").push().key;
+
+    await db.ref("gallery/"+id).set({
+
+      id:id,
+
+      title:title,
+
+      image:image,
+
+      createdAt:Date.now()
+
+    });
+
+
+    document.getElementById("galleryTitle").value="";
+    document.getElementById("galleryPhoto").value="";
+
+    msg.innerHTML="✅ Photo uploaded";
+
+    loadGallery();
+    loadAdminGallery();
+
+
+  }catch(error){
+
+    msg.innerHTML=
+    "❌ Error: "+error.message;
+
+  }
+
+}
+
+
+function loadGallery(){
+
+  db.ref("gallery").once("value")
+  .then(snapshot=>{
+
+    const list =
+    document.getElementById("galleryList");
+
+    list.innerHTML="";
+
+    const data=[];
+
+    snapshot.forEach(child=>{
+
+      data.push(child.val());
+
+    });
+
+    data.reverse();
+
+    if(data.length===0){
+
+      list.innerHTML=
+      "<p>अभी Gallery खाली है।</p>";
+
+      return;
+
+    }
+
+    data.forEach(g=>{
+
+      const div =
+      document.createElement("div");
+
+      div.innerHTML=`
+
+        <img
+        src="${g.image}"
+        alt="${escapeHTML(g.title || 'Gallery Photo')}">
+
+      `;
+
+      list.appendChild(div);
+
+    });
+
+  });
+
+}
+
+
+function loadAdminGallery(){
+
+  if(!isAdmin) return;
+
+  db.ref("gallery").once("value")
+  .then(snapshot=>{
+
+    const list =
+    document.getElementById("adminGalleryList");
+
+    list.innerHTML="";
+
+    snapshot.forEach(child=>{
+
+      const g=child.val();
+
+      const div=
+      document.createElement("div");
+
+      div.className="application";
+
+      div.innerHTML=`
+
+        <img
+        src="${g.image}"
+        style="width:120px;height:100px;object-fit:cover;border-radius:8px">
+
+        <p>
+        <b>${escapeHTML(g.title || "Gallery Photo")}</b>
+        </p>
+
+        <button class="action red"
+        onclick="deleteGallery('${g.id}')">
+        🗑️ Delete
+        </button>
+
+      `;
+
+      list.appendChild(div);
+
+    });
+
+  });
+
+}
+
+
+function deleteGallery(id){
+
+  if(!isAdmin) return;
+
+  if(!confirm("Photo delete करें?"))
+    return;
+
+  db.ref("gallery/"+id)
+  .remove()
+  .then(()=>{
+
+    loadGallery();
+    loadAdminGallery();
+
+  });
+
+}
+
+
+/* =====================================================
+   SECURITY HELPER
+   ===================================================== */
+
+function escapeHTML(value){
+
+  if(value===undefined || value===null)
+    return "";
+
+  return String(value)
+  .replace(/&/g,"&amp;")
+  .replace(/</g,"&lt;")
+  .replace(/>/g,"&gt;")
+  .replace(/"/g,"&quot;")
+  .replace(/'/g,"&#039;");
+
+}
+
+
+/* =====================================================
+   START
+   ===================================================== */
+
+loadNews();
+loadGallery();
+
+</script>
+
+</body>
+</html>
