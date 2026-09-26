@@ -12,134 +12,123 @@
 <style>
 *{box-sizing:border-box}
 
-html{scroll-behavior:smooth}
-
 body{
   margin:0;
-  font-family:Arial,Helvetica,sans-serif;
-  background:#fff8ef;
+  font-family:Arial,sans-serif;
+  background:#fff8ed;
   color:#222;
 }
 
 header{
-  background:linear-gradient(135deg,#7b0000,#c03900,#ff9800);
-  color:white;
+  background:linear-gradient(135deg,#8b0000,#d35400,#ff9800);
+  color:#fff;
   text-align:center;
-  padding:28px 15px;
+  padding:25px 15px;
 }
 
 header h1{
   margin:0;
-  font-size:26px;
+  font-size:25px;
 }
 
 header p{
-  margin:7px 0 0;
+  margin:7px 0;
 }
 
 nav{
   position:sticky;
   top:0;
-  z-index:100;
-  background:#650000;
+  z-index:20;
   display:flex;
-  justify-content:center;
   flex-wrap:wrap;
+  justify-content:center;
+  gap:7px;
+  padding:10px;
+  background:#fff;
+  box-shadow:0 2px 8px #bbb;
 }
 
-nav a{
-  color:white;
-  text-decoration:none;
-  padding:12px 14px;
-  font-size:14px;
-  font-weight:bold;
+nav button{
+  border:0;
+  background:#8b0000;
+  color:#fff;
+  padding:10px 14px;
+  border-radius:20px;
+  cursor:pointer;
 }
 
-nav a:hover{
-  background:#900000;
-}
-
-.container{
-  max-width:1100px;
+section{
+  max-width:1050px;
   margin:auto;
-  padding:15px;
-}
-
-.hero{
-  text-align:center;
-  background:white;
-  margin-top:20px;
-  padding:30px 18px;
-  border-radius:16px;
-  box-shadow:0 3px 14px #0002;
-}
-
-.hero h2{
-  color:#a00000;
+  padding:25px 15px;
 }
 
 .card{
-  background:white;
-  margin:20px 0;
-  padding:20px;
-  border-radius:16px;
-  box-shadow:0 3px 14px #0002;
+  background:#fff;
+  border-radius:15px;
+  padding:18px;
+  margin:15px 0;
+  box-shadow:0 3px 12px #ddd;
 }
 
-h2,h3{
-  color:#970000;
+h2{
+  color:#8b0000;
 }
 
 input,textarea,select{
   width:100%;
   padding:12px;
-  margin:6px 0 14px;
+  margin:7px 0 12px;
   border:1px solid #ccc;
-  border-radius:8px;
+  border-radius:9px;
   font-size:15px;
 }
 
 textarea{
   min-height:100px;
-  resize:vertical;
 }
 
-button{
+button.main{
   border:0;
+  padding:11px 17px;
   border-radius:8px;
-  padding:11px 16px;
-  margin:4px;
-  background:#a00000;
-  color:white;
+  background:#8b0000;
+  color:#fff;
+  cursor:pointer;
   font-weight:bold;
+}
+
+button.green{background:#16803c}
+button.red{background:#b00020}
+button.orange{background:#e87500}
+button.gray{background:#555}
+
+button:disabled{
+  opacity:.6;
+}
+
+.small{
+  color:#666;
+  font-size:13px;
+}
+
+.actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+  margin-top:12px;
+}
+
+.actions button{
+  border:0;
+  color:#fff;
+  padding:8px 11px;
+  border-radius:7px;
   cursor:pointer;
 }
 
-button:hover{
-  opacity:.88;
-}
-
-.green{background:#16803c}
-.red{background:#c5221f}
-.orange{background:#e87500}
-.gray{background:#555}
-
-.row{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:15px;
-}
-
 .news{
-  border:1px solid #eee;
-  background:#fffdf9;
-  border-radius:12px;
-  padding:15px;
-  margin:12px 0;
-}
-
-.news h3{
-  margin-top:0;
+  border-left:5px solid #d35400;
 }
 
 .gallery{
@@ -148,110 +137,84 @@ button:hover{
   gap:15px;
 }
 
-.gallery-card{
-  background:#fffdf9;
-  border:1px solid #eee;
+.galleryItem{
+  background:#fff;
   border-radius:12px;
   padding:10px;
+  box-shadow:0 2px 8px #ddd;
 }
 
-.gallery-card img{
+.galleryItem img{
   width:100%;
   height:190px;
   object-fit:cover;
   border-radius:9px;
-  background:#eee;
-}
-
-.application{
-  border:1px solid #ddd;
-  border-radius:12px;
-  padding:15px;
-  margin:12px 0;
-  background:#fffdf9;
 }
 
 .status{
   display:inline-block;
-  padding:5px 9px;
-  border-radius:20px;
+  padding:5px 10px;
+  border-radius:15px;
   font-size:12px;
   font-weight:bold;
 }
 
 .pending{
   background:#fff0b3;
-  color:#765700;
 }
 
 .accepted{
-  background:#c9f7d5;
-  color:#086b25;
+  background:#b9f6ca;
 }
 
 .rejected{
-  background:#ffd0d0;
-  color:#900;
+  background:#ffcdd2;
 }
 
-.admin-box{
-  background:#fff6df;
-  border:1px solid #efd18c;
-  border-radius:12px;
-  padding:15px;
+.adminPanel{
+  display:none;
 }
 
-.hidden{
-  display:none!important;
+.modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.75);
+  z-index:100;
+  overflow:auto;
+  padding:20px;
 }
 
-.small{
-  font-size:13px;
-  color:#666;
-}
-
-.message{
-  padding:10px;
-  border-radius:8px;
-  margin-top:8px;
-}
-
-.success{
-  background:#dff5e5;
-  color:#126b2e;
-}
-
-.error{
-  background:#ffe1e1;
-  color:#9b0000;
+.modalBox{
+  background:#fff;
+  max-width:700px;
+  margin:30px auto;
+  padding:20px;
+  border-radius:15px;
 }
 
 footer{
-  background:#580000;
-  color:white;
+  background:#5b0000;
+  color:#fff;
   text-align:center;
-  padding:25px 15px;
+  padding:25px;
   margin-top:30px;
 }
 
-.danger-note{
-  font-size:12px;
-  color:#8a0000;
+.loading{
+  text-align:center;
+  padding:20px;
+  color:#777;
 }
 
-@media(max-width:650px){
+@media(max-width:500px){
   header h1{
     font-size:21px;
   }
 
-  nav a{
-    font-size:12px;
-    padding:10px 8px;
-  }
-
-  .row{
-    grid-template-columns:1fr;
-    gap:0;
+  nav button{
+    padding:8px 11px;
+    font-size:13px;
   }
 }
 </style>
@@ -260,46 +223,52 @@ footer{
 <body>
 
 <header>
-  <h1>🚩 श्री राम जानकी मंदिर दुर्गा पूजा सेवा समिति</h1>
+  <h1>श्री राम जानकी मंदिर दुर्गा पूजा सेवा समिति</h1>
   <p>Siswa Bazar</p>
-  <p>जय श्री राम 🚩</p>
+  <h3>जय श्री राम 🚩</h3>
 </header>
 
 <nav>
-  <a href="#home">Home</a>
-  <a href="#news">News</a>
-  <a href="#gallery">Gallery</a>
-  <a href="#volunteer">Volunteer</a>
-  <a href="#committee">Committee</a>
-  <a href="#admin">Admin</a>
+  <button onclick="goTo('home')">Home</button>
+  <button onclick="goTo('news')">News</button>
+  <button onclick="goTo('gallery')">Gallery</button>
+  <button onclick="goTo('volunteer')">Volunteer</button>
+  <button onclick="goTo('committee')">Committee</button>
+  <button onclick="goTo('admin')">Admin</button>
 </nav>
 
-<div class="container">
 
 <!-- HOME -->
 
-<section id="home" class="hero">
-  <h2>🙏 आपका हार्दिक स्वागत है 🙏</h2>
+<section id="home">
 
-  <p>
-    श्री राम जानकी मंदिर दुर्गा पूजा सेवा समिति,
-    Siswa Bazar की वेबसाइट पर आपका स्वागत है।
-  </p>
+  <div class="card" style="text-align:center">
 
-  <p><b>सेवा • सहयोग • संस्कार • समाज</b></p>
+    <h2>🙏 स्वागत है 🙏</h2>
 
-  <p>🚩 जय श्री राम 🚩</p>
+    <p>
+      श्री राम जानकी मंदिर दुर्गा पूजा सेवा समिति,
+      Siswa Bazar की आधिकारिक वेबसाइट पर
+      आपका हार्दिक स्वागत है।
+    </p>
+
+    <h3>जय श्री राम 🚩</h3>
+
+  </div>
+
 </section>
 
 
 <!-- NEWS -->
 
-<section id="news" class="card">
+<section id="news">
 
   <h2>📰 News & Updates</h2>
 
   <div id="newsList">
-    <p>News loading...</p>
+    <div class="loading">
+      News loading...
+    </div>
   </div>
 
 </section>
@@ -307,16 +276,18 @@ footer{
 
 <!-- GALLERY -->
 
-<section id="gallery" class="card">
+<section id="gallery">
 
   <h2>🖼️ Gallery</h2>
 
-  <p class="small">
-    Gallery में फोटो दिखाने के लिए admin को public/direct image URL डालना होगा।
-  </p>
+  <div class="card">
 
-  <div id="galleryList" class="gallery">
-    <p>Gallery loading...</p>
+    <div id="galleryList" class="gallery">
+      <div class="loading">
+        Gallery loading...
+      </div>
+    </div>
+
   </div>
 
 </section>
@@ -324,299 +295,343 @@ footer{
 
 <!-- VOLUNTEER -->
 
-<section id="volunteer" class="card">
+<section id="volunteer">
 
-  <h2>🙋 Volunteer Registration</h2>
+  <h2>🙋 Volunteer Application</h2>
 
-  <p>
-    सेवा समिति से जुड़ने के लिए नीचे अपना आवेदन भेजें।
-  </p>
+  <div class="card">
 
-  <form id="volunteerForm">
+    <form id="volunteerForm">
 
-    <label>पूरा नाम *</label>
-    <input id="vName" required>
+      <input
+        id="vName"
+        placeholder="पूरा नाम"
+        required>
 
-    <div class="row">
+      <input
+        id="vMobile"
+        type="tel"
+        maxlength="10"
+        inputmode="numeric"
+        placeholder="10 digit Mobile Number"
+        required>
 
-      <div>
-        <label>Mobile Number *</label>
-        <input
-          id="vMobile"
-          type="tel"
-          maxlength="10"
-          pattern="[0-9]{10}"
-          placeholder="10 digit mobile"
-          required>
-      </div>
+      <input
+        id="vAge"
+        type="number"
+        min="10"
+        max="100"
+        placeholder="Age"
+        required>
 
-      <div>
-        <label>उम्र *</label>
-        <input
-          id="vAge"
-          type="number"
-          min="10"
-          max="100"
-          required>
-      </div>
+      <textarea
+        id="vAddress"
+        placeholder="पूरा पता"
+        required></textarea>
 
-    </div>
+      <input
+        id="vContribution"
+        placeholder="आप किस प्रकार सहयोग करना चाहते हैं?">
 
-    <label>पता *</label>
-    <textarea id="vAddress" required></textarea>
+      <label>
+        <b>📷 Photo Upload</b>
+      </label>
 
-    <label>आप किस प्रकार सेवा करना चाहते हैं?</label>
-    <input
-      id="vContribution"
-      placeholder="जैसे व्यवस्था, सजावट, प्रसाद, सुरक्षा">
+      <input
+        id="vPhoto"
+        type="file"
+        accept="image/*"
+        required>
 
-    <label>PDF Application / Google Drive Link</label>
-    <input
-      id="vPdf"
-      type="url"
-      placeholder="https://drive.google.com/...">
+      <label>
+        <b>📄 Application PDF</b>
+      </label>
 
-    <p class="small">
-      PDF को Google Drive पर upload करके उसका shareable link यहां डाल सकते हैं।
-    </p>
+      <input
+        id="vPdf"
+        type="file"
+        accept="application/pdf"
+        required>
 
-    <label>अन्य जानकारी</label>
-    <textarea id="vMessage"></textarea>
+      <textarea
+        id="vMessage"
+        placeholder="अन्य जानकारी / संदेश"></textarea>
 
-    <button type="submit">
-      आवेदन भेजें
-    </button>
+      <button
+        class="main"
+        type="submit">
+        Submit Application
+      </button>
 
-  </form>
+      <p id="vStatus" class="small"></p>
 
-  <div id="volunteerMsg"></div>
+    </form>
+
+  </div>
 
 </section>
 
 
 <!-- COMMITTEE -->
 
-<section id="committee" class="card">
+<section id="committee">
 
   <h2>👥 Committee Member Application</h2>
 
-  <form id="committeeForm">
+  <div class="card">
 
-    <label>पूरा नाम *</label>
-    <input id="cName" required>
+    <form id="committeeForm">
 
-    <label>Mobile Number *</label>
-    <input
-      id="cMobile"
-      type="tel"
-      maxlength="10"
-      pattern="[0-9]{10}"
-      required>
+      <input
+        id="cName"
+        placeholder="पूरा नाम"
+        required>
 
-    <label>उम्र *</label>
-    <input
-      id="cAge"
-      type="number"
-      min="10"
-      max="100"
-      required>
+      <input
+        id="cMobile"
+        type="tel"
+        maxlength="10"
+        inputmode="numeric"
+        placeholder="10 digit Mobile Number"
+        required>
 
-    <label>पता *</label>
-    <textarea id="cAddress" required></textarea>
+      <input
+        id="cAge"
+        type="number"
+        min="10"
+        max="100"
+        placeholder="Age"
+        required>
 
-    <label>समिति में आपका योगदान</label>
-    <textarea id="cMessage"></textarea>
+      <textarea
+        id="cAddress"
+        placeholder="पूरा पता"
+        required></textarea>
 
-    <button type="submit">
-      Committee Application भेजें
-    </button>
+      <input
+        id="cContribution"
+        placeholder="योगदान / जिम्मेदारी">
 
-  </form>
+      <label>
+        <b>📷 Photo Upload</b>
+      </label>
 
-  <div id="committeeMsg"></div>
+      <input
+        id="cPhoto"
+        type="file"
+        accept="image/*"
+        required>
+
+      <textarea
+        id="cMessage"
+        placeholder="अन्य जानकारी / संदेश"></textarea>
+
+      <button
+        class="main"
+        type="submit">
+        Submit Committee Application
+      </button>
+
+      <p id="cStatus" class="small"></p>
+
+    </form>
+
+  </div>
 
 </section>
 
 
 <!-- ADMIN -->
 
-<section id="admin" class="card">
+<section id="admin">
 
   <h2>🔐 Admin Panel</h2>
 
-  <div id="loginBox" class="admin-box">
-
-    <label>Admin Password</label>
+  <div class="card" id="loginBox">
 
     <input
       id="adminPassword"
       type="password"
       placeholder="Admin Password">
 
-    <button onclick="adminLogin()">
+    <button
+      class="main"
+      onclick="adminLogin()">
       Login
     </button>
 
-    <p class="small">
-      केवल अधिकृत समिति प्रशासन के लिए।
-    </p>
+    <p id="loginStatus" class="small"></p>
 
   </div>
 
 
-  <div id="adminPanel" class="hidden">
-
-    <h3>📊 Admin Dashboard</h3>
-
-    <button onclick="showAdmin('applications')">
-      Applications
-    </button>
-
-    <button onclick="showAdmin('news')">
-      Add News
-    </button>
-
-    <button onclick="showAdmin('gallery')">
-      Add Gallery
-    </button>
-
-    <button class="gray" onclick="adminLogout()">
-      Logout
-    </button>
-
+  <div
+    id="adminPanel"
+    class="adminPanel">
 
     <!-- APPLICATIONS -->
 
-    <div id="adminApplications">
+    <div class="card">
 
       <h3>📋 Applications</h3>
 
-      <div class="row">
+      <select
+        id="statusFilter"
+        onchange="renderApplications()">
 
-        <div>
-          <label>Status Filter</label>
+        <option value="all">All Applications</option>
+        <option value="pending">Pending</option>
+        <option value="accepted">Accepted</option>
+        <option value="rejected">Rejected</option>
 
-          <select id="statusFilter"
-                  onchange="loadApplications()">
+      </select>
 
-            <option value="all">All</option>
-            <option value="pending">Pending</option>
-            <option value="accepted">Accepted</option>
-            <option value="rejected">Rejected</option>
+      <input
+        id="applicationSearch"
+        oninput="renderApplications()"
+        placeholder="Search name or mobile">
 
-          </select>
-        </div>
-
-        <div>
-          <label>Search</label>
-
-          <input
-            id="applicationSearch"
-            placeholder="Name / Mobile"
-            oninput="loadApplications()">
-        </div>
-
-      </div>
-
-      <div id="applicationsList">
-        Loading...
-      </div>
+      <div id="applicationsList"></div>
 
     </div>
 
 
     <!-- ADD NEWS -->
 
-    <div id="adminNews" class="hidden">
+    <div class="card">
 
       <h3>📰 Add News</h3>
-
-      <label>News Title</label>
 
       <input
         id="newsTitle"
         maxlength="150"
-        placeholder="News title">
-
-      <label>News Details</label>
+        placeholder="News Title">
 
       <textarea
         id="newsDetails"
         maxlength="1000"
-        placeholder="News details"></textarea>
+        placeholder="News Details"></textarea>
 
-      <button onclick="addNews()">
-        Publish News
+      <button
+        class="main"
+        onclick="addNews()">
+        Add News
       </button>
 
     </div>
 
 
-    <!-- ADD GALLERY -->
+    <!-- GALLERY ADMIN -->
 
-    <div id="adminGallery" class="hidden">
+    <div class="card">
 
       <h3>🖼️ Add Gallery Photo</h3>
 
-      <p class="small">
-        Firebase Storage इस्तेमाल नहीं हो रहा है।
-        इसलिए public image URL डालना होगा।
-      </p>
-
-      <label>Photo Title</label>
-
       <input
         id="galleryTitle"
-        placeholder="Photo title">
-
-      <label>Image URL</label>
+        placeholder="Photo Title">
 
       <input
-        id="galleryUrl"
-        type="url"
-        placeholder="https://example.com/photo.jpg">
+        id="galleryFile"
+        type="file"
+        accept="image/*">
 
-      <button onclick="addGallery()">
-        Add Photo
+      <button
+        class="main"
+        onclick="uploadGallery()">
+        Upload Photo
       </button>
 
+      <p
+        id="galleryStatus"
+        class="small"></p>
+
     </div>
+
+
+    <button
+      class="main red"
+      onclick="adminLogout()">
+      Logout
+    </button>
 
   </div>
 
 </section>
+
+
+<!-- NEWS READER -->
+
+<div
+  class="modal"
+  id="newsModal">
+
+  <div class="modalBox">
+
+    <h2 id="modalTitle"></h2>
+
+    <p id="modalDetails"></p>
+
+    <button
+      class="main"
+      onclick="closeNews()">
+      Close
+    </button>
+
+  </div>
 
 </div>
 
 
 <footer>
 
-  <p>
-    <b>श्री राम जानकी मंदिर दुर्गा पूजा सेवा समिति</b>
-  </p>
+  <b>
+    श्री राम जानकी मंदिर दुर्गा पूजा सेवा समिति
+  </b>
 
-  <p>Siswa Bazar</p>
+  <br>
 
-  <p>🚩 जय श्री राम 🚩</p>
+  Siswa Bazar
+
+  <br><br>
+
+  जय श्री राम 🚩
 
 </footer>
 
 
 <script>
 
-/* =========================
-   FIREBASE CONFIG
-========================= */
+/* =========================================================
+   FIREBASE
+========================================================= */
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDLonsbRwdlq3Ru4NIvhFqLzjKEUaPnzfc",
-  authDomain: "shree-ram-janki-mandir-durga.firebaseapp.com",
-  databaseURL: "https://shree-ram-janki-mandir-durga-default-rtdb.asia-southeast1.firebasedatabase.app",
-  projectId: "shree-ram-janki-mandir-durga",
-  storageBucket: "shree-ram-janki-mandir-durga.firebasestorage.app",
-  messagingSenderId: "603852207772",
-  appId: "1:603852207772:web:a27f2828d95284a4c69f59",
-  measurementId: "G-9QQJJEMH1V"
+
+  apiKey:
+    "AIzaSyDLonsbRwdlq3Ru4NIvhFqLzjKEUaPnzfc",
+
+  authDomain:
+    "shree-ram-janki-mandir-durga.firebaseapp.com",
+
+  databaseURL:
+    "https://shree-ram-janki-mandir-durga-default-rtdb.asia-southeast1.firebasedatabase.app",
+
+  projectId:
+    "shree-ram-janki-mandir-durga",
+
+  storageBucket:
+    "shree-ram-janki-mandir-durga.firebasestorage.app",
+
+  messagingSenderId:
+    "603852207772",
+
+  appId:
+    "1:603852207772:web:a27f2828d95284a4c69f59",
+
+  measurementId:
+    "G-9QQJJEMH1V"
+
 };
 
 firebase.initializeApp(firebaseConfig);
@@ -624,941 +639,1298 @@ firebase.initializeApp(firebaseConfig);
 const db = firebase.database();
 
 
-/* =========================
-   ADMIN PASSWORD
-========================= */
+/* =========================================================
+   CLOUDINARY
+   BAS YE 2 VALUES BAAD MEIN LAGENGI
+========================================================= */
 
-const ADMIN_PASSWORD = "SRJM2026";
+const CLOUDINARY_CLOUD_NAME =
+  "YOUR_CLOUD_NAME";
 
-let adminLoggedIn = false;
+const CLOUDINARY_UPLOAD_PRESET =
+  "YOUR_UPLOAD_PRESET";
 
 
-/* =========================
-   HELPERS
-========================= */
+/* =========================================================
+   ADMIN
+========================================================= */
 
-function escapeHTML(value){
+const ADMIN_PASSWORD =
+  "SRJM2026";
 
-  if(value === null || value === undefined){
-    return "";
-  }
+let isAdmin = false;
 
-  return String(value)
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
-}
+let applications = {};
+let newsData = {};
+let galleryData = {};
 
 
-function showMessage(id,text,type){
+/* =========================================================
+   NAVIGATION
+========================================================= */
 
-  const el = document.getElementById(id);
+function goTo(id){
 
-  el.className = "message " + type;
-
-  el.textContent = text;
-}
-
-
-/* =========================
-   VOLUNTEER SUBMIT
-========================= */
-
-document.getElementById("volunteerForm")
-.addEventListener("submit",async function(e){
-
-  e.preventDefault();
-
-  const name =
-    document.getElementById("vName").value.trim();
-
-  const mobile =
-    document.getElementById("vMobile").value.trim();
-
-  const age =
-    document.getElementById("vAge").value.trim();
-
-  const address =
-    document.getElementById("vAddress").value.trim();
-
-  const contribution =
-    document.getElementById("vContribution").value.trim();
-
-  const pdf =
-    document.getElementById("vPdf").value.trim();
-
-  const message =
-    document.getElementById("vMessage").value.trim();
-
-
-  if(!/^[0-9]{10}$/.test(mobile)){
-
-    showMessage(
-      "volunteerMsg",
-      "कृपया सही 10 digit mobile number डालें।",
-      "error"
-    );
-
-    return;
-  }
-
-
-  const data = {
-
-    type:"Volunteer",
-
-    name:name,
-
-    mobile:mobile,
-
-    age:age,
-
-    address:address,
-
-    contribution:contribution,
-
-    pdfLink:pdf,
-
-    message:message,
-
-    status:"pending",
-
-    createdAt:Date.now()
-
-  };
-
-
-  try{
-
-    await db.ref("applications")
-      .push(data);
-
-    showMessage(
-      "volunteerMsg",
-      "✅ आपका Volunteer आवेदन सफलतापूर्वक भेज दिया गया है।",
-      "success"
-    );
-
-    document.getElementById("volunteerForm").reset();
-
-  }catch(error){
-
-    console.error(error);
-
-    showMessage(
-      "volunteerMsg",
-      "❌ आवेदन भेजने में समस्या हुई। Firebase Database Rules जांचें।",
-      "error"
-    );
-
-  }
-
-});
-
-
-/* =========================
-   COMMITTEE SUBMIT
-========================= */
-
-document.getElementById("committeeForm")
-.addEventListener("submit",async function(e){
-
-  e.preventDefault();
-
-  const name =
-    document.getElementById("cName").value.trim();
-
-  const mobile =
-    document.getElementById("cMobile").value.trim();
-
-  const age =
-    document.getElementById("cAge").value.trim();
-
-  const address =
-    document.getElementById("cAddress").value.trim();
-
-  const message =
-    document.getElementById("cMessage").value.trim();
-
-
-  if(!/^[0-9]{10}$/.test(mobile)){
-
-    showMessage(
-      "committeeMsg",
-      "कृपया सही 10 digit mobile number डालें।",
-      "error"
-    );
-
-    return;
-  }
-
-
-  const data = {
-
-    type:"Committee",
-
-    name:name,
-
-    mobile:mobile,
-
-    age:age,
-
-    address:address,
-
-    message:message,
-
-    status:"pending",
-
-    createdAt:Date.now()
-
-  };
-
-
-  try{
-
-    await db.ref("applications")
-      .push(data);
-
-    showMessage(
-      "committeeMsg",
-      "✅ आपका Committee application सफलतापूर्वक भेज दिया गया है।",
-      "success"
-    );
-
-    document.getElementById("committeeForm").reset();
-
-  }catch(error){
-
-    console.error(error);
-
-    showMessage(
-      "committeeMsg",
-      "❌ Application submit नहीं हुआ। Firebase Database Rules जांचें।",
-      "error"
-    );
-
-  }
-
-});
-
-
-/* =========================
-   LOAD NEWS
-========================= */
-
-function loadNews(){
-
-  db.ref("news")
-    .on("value",function(snapshot){
-
-      const list =
-        document.getElementById("newsList");
-
-      list.innerHTML="";
-
-      if(!snapshot.exists()){
-
-        list.innerHTML =
-          "<p>अभी कोई news उपलब्ध नहीं है।</p>";
-
-        return;
-      }
-
-
-      const arr=[];
-
-      snapshot.forEach(function(child){
-
-        arr.push({
-          id:child.key,
-          ...child.val()
-        });
-
-      });
-
-
-      arr.sort((a,b)=>
-        (b.createdAt||0)-(a.createdAt||0)
-      );
-
-
-      arr.forEach(function(item){
-
-        const div =
-          document.createElement("div");
-
-        div.className="news";
-
-        const date =
-          item.createdAt
-          ? new Date(item.createdAt)
-              .toLocaleString("hi-IN")
-          : "";
-
-        div.innerHTML = `
-
-          <h3>${escapeHTML(item.title)}</h3>
-
-          <p>
-            ${escapeHTML(item.details)}
-          </p>
-
-          <small>${escapeHTML(date)}</small>
-
-        `;
-
-        list.appendChild(div);
-
-      });
-
+  document.getElementById(id)
+    .scrollIntoView({
+      behavior:"smooth"
     });
 
 }
 
 
-/* =========================
-   ADD NEWS
-========================= */
+/* =========================================================
+   CLOUDINARY UPLOAD
+========================================================= */
 
-async function addNews(){
+async function uploadToCloudinary(file,type){
 
-  if(!adminLoggedIn){
+  if(!file){
 
-    alert("Admin login required.");
+    throw new Error(
+      "File select nahi ki gayi."
+    );
 
-    return;
   }
 
 
+  if(
+    CLOUDINARY_CLOUD_NAME === "YOUR_CLOUD_NAME" ||
+    CLOUDINARY_UPLOAD_PRESET === "YOUR_UPLOAD_PRESET"
+  ){
+
+    throw new Error(
+      "Cloudinary setup abhi complete nahi hai."
+    );
+
+  }
+
+
+  const formData =
+    new FormData();
+
+  formData.append(
+    "file",
+    file
+  );
+
+  formData.append(
+    "upload_preset",
+    CLOUDINARY_UPLOAD_PRESET
+  );
+
+
+  const resourceType =
+    type === "pdf"
+    ? "raw"
+    : "image";
+
+
+  const uploadURL =
+    "https://api.cloudinary.com/v1_1/" +
+    CLOUDINARY_CLOUD_NAME +
+    "/" +
+    resourceType +
+    "/upload";
+
+
+  const response =
+    await fetch(
+      uploadURL,
+      {
+        method:"POST",
+        body:formData
+      }
+    );
+
+
+  const data =
+    await response.json();
+
+
+  if(!response.ok){
+
+    throw new Error(
+      data.error?.message ||
+      "Upload failed."
+    );
+
+  }
+
+
+  return data.secure_url;
+
+}
+
+
+/* =========================================================
+   VOLUNTEER
+========================================================= */
+
+document
+  .getElementById("volunteerForm")
+  .addEventListener(
+    "submit",
+    async function(e){
+
+      e.preventDefault();
+
+      const status =
+        document.getElementById(
+          "vStatus"
+        );
+
+
+      const mobile =
+        document.getElementById(
+          "vMobile"
+        ).value.trim();
+
+
+      if(!/^[0-9]{10}$/.test(mobile)){
+
+        status.innerText =
+          "❌ Mobile number 10 digit ka hona chahiye.";
+
+        return;
+
+      }
+
+
+      try{
+
+        status.innerText =
+          "⏳ Photo upload ho rahi hai...";
+
+
+        const photoURL =
+          await uploadToCloudinary(
+            document.getElementById(
+              "vPhoto"
+            ).files[0],
+            "image"
+          );
+
+
+        status.innerText =
+          "⏳ PDF upload ho rahi hai...";
+
+
+        const pdfURL =
+          await uploadToCloudinary(
+            document.getElementById(
+              "vPdf"
+            ).files[0],
+            "pdf"
+          );
+
+
+        status.innerText =
+          "⏳ Application save ho rahi hai...";
+
+
+        const ref =
+          db.ref(
+            "applications"
+          ).push();
+
+
+        await ref.set({
+
+          type:"volunteer",
+
+          name:
+            document.getElementById(
+              "vName"
+            ).value.trim(),
+
+          mobile:mobile,
+
+          age:
+            document.getElementById(
+              "vAge"
+            ).value,
+
+          address:
+            document.getElementById(
+              "vAddress"
+            ).value.trim(),
+
+          contribution:
+            document.getElementById(
+              "vContribution"
+            ).value.trim(),
+
+          message:
+            document.getElementById(
+              "vMessage"
+            ).value.trim(),
+
+          photo:photoURL,
+
+          pdfLink:pdfURL,
+
+          status:"pending",
+
+          createdAt:
+            firebase.database
+              .ServerValue
+              .TIMESTAMP
+
+        });
+
+
+        document
+          .getElementById(
+            "volunteerForm"
+          )
+          .reset();
+
+
+        status.innerText =
+          "✅ Volunteer application successfully submit ho gayi.";
+
+      }
+      catch(error){
+
+        console.error(error);
+
+        status.innerText =
+          "❌ " +
+          error.message;
+
+      }
+
+    }
+  );
+
+
+/* =========================================================
+   COMMITTEE
+========================================================= */
+
+document
+  .getElementById("committeeForm")
+  .addEventListener(
+    "submit",
+    async function(e){
+
+      e.preventDefault();
+
+      const status =
+        document.getElementById(
+          "cStatus"
+        );
+
+
+      const mobile =
+        document.getElementById(
+          "cMobile"
+        ).value.trim();
+
+
+      if(!/^[0-9]{10}$/.test(mobile)){
+
+        status.innerText =
+          "❌ Mobile number 10 digit ka hona chahiye.";
+
+        return;
+
+      }
+
+
+      try{
+
+        status.innerText =
+          "⏳ Photo upload ho rahi hai...";
+
+
+        const photoURL =
+          await uploadToCloudinary(
+            document.getElementById(
+              "cPhoto"
+            ).files[0],
+            "image"
+          );
+
+
+        status.innerText =
+          "⏳ Application save ho rahi hai...";
+
+
+        const ref =
+          db.ref(
+            "applications"
+          ).push();
+
+
+        await ref.set({
+
+          type:"committee",
+
+          name:
+            document.getElementById(
+              "cName"
+            ).value.trim(),
+
+          mobile:mobile,
+
+          age:
+            document.getElementById(
+              "cAge"
+            ).value,
+
+          address:
+            document.getElementById(
+              "cAddress"
+            ).value.trim(),
+
+          contribution:
+            document.getElementById(
+              "cContribution"
+            ).value.trim(),
+
+          message:
+            document.getElementById(
+              "cMessage"
+            ).value.trim(),
+
+          photo:photoURL,
+
+          pdfLink:"",
+
+          status:"pending",
+
+          createdAt:
+            firebase.database
+              .ServerValue
+              .TIMESTAMP
+
+        });
+
+
+        document
+          .getElementById(
+            "committeeForm"
+          )
+          .reset();
+
+
+        status.innerText =
+          "✅ Committee application successfully submit ho gayi.";
+
+      }
+      catch(error){
+
+        console.error(error);
+
+        status.innerText =
+          "❌ " +
+          error.message;
+
+      }
+
+    }
+  );
+
+
+/* =========================================================
+   LOAD APPLICATIONS
+========================================================= */
+
+db.ref("applications")
+.on(
+  "value",
+  snapshot=>{
+
+    applications =
+      snapshot.val() || {};
+
+    if(isAdmin){
+
+      renderApplications();
+
+    }
+
+  }
+);
+
+
+/* =========================================================
+   ADMIN LOGIN
+========================================================= */
+
+function adminLogin(){
+
+  const password =
+    document.getElementById(
+      "adminPassword"
+    ).value;
+
+
+  if(password === ADMIN_PASSWORD){
+
+    isAdmin = true;
+
+
+    document.getElementById(
+      "loginBox"
+    ).style.display =
+      "none";
+
+
+    document.getElementById(
+      "adminPanel"
+    ).style.display =
+      "block";
+
+
+    renderApplications();
+
+    renderNews();
+
+    renderGallery();
+
+  }
+  else{
+
+    document.getElementById(
+      "loginStatus"
+    ).innerText =
+      "❌ Wrong password.";
+
+  }
+
+}
+
+
+function adminLogout(){
+
+  isAdmin = false;
+
+
+  document.getElementById(
+    "loginBox"
+  ).style.display =
+    "block";
+
+
+  document.getElementById(
+    "adminPanel"
+  ).style.display =
+    "none";
+
+
+  document.getElementById(
+    "adminPassword"
+  ).value = "";
+
+}
+
+
+/* =========================================================
+   APPLICATION LIST
+========================================================= */
+
+function renderApplications(){
+
+  const box =
+    document.getElementById(
+      "applicationsList"
+    );
+
+
+  if(!box)return;
+
+
+  const filter =
+    document.getElementById(
+      "statusFilter"
+    ).value;
+
+
+  const search =
+    document.getElementById(
+      "applicationSearch"
+    ).value
+    .toLowerCase()
+    .trim();
+
+
+  let html = "";
+
+
+  Object.entries(applications)
+    .reverse()
+    .forEach(
+      ([key,item])=>{
+
+        const name =
+          String(
+            item.name || ""
+          );
+
+
+        const mobile =
+          String(
+            item.mobile || ""
+          );
+
+
+        const status =
+          item.status ||
+          "pending";
+
+
+        if(
+          filter !== "all" &&
+          status !== filter
+        ){
+
+          return;
+
+        }
+
+
+        if(
+          search &&
+          !name
+            .toLowerCase()
+            .includes(search) &&
+          !mobile.includes(search)
+        ){
+
+          return;
+
+        }
+
+
+        const type =
+          item.type === "committee"
+          ? "Committee Member"
+          : "Volunteer";
+
+
+        html += `
+
+          <div class="card">
+
+            <h3>
+              ${escapeHTML(name)}
+            </h3>
+
+            <p>
+              <b>Type:</b>
+              ${type}
+            </p>
+
+            <p>
+              <b>Mobile:</b>
+              ${escapeHTML(mobile)}
+            </p>
+
+            <p>
+              <b>Age:</b>
+              ${escapeHTML(item.age || "")}
+            </p>
+
+            <p>
+              <b>Address:</b>
+              ${escapeHTML(item.address || "")}
+            </p>
+
+            <p>
+              <b>Contribution:</b>
+              ${escapeHTML(item.contribution || "")}
+            </p>
+
+            <p>
+              <b>Message:</b>
+              ${escapeHTML(item.message || "")}
+            </p>
+
+            <span class="status ${status}">
+              ${status.toUpperCase()}
+            </span>
+
+            ${
+              item.photo
+              ?
+              `
+              <p>
+                <a
+                  href="${item.photo}"
+                  target="_blank">
+                  📷 View Photo
+                </a>
+              </p>
+              `
+              : ""
+            }
+
+            ${
+              item.pdfLink
+              ?
+              `
+              <p>
+                <a
+                  href="${item.pdfLink}"
+                  target="_blank">
+                  📄 View Application PDF
+                </a>
+              </p>
+              `
+              : ""
+            }
+
+            <div class="actions">
+
+              <button
+                class="green"
+                onclick="changeStatus('${key}','accepted')">
+                Accept
+              </button>
+
+              <button
+                class="red"
+                onclick="changeStatus('${key}','rejected')">
+                Reject
+              </button>
+
+              <button
+                class="gray"
+                onclick="deleteApplication('${key}')">
+                Delete
+              </button>
+
+            </div>
+
+          </div>
+
+        `;
+
+      }
+    );
+
+
+  if(!html){
+
+    html =
+      `
+      <div class="card">
+        No applications found.
+      </div>
+      `;
+
+  }
+
+
+  box.innerHTML =
+    html;
+
+}
+
+
+/* =========================================================
+   CHANGE STATUS
+========================================================= */
+
+function changeStatus(
+  key,
+  status
+){
+
+  if(!isAdmin)return;
+
+
+  db.ref(
+    "applications/" +
+    key
+  )
+  .update({
+    status:status
+  });
+
+}
+
+
+/* =========================================================
+   DELETE APPLICATION
+========================================================= */
+
+function deleteApplication(key){
+
+  if(!isAdmin)return;
+
+
+  if(
+    !confirm(
+      "Kya aap is application ko delete karna chahte hain?"
+    )
+  ){
+
+    return;
+
+  }
+
+
+  db.ref(
+    "applications/" +
+    key
+  ).remove();
+
+}
+
+
+/* =========================================================
+   NEWS LOAD
+========================================================= */
+
+db.ref("news")
+.on(
+  "value",
+  snapshot=>{
+
+    newsData =
+      snapshot.val() || {};
+
+    renderNews();
+
+  }
+);
+
+
+/* =========================================================
+   ADD NEWS
+========================================================= */
+
+function addNews(){
+
+  if(!isAdmin)return;
+
+
   const title =
-    document.getElementById("newsTitle")
-      .value.trim();
+    document.getElementById(
+      "newsTitle"
+    ).value.trim();
+
 
   const details =
-    document.getElementById("newsDetails")
-      .value.trim();
+    document.getElementById(
+      "newsDetails"
+    ).value.trim();
 
 
   if(!title || !details){
 
-    alert("Title और Details दोनों भरें।");
+    alert(
+      "News title aur details bharein."
+    );
 
     return;
+
   }
 
 
-  try{
-
-    await db.ref("news").push({
+  db.ref("news")
+    .push({
 
       title:title,
 
       details:details,
 
-      createdAt:Date.now()
+      createdAt:
+        firebase.database
+          .ServerValue
+          .TIMESTAMP
 
     });
 
 
-    document.getElementById("newsTitle")
-      .value="";
+  document.getElementById(
+    "newsTitle"
+  ).value = "";
 
-    document.getElementById("newsDetails")
-      .value="";
 
-    alert("✅ News published.");
+  document.getElementById(
+    "newsDetails"
+  ).value = "";
 
-  }catch(error){
 
-    console.error(error);
-
-    alert("News publish नहीं हुई।");
-
-  }
+  alert(
+    "✅ News added successfully."
+  );
 
 }
 
 
-/* =========================
-   LOAD GALLERY
-========================= */
+/* =========================================================
+   RENDER NEWS
+========================================================= */
 
-function loadGallery(){
+function renderNews(){
 
-  db.ref("gallery")
-    .on("value",function(snapshot){
+  const box =
+    document.getElementById(
+      "newsList"
+    );
 
-      const list =
-        document.getElementById("galleryList");
 
-      list.innerHTML="";
+  if(!box)return;
 
 
-      if(!snapshot.exists()){
+  let html = "";
 
-        list.innerHTML =
-          "<p>अभी gallery खाली है।</p>";
-
-        return;
-      }
-
-
-      const arr=[];
-
-
-      snapshot.forEach(function(child){
-
-        arr.push({
-          id:child.key,
-          ...child.val()
-        });
-
-      });
-
-
-      arr.sort((a,b)=>
-        (b.createdAt||0)-(a.createdAt||0)
-      );
-
-
-      arr.forEach(function(item){
-
-        const div =
-          document.createElement("div");
-
-        div.className="gallery-card";
-
-
-        const img =
-          document.createElement("img");
-
-        img.src=item.url;
-
-        img.alt=item.title||"Gallery";
-
-        img.loading="lazy";
-
-        img.onerror=function(){
-
-          img.style.display="none";
-
-        };
-
-
-        div.appendChild(img);
-
-
-        const p =
-          document.createElement("p");
-
-        p.innerHTML =
-          "<b>"+escapeHTML(item.title||"Gallery Photo")+"</b>";
-
-        div.appendChild(p);
-
-
-        list.appendChild(div);
-
-      });
-
-    });
-
-}
-
-
-/* =========================
-   ADD GALLERY
-========================= */
-
-async function addGallery(){
-
-  if(!adminLoggedIn){
-
-    alert("Admin login required.");
-
-    return;
-  }
-
-
-  const title =
-    document.getElementById("galleryTitle")
-      .value.trim();
-
-  const url =
-    document.getElementById("galleryUrl")
-      .value.trim();
-
-
-  if(!title || !url){
-
-    alert("Photo title और URL दोनों भरें।");
-
-    return;
-  }
-
-
-  try{
-
-    await db.ref("gallery").push({
-
-      title:title,
-
-      url:url,
-
-      createdAt:Date.now()
-
-    });
-
-
-    document.getElementById("galleryTitle")
-      .value="";
-
-    document.getElementById("galleryUrl")
-      .value="";
-
-
-    alert("✅ Gallery photo added.");
-
-  }catch(error){
-
-    console.error(error);
-
-    alert("Gallery photo add नहीं हुई।");
-
-  }
-
-}
-
-
-/* =========================
-   ADMIN LOGIN
-========================= */
-
-function adminLogin(){
-
-  const password =
-    document.getElementById("adminPassword")
-      .value;
-
-
-  if(password === ADMIN_PASSWORD){
-
-    adminLoggedIn=true;
-
-    document.getElementById("loginBox")
-      .classList.add("hidden");
-
-    document.getElementById("adminPanel")
-      .classList.remove("hidden");
-
-    loadApplications();
-
-  }else{
-
-    alert("❌ गलत Admin Password");
-
-  }
-
-}
-
-
-/* =========================
-   ADMIN LOGOUT
-========================= */
-
-function adminLogout(){
-
-  adminLoggedIn=false;
-
-  document.getElementById("adminPanel")
-    .classList.add("hidden");
-
-  document.getElementById("loginBox")
-    .classList.remove("hidden");
-
-  document.getElementById("adminPassword")
-    .value="";
-
-}
-
-
-/* =========================
-   ADMIN SECTION
-========================= */
-
-function showAdmin(section){
-
-  document.getElementById("adminApplications")
-    .classList.add("hidden");
-
-  document.getElementById("adminNews")
-    .classList.add("hidden");
-
-  document.getElementById("adminGallery")
-    .classList.add("hidden");
-
-
-  if(section==="applications"){
-
-    document.getElementById("adminApplications")
-      .classList.remove("hidden");
-
-    loadApplications();
-
-  }
-
-
-  if(section==="news"){
-
-    document.getElementById("adminNews")
-      .classList.remove("hidden");
-
-  }
-
-
-  if(section==="gallery"){
-
-    document.getElementById("adminGallery")
-      .classList.remove("hidden");
-
-  }
-
-}
-
-
-/* =========================
-   LOAD APPLICATIONS
-========================= */
-
-let allApplications=[];
-
-
-function loadApplications(){
-
-  if(!adminLoggedIn){
-
-    return;
-  }
-
-
-  db.ref("applications")
-    .on("value",function(snapshot){
-
-      allApplications=[];
-
-
-      snapshot.forEach(function(child){
-
-        allApplications.push({
-
-          id:child.key,
-
-          ...child.val()
-
-        });
-
-      });
-
-
-      allApplications.sort((a,b)=>
-        (b.createdAt||0)-(a.createdAt||0)
-      );
-
-
-      renderApplications();
-
-    });
-
-}
-
-
-/* =========================
-   RENDER APPLICATIONS
-========================= */
-
-function renderApplications(){
 
   const list =
-    document.getElementById("applicationsList");
-
-  const filter =
-    document.getElementById("statusFilter")
-      .value;
-
-  const search =
-    document.getElementById("applicationSearch")
-      .value
-      .trim()
-      .toLowerCase();
+    Object.entries(newsData)
+      .sort(
+        (a,b)=>
+          (b[1].createdAt || 0) -
+          (a[1].createdAt || 0)
+      );
 
 
-  let data =
-    allApplications.filter(function(item){
+  list.forEach(
+    ([key,item])=>{
 
-      const status =
-        item.status || "pending";
+      html += `
 
-      const matchesStatus =
-        filter==="all" || status===filter;
+        <div class="card news">
 
+          <h3>
+            ${escapeHTML(
+              item.title || ""
+            )}
+          </h3>
 
-      const name =
-        String(item.name||"")
-          .toLowerCase();
+          <p>
+            ${escapeHTML(
+              String(
+                item.details || ""
+              ).slice(0,250)
+            )}
+          </p>
 
-      const mobile =
-        String(item.mobile||"")
-          .toLowerCase();
+          <button
+            class="main"
+            onclick="readNews('${key}')">
+            📖 Read Full News
+          </button>
 
+          ${
+            isAdmin
+            ?
+            `
+            <div class="actions">
 
-      const matchesSearch =
-        !search ||
-        name.includes(search) ||
-        mobile.includes(search);
+              <button
+                class="orange"
+                onclick="editNews('${key}')">
+                Edit
+              </button>
 
+              <button
+                class="red"
+                onclick="deleteNews('${key}')">
+                Delete
+              </button>
 
-      return matchesStatus && matchesSearch;
+            </div>
+            `
+            : ""
+          }
 
-    });
-
-
-  list.innerHTML="";
-
-
-  if(data.length===0){
-
-    list.innerHTML =
-      "<p>कोई application नहीं मिली।</p>";
-
-    return;
-  }
-
-
-  data.forEach(function(item){
-
-    const div =
-      document.createElement("div");
-
-    div.className="application";
-
-
-    const status =
-      item.status || "pending";
-
-
-    const statusText =
-      status==="accepted"
-      ? "Accepted"
-      : status==="rejected"
-      ? "Rejected"
-      : "Pending";
-
-
-    const date =
-      item.createdAt
-      ? new Date(item.createdAt)
-          .toLocaleString("hi-IN")
-      : "";
-
-
-    let pdfHTML="";
-
-
-    if(item.pdfLink){
-
-      pdfHTML = `
-
-        <p>
-          📄 <b>PDF:</b>
-          <a href="${escapeHTML(item.pdfLink)}"
-             target="_blank"
-             rel="noopener">
-             Open PDF
-          </a>
-        </p>
+        </div>
 
       `;
 
     }
+  );
 
 
-    div.innerHTML = `
+  if(!html){
 
-      <h3>
-        ${escapeHTML(item.type)}
-      </h3>
+    html =
+      `
+      <div class="card">
+        Abhi koi news available nahi hai.
+      </div>
+      `;
 
-      <p>
-        <b>Name:</b>
-        ${escapeHTML(item.name)}
-      </p>
-
-      <p>
-        <b>Mobile:</b>
-        ${escapeHTML(item.mobile)}
-      </p>
-
-      <p>
-        <b>Age:</b>
-        ${escapeHTML(item.age)}
-      </p>
-
-      <p>
-        <b>Address:</b>
-        ${escapeHTML(item.address)}
-      </p>
-
-      ${
-        item.contribution
-        ?
-        `<p>
-          <b>Contribution:</b>
-          ${escapeHTML(item.contribution)}
-        </p>`
-        :
-        ""
-      }
-
-      ${
-        item.message
-        ?
-        `<p>
-          <b>Message:</b>
-          ${escapeHTML(item.message)}
-        </p>`
-        :
-        ""
-      }
-
-      ${pdfHTML}
-
-      <p>
-        <b>Status:</b>
-        <span class="status ${escapeHTML(status)}">
-          ${statusText}
-        </span>
-      </p>
-
-      <small>
-        Submitted: ${escapeHTML(date)}
-      </small>
-
-      <br><br>
-
-      <button
-        class="green"
-        onclick="updateApplication('${item.id}','accepted')">
-        ✅ Accept
-      </button>
-
-      <button
-        class="red"
-        onclick="updateApplication('${item.id}','rejected')">
-        ❌ Reject
-      </button>
-
-      <button
-        class="gray"
-        onclick="deleteApplication('${item.id}')">
-        🗑 Delete
-      </button>
-
-    `;
+  }
 
 
-    list.appendChild(div);
+  box.innerHTML =
+    html;
+
+}
+
+
+/* =========================================================
+   READ NEWS
+========================================================= */
+
+function readNews(key){
+
+  const item =
+    newsData[key];
+
+
+  if(!item)return;
+
+
+  document.getElementById(
+    "modalTitle"
+  ).innerText =
+    item.title || "";
+
+
+  document.getElementById(
+    "modalDetails"
+  ).innerText =
+    item.details || "";
+
+
+  document.getElementById(
+    "newsModal"
+  ).style.display =
+    "block";
+
+}
+
+
+function closeNews(){
+
+  document.getElementById(
+    "newsModal"
+  ).style.display =
+    "none";
+
+}
+
+
+/* =========================================================
+   EDIT NEWS
+========================================================= */
+
+function editNews(key){
+
+  if(!isAdmin)return;
+
+
+  const item =
+    newsData[key];
+
+
+  const title =
+    prompt(
+      "News title:",
+      item.title || ""
+    );
+
+
+  if(title === null)return;
+
+
+  const details =
+    prompt(
+      "News details:",
+      item.details || ""
+    );
+
+
+  if(details === null)return;
+
+
+  db.ref(
+    "news/" +
+    key
+  )
+  .update({
+
+    title:title,
+
+    details:details
 
   });
 
 }
 
 
-/* =========================
-   ACCEPT / REJECT
-========================= */
+/* =========================================================
+   DELETE NEWS
+========================================================= */
 
-async function updateApplication(id,status){
+function deleteNews(key){
 
-  if(!adminLoggedIn){
+  if(!isAdmin)return;
 
-    alert("Admin login required.");
+
+  if(
+    !confirm(
+      "Kya aap ye news delete karna chahte hain?"
+    )
+  ){
 
     return;
+
   }
 
 
-  try{
+  db.ref(
+    "news/" +
+    key
+  ).remove();
 
-    await db.ref("applications/"+id)
-      .update({
+}
 
-        status:status,
 
-        updatedAt:Date.now()
+/* =========================================================
+   GALLERY LOAD
+========================================================= */
 
-      });
+db.ref("gallery")
+.on(
+  "value",
+  snapshot=>{
 
+    galleryData =
+      snapshot.val() || {};
+
+    renderGallery();
+
+  }
+);
+
+
+/* =========================================================
+   GALLERY UPLOAD
+========================================================= */
+
+async function uploadGallery(){
+
+  if(!isAdmin){
 
     alert(
-      status==="accepted"
-      ? "Application Accepted ✅"
-      : "Application Rejected ❌"
+      "Pehle Admin Login karein."
     );
 
-  }catch(error){
-
-    console.error(error);
-
-    alert("Status update नहीं हुआ।");
+    return;
 
   }
 
-}
+
+  const file =
+    document.getElementById(
+      "galleryFile"
+    ).files[0];
 
 
-/* =========================
-   DELETE APPLICATION
-========================= */
+  const title =
+    document.getElementById(
+      "galleryTitle"
+    ).value.trim();
 
-async function deleteApplication(id){
 
-  if(!adminLoggedIn){
+  const status =
+    document.getElementById(
+      "galleryStatus"
+    );
+
+
+  if(!file){
+
+    alert(
+      "Photo select karein."
+    );
 
     return;
-  }
 
-
-  if(!confirm("क्या आप यह application delete करना चाहते हैं?")){
-
-    return;
   }
 
 
   try{
 
-    await db.ref("applications/"+id)
-      .remove();
+    status.innerText =
+      "⏳ Photo upload ho rahi hai...";
 
-  }catch(error){
+
+    const url =
+      await uploadToCloudinary(
+        file,
+        "image"
+      );
+
+
+    await db.ref(
+      "gallery"
+    ).push({
+
+      title:
+        title ||
+        "Gallery Photo",
+
+      url:url,
+
+      createdAt:
+        firebase.database
+          .ServerValue
+          .TIMESTAMP
+
+    });
+
+
+    document.getElementById(
+      "galleryFile"
+    ).value = "";
+
+
+    document.getElementById(
+      "galleryTitle"
+    ).value = "";
+
+
+    status.innerText =
+      "✅ Photo uploaded successfully.";
+
+  }
+  catch(error){
 
     console.error(error);
 
-    alert("Delete नहीं हुआ।");
+    status.innerText =
+      "❌ " +
+      error.message;
 
   }
 
 }
 
 
-/* =========================
-   START
-========================= */
+/* =========================================================
+   RENDER GALLERY
+========================================================= */
 
-loadNews();
+function renderGallery(){
 
-loadGallery();
+  const box =
+    document.getElementById(
+      "galleryList"
+    );
+
+
+  if(!box)return;
+
+
+  let html = "";
+
+
+  Object.entries(galleryData)
+    .reverse()
+    .forEach(
+      ([key,item])=>{
+
+        html += `
+
+          <div class="galleryItem">
+
+            <img
+              src="${item.url}"
+              alt="${escapeHTML(
+                item.title || ""
+              )}"
+              loading="lazy">
+
+            <p>
+              <b>
+                ${escapeHTML(
+                  item.title || ""
+                )}
+              </b>
+            </p>
+
+            ${
+              isAdmin
+              ?
+              `
+              <button
+                class="main red"
+                onclick="deleteGallery('${key}')">
+                Delete
+              </button>
+              `
+              : ""
+            }
+
+          </div>
+
+        `;
+
+      }
+    );
+
+
+  if(!html){
+
+    html =
+      `
+      <div class="card">
+        Abhi gallery me koi photo nahi hai.
+      </div>
+      `;
+
+  }
+
+
+  box.innerHTML =
+    html;
+
+}
+
+
+/* =========================================================
+   DELETE GALLERY
+========================================================= */
+
+function deleteGallery(key){
+
+  if(!isAdmin)return;
+
+
+  if(
+    !confirm(
+      "Kya aap ye gallery photo delete karna chahte hain?"
+    )
+  ){
+
+    return;
+
+  }
+
+
+  db.ref(
+    "gallery/" +
+    key
+  ).remove();
+
+}
+
+
+/* =========================================================
+   ESCAPE HTML
+========================================================= */
+
+function escapeHTML(value){
+
+  return String(value || "")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+
+}
 
 </script>
 
