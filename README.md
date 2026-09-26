@@ -4,26 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
-<title>Shree Ram Janki Mandir Durga Puja Seva Samiti</title>
+<title>श्री राम जानकी मंदिर दुर्गा पूजा सेवा समिति</title>
 
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-database-compat.js"></script>
 
 <style>
-:root{
-  --maroon:#68151c;
-  --maroon2:#8e222b;
-  --gold:#d5a646;
-  --cream:#fffaf0;
-  --light:#f7f2e8;
-  --dark:#241b19;
-  --muted:#756966;
-  --white:#fff;
-  --green:#218739;
-  --red:#bd2525;
-  --shadow:0 10px 30px rgba(70,30,20,.10);
-}
-
 *{
   box-sizing:border-box;
   margin:0;
@@ -35,304 +21,428 @@ html{
 }
 
 body{
-  font-family:Arial,Helvetica,sans-serif;
-  background:var(--cream);
-  color:var(--dark);
+  font-family:Arial,"Noto Sans Devanagari",sans-serif;
+  background:#fffaf2;
+  color:#32170d;
   line-height:1.6;
-}
-
-a{
-  color:inherit;
-  text-decoration:none;
 }
 
 button,input,textarea,select{
   font:inherit;
 }
 
-.container{
-  width:min(1100px,92%);
-  margin:auto;
+button{
+  cursor:pointer;
 }
 
-/* HEADER */
-header{
-  background:linear-gradient(135deg,#551017,#7d1c25);
-  color:white;
-  border-bottom:3px solid var(--gold);
-  position:sticky;
-  top:0;
-  z-index:1000;
-  box-shadow:0 5px 20px rgba(0,0,0,.15);
+a{
+  text-decoration:none;
 }
 
-.header-inner{
-  min-height:78px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:20px;
-}
+/* ================= HERO ================= */
 
-.brand{
-  display:flex;
-  align-items:center;
-  gap:12px;
-}
-
-.logo{
-  width:48px;
-  height:48px;
-  border-radius:50%;
-  background:linear-gradient(135deg,#f2d27b,#b8831d);
-  color:#5b151b;
+.hero{
+  min-height:510px;
+  position:relative;
+  overflow:hidden;
+  color:#fff;
   display:flex;
   align-items:center;
   justify-content:center;
-  font-size:24px;
-  box-shadow:0 4px 12px rgba(0,0,0,.2);
-}
-
-.brand h1{
-  font-size:18px;
-  line-height:1.2;
-}
-
-.brand p{
-  font-size:12px;
-  opacity:.85;
-  margin-top:3px;
-}
-
-nav{
-  display:flex;
-  gap:6px;
-  flex-wrap:wrap;
-  justify-content:flex-end;
-}
-
-nav a{
-  padding:8px 11px;
-  border-radius:8px;
-  font-size:13px;
-  transition:.2s;
-}
-
-nav a:hover{
-  background:rgba(255,255,255,.13);
-  color:#ffe29a;
-}
-
-/* HERO */
-.hero{
-  min-height:390px;
-  display:flex;
-  align-items:center;
   text-align:center;
-  position:relative;
-  overflow:hidden;
+  padding:45px 18px;
   background:
-    radial-gradient(circle at 50% 20%,rgba(255,221,130,.18),transparent 32%),
-    linear-gradient(135deg,#5c121a,#821f28 55%,#5b1218);
-  color:white;
+    radial-gradient(circle at 50% 15%,rgba(255,226,133,.38),transparent 24%),
+    linear-gradient(135deg,#541009,#98240d 48%,#e87516);
 }
 
 .hero:before{
   content:"";
   position:absolute;
-  inset:18px;
-  border:1px solid rgba(234,194,91,.35);
-  border-radius:22px;
-  pointer-events:none;
+  width:470px;
+  height:470px;
+  border-radius:50%;
+  background:rgba(255,255,255,.055);
+  left:-190px;
+  bottom:-250px;
 }
 
-.hero-content{
+.hero:after{
+  content:"";
+  position:absolute;
+  width:390px;
+  height:390px;
+  border-radius:50%;
+  background:rgba(255,255,255,.055);
+  right:-170px;
+  top:-220px;
+}
+
+.heroContent{
   position:relative;
   z-index:2;
+  max-width:900px;
   width:100%;
-  padding:45px 15px;
 }
 
 .om{
-  font-size:42px;
-  color:#f0ca66;
-  margin-bottom:8px;
+  font-size:50px;
+  margin-bottom:3px;
+  text-shadow:0 3px 12px rgba(0,0,0,.25);
 }
 
-.hero h2{
-  font-size:clamp(27px,5vw,48px);
-  margin-bottom:8px;
+/* ================= LARGE TEMPLE GRAPHIC ================= */
+
+.templeLogo{
+  width:270px;
+  height:190px;
+  position:relative;
+  margin:3px auto 20px;
+  transform:scale(1.08);
+  transform-origin:center;
 }
 
-.hero h3{
-  font-size:clamp(17px,3vw,25px);
-  color:#f5d37b;
-  font-weight:600;
+.templeBody{
+  position:absolute;
+  left:45px;
+  right:45px;
+  bottom:7px;
+  height:102px;
+  background:#fff1c9;
+  border:4px solid #e4a128;
+  box-shadow:0 5px 15px rgba(0,0,0,.12);
 }
 
-.hero p{
-  max-width:700px;
-  margin:15px auto 24px;
-  opacity:.92;
+.templeDoor{
+  position:absolute;
+  bottom:7px;
+  left:108px;
+  width:54px;
+  height:79px;
+  border-radius:28px 28px 0 0;
+  background:#6e160d;
+  border:3px solid #dfa027;
 }
 
-.hero-btn{
+.templeRoof{
+  position:absolute;
+  top:39px;
+  left:28px;
+  right:28px;
+  height:68px;
+  background:#ffd66f;
+  clip-path:polygon(50% 0,100% 100%,0 100%);
+}
+
+.templeRoof2{
+  position:absolute;
+  top:65px;
+  left:57px;
+  right:57px;
+  height:51px;
+  background:#ffe6a2;
+  clip-path:polygon(50% 0,100% 100%,0 100%);
+}
+
+.templeFlagPole{
+  position:absolute;
+  top:0;
+  left:133px;
+  width:5px;
+  height:54px;
+  background:#f8d17a;
+}
+
+.templeFlag{
+  position:absolute;
+  top:3px;
+  left:138px;
+  width:52px;
+  height:28px;
+  background:#ef3d17;
+  clip-path:polygon(
+    0 0,
+    100% 25%,
+    72% 50%,
+    100% 75%,
+    0 100%
+  );
+}
+
+/* ================= HERO TEXT ================= */
+
+.hero h1{
+  font-size:clamp(29px,6vw,49px);
+  line-height:1.2;
+  text-shadow:0 3px 10px rgba(0,0,0,.3);
+}
+
+.heroSub{
+  margin-top:10px;
+  font-size:19px;
+  opacity:.96;
+  font-weight:500;
+}
+
+.location{
+  margin-top:5px;
+  font-size:15px;
+  opacity:.9;
+}
+
+.jai{
   display:inline-block;
-  background:linear-gradient(135deg,#e5bd5e,#b88626);
-  color:#4e1318;
-  font-weight:700;
-  padding:11px 20px;
-  border-radius:9px;
-  box-shadow:0 5px 16px rgba(0,0,0,.2);
+  margin-top:17px;
+  padding:8px 23px;
+  border:1px solid rgba(255,255,255,.5);
+  border-radius:30px;
+  background:rgba(255,255,255,.12);
+  font-weight:bold;
+  backdrop-filter:blur(4px);
 }
 
-/* SECTIONS */
-section{
-  padding:55px 0;
+/* ================= NAV ================= */
+
+nav{
+  position:sticky;
+  top:0;
+  z-index:100;
+  background:#481009;
+  box-shadow:0 3px 15px rgba(0,0,0,.2);
 }
 
-section:nth-of-type(even){
-  background:#fffdf7;
+.navInner{
+  max-width:1150px;
+  margin:auto;
+  padding:8px 12px;
+  display:flex;
+  justify-content:center;
+  gap:5px;
+  overflow-x:auto;
 }
 
-.section-title{
+nav a{
+  color:#fff;
+  white-space:nowrap;
+  padding:9px 14px;
+  border-radius:22px;
+  font-size:14px;
+  transition:.2s;
+}
+
+nav a:hover{
+  background:#c65b14;
+}
+
+/* ================= COMMON ================= */
+
+.container{
+  max-width:1120px;
+  margin:auto;
+  padding:60px 16px;
+}
+
+.sectionHead{
   text-align:center;
   margin-bottom:30px;
 }
 
-.section-title h2{
-  color:var(--maroon);
-  font-size:28px;
+.sectionHead .smallTitle{
+  color:#c45a13;
+  font-size:13px;
+  font-weight:bold;
+  letter-spacing:1px;
+  text-transform:uppercase;
 }
 
-.section-title p{
-  color:var(--muted);
+.sectionHead h2{
+  color:#7e200e;
+  font-size:30px;
+  margin-top:4px;
+}
+
+.sectionHead p{
+  color:#766258;
   margin-top:5px;
-  font-size:14px;
-}
-
-.gold-line{
-  width:60px;
-  height:3px;
-  background:var(--gold);
-  margin:10px auto;
-  border-radius:10px;
-}
-
-/* WELCOME */
-.welcome-box{
-  background:white;
-  border:1px solid #eadfca;
-  border-radius:16px;
-  padding:28px;
-  text-align:center;
-  box-shadow:var(--shadow);
-}
-
-.welcome-box h2{
-  color:var(--maroon);
-  margin-bottom:8px;
-}
-
-/* CARDS */
-.cards{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:18px;
 }
 
 .card{
-  background:white;
-  border:1px solid #eadfca;
-  border-radius:15px;
-  padding:22px;
+  background:#fff;
+  border:1px solid #f0dfcc;
+  border-radius:18px;
+  box-shadow:0 6px 25px rgba(74,31,9,.08);
+  padding:24px;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+}
+
+/* ================= WELCOME ================= */
+
+.welcome{
   text-align:center;
-  box-shadow:var(--shadow);
-  transition:.2s;
+  max-width:850px;
+  margin:auto;
 }
 
-.card:hover{
-  transform:translateY(-3px);
+.welcomeBadge{
+  display:inline-block;
+  padding:6px 14px;
+  border-radius:20px;
+  background:#fff1dc;
+  color:#a64210;
+  font-size:13px;
+  font-weight:bold;
+  margin-bottom:12px;
 }
 
-.card-icon{
-  width:55px;
-  height:55px;
-  margin:0 auto 12px;
-  border-radius:50%;
-  background:#fff2d0;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:25px;
+.welcome h2{
+  color:#7e200e;
+  font-size:28px;
+  margin-bottom:10px;
 }
 
-.card h3{
-  color:var(--maroon);
-  margin-bottom:7px;
+.welcome p{
+  color:#604b40;
 }
 
-.card p{
-  color:var(--muted);
+.feature{
+  text-align:center;
+}
+
+.featureIcon{
+  font-size:37px;
+  margin-bottom:8px;
+}
+
+.feature h3{
+  color:#7e200e;
+  margin-bottom:5px;
+}
+
+.feature p{
+  color:#735f55;
   font-size:14px;
 }
 
-/* NEWS */
-.news-list{
+/* ================= NEWS ================= */
+
+.newsGrid{
   display:grid;
   grid-template-columns:repeat(2,1fr);
   gap:18px;
 }
 
-.news-card{
-  background:white;
-  border:1px solid #eadfca;
-  border-left:4px solid var(--gold);
-  border-radius:13px;
-  padding:20px;
-  box-shadow:var(--shadow);
+.newsCard{
+  border-left:5px solid #d86c18;
 }
 
-.news-card h3{
-  color:var(--maroon);
+.newsDate{
+  font-size:12px;
+  color:#9a7867;
   margin-bottom:5px;
 }
 
-.news-date{
-  font-size:12px;
-  color:#8a746c;
-  margin-bottom:10px;
+.newsTitle{
+  color:#81200d;
+  font-size:21px;
+  font-weight:bold;
+  margin-bottom:7px;
 }
 
-.news-details{
+.newsText{
+  color:#59463d;
   white-space:pre-wrap;
-  color:#4c4140;
-  font-size:14px;
 }
 
-.read-more{
+.readTag{
   display:inline-block;
   margin-top:12px;
-  color:var(--maroon2);
-  font-weight:bold;
+  color:#b34c10;
   font-size:13px;
+  font-weight:bold;
 }
 
-/* FORMS */
-.form-box{
-  max-width:800px;
-  margin:auto;
-  background:white;
-  padding:25px;
-  border:1px solid #eadfca;
-  border-radius:16px;
-  box-shadow:var(--shadow);
-}
+/* ================= GALLERY ================= */
 
-.form-grid{
+.galleryGrid{
   display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:15px;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+}
+
+.galleryItem{
+  background:#fff;
+  border-radius:16px;
+  overflow:hidden;
+  border:1px solid #eedcc8;
+  box-shadow:0 5px 20px rgba(60,25,8,.09);
+}
+
+.galleryItem img{
+  display:block;
+  width:100%;
+  height:220px;
+  object-fit:cover;
+}
+
+.galleryCaption{
+  padding:12px;
+  text-align:center;
+  font-weight:bold;
+  color:#71301d;
+}
+
+.templeIllustration{
+  height:220px;
+  position:relative;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 50% 30%,#fff1a9 0 7%,transparent 8%),
+    linear-gradient(#e9781b,#9c1d0d);
+}
+
+.miniTemple{
+  position:absolute;
+  left:15%;
+  right:15%;
+  bottom:20px;
+  height:120px;
+  background:#fff0c7;
+  border:5px solid #e0a027;
+}
+
+.miniTemple:before{
+  content:"";
+  position:absolute;
+  left:5%;
+  right:5%;
+  top:-55px;
+  height:60px;
+  background:#ffd66d;
+  clip-path:polygon(50% 0,100% 100%,0 100%);
+}
+
+.miniTemple:after{
+  content:"";
+  position:absolute;
+  left:41%;
+  bottom:0;
+  width:18%;
+  height:70px;
+  background:#74160c;
+  border-radius:30px 30px 0 0;
+}
+
+/* ================= FORM ================= */
+
+.formGrid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:16px;
 }
 
 .field{
@@ -341,290 +451,314 @@ section:nth-of-type(even){
   gap:6px;
 }
 
-.field.full{
+.full{
   grid-column:1/-1;
 }
 
 label{
-  font-size:13px;
-  font-weight:700;
-  color:#4b3935;
+  color:#502619;
+  font-weight:bold;
+  font-size:14px;
 }
 
-input,textarea,select{
+input,
+textarea,
+select{
   width:100%;
-  border:1px solid #d9cdbb;
-  border-radius:9px;
-  padding:11px 12px;
+  padding:12px 13px;
+  border:1px solid #dec8b2;
+  border-radius:10px;
   background:#fffdfa;
+  color:#352016;
   outline:none;
 }
 
-input:focus,textarea:focus,select:focus{
-  border-color:var(--gold);
-  box-shadow:0 0 0 3px rgba(213,166,70,.12);
+input:focus,
+textarea:focus,
+select:focus{
+  border-color:#c85e15;
+  box-shadow:0 0 0 3px rgba(200,94,21,.09);
 }
 
 textarea{
-  min-height:100px;
+  min-height:110px;
   resize:vertical;
+}
+
+.supportBox{
+  background:#fff7e8;
+  border:1px solid #f0d6ac;
+  border-radius:12px;
+  padding:14px;
+}
+
+.help{
+  font-size:12px;
+  color:#806b60;
+}
+
+.formActions{
+  text-align:center;
+  margin-top:20px;
 }
 
 .btn{
   border:0;
-  border-radius:9px;
-  padding:11px 17px;
-  cursor:pointer;
-  font-weight:700;
+  border-radius:10px;
+  padding:11px 18px;
+  color:#fff;
+  background:linear-gradient(135deg,#9d270f,#d96816);
+  font-weight:bold;
   transition:.2s;
 }
 
-.btn-primary{
-  background:var(--maroon);
-  color:white;
+.btn:hover{
+  transform:translateY(-1px);
+  box-shadow:0 5px 14px rgba(120,45,10,.2);
 }
 
-.btn-primary:hover{
-  background:var(--maroon2);
+.btn.green{
+  background:#23843a;
 }
 
-.btn-gold{
-  background:var(--gold);
-  color:#4c171b;
+.btn.red{
+  background:#bd2929;
 }
 
-.btn-green{
-  background:var(--green);
-  color:white;
+.btn.gray{
+  background:#555;
 }
 
-.btn-red{
-  background:var(--red);
-  color:white;
-}
+/* ================= ADMIN ================= */
 
-.btn-gray{
-  background:#eee7dc;
-  color:#3f3431;
-}
-
-.submit-row{
-  margin-top:18px;
-  display:flex;
-  justify-content:flex-end;
-  gap:10px;
-}
-
-/* ADMIN */
-.admin-login{
+.adminLogin{
   max-width:430px;
   margin:auto;
-  background:white;
-  border:1px solid #eadfca;
-  border-radius:16px;
-  padding:25px;
-  box-shadow:var(--shadow);
 }
 
-.admin-panel{
-  margin-top:25px;
+.adminPanel{
+  display:none;
 }
 
-.admin-top{
-  background:linear-gradient(135deg,#5d131a,#81232b);
-  color:white;
-  padding:20px;
-  border-radius:15px;
+.adminHeader{
   display:flex;
   justify-content:space-between;
   align-items:center;
   gap:15px;
+  flex-wrap:wrap;
   margin-bottom:20px;
 }
 
-.admin-top h3{
-  color:#f5d37b;
+.adminHeader h3{
+  color:#7d200d;
 }
 
-.admin-help{
-  font-size:13px;
-  opacity:.85;
-}
-
-.admin-tools{
+.filters{
   display:flex;
   gap:10px;
+  margin:15px 0;
   flex-wrap:wrap;
-  margin-bottom:18px;
 }
 
-.admin-tools input,
-.admin-tools select{
-  max-width:250px;
+.filters input{
+  flex:1;
+  min-width:220px;
 }
 
-.admin-list{
-  display:grid;
-  gap:14px;
+.application{
+  background:#fffdfa;
+  border:1px solid #ead9c8;
+  border-radius:14px;
+  padding:17px;
+  margin-top:14px;
 }
 
-.admin-item{
-  background:white;
-  border:1px solid #eadfca;
-  border-radius:13px;
-  padding:18px;
-  box-shadow:var(--shadow);
+.appTop{
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  flex-wrap:wrap;
+  padding-bottom:10px;
+  border-bottom:1px solid #eadfd5;
 }
 
-.admin-item h4{
-  color:var(--maroon);
-  margin-bottom:5px;
-}
-
-.admin-meta{
-  font-size:13px;
-  color:#756966;
-  margin-bottom:10px;
+.appTop h3{
+  color:#74200f;
 }
 
 .status{
   display:inline-block;
-  padding:4px 9px;
+  padding:4px 11px;
   border-radius:20px;
   font-size:11px;
   font-weight:bold;
-  margin-bottom:10px;
 }
 
-.status-pending{
-  background:#fff0bd;
-  color:#7b5a00;
+.pending{
+  background:#fff0c4;
+  color:#795700;
 }
 
-.status-accepted{
-  background:#dff5e2;
-  color:#17672a;
+.accepted{
+  background:#daf3df;
+  color:#17682a;
 }
 
-.status-rejected{
-  background:#ffe0e0;
-  color:#8c2020;
+.rejected{
+  background:#ffdddd;
+  color:#981919;
 }
 
-.admin-actions{
-  display:flex;
-  gap:7px;
-  flex-wrap:wrap;
+.appInfo{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:8px 20px;
   margin-top:12px;
+  font-size:14px;
 }
 
-.news-admin{
-  margin-top:30px;
-  padding-top:25px;
-  border-top:1px solid #eadfca;
+.appInfo b{
+  color:#66301d;
 }
 
-.news-admin h3{
-  color:var(--maroon);
-  margin-bottom:15px;
+.appButtons{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-top:15px;
 }
 
-/* TOAST */
+/* ================= FOOTER ================= */
+
+footer{
+  background:#390d08;
+  color:#f9d9ae;
+  text-align:center;
+  padding:32px 15px;
+}
+
+footer strong{
+  color:#fff;
+}
+
+/* ================= TOAST ================= */
+
 #toast{
   position:fixed;
-  right:18px;
-  bottom:18px;
-  background:#251b19;
-  color:white;
-  padding:12px 16px;
-  border-radius:10px;
-  box-shadow:0 8px 25px rgba(0,0,0,.25);
+  z-index:500;
+  left:50%;
+  bottom:25px;
+  transform:translate(-50%,120px);
   opacity:0;
-  transform:translateY(15px);
-  pointer-events:none;
-  transition:.25s;
-  z-index:5000;
-  max-width:330px;
-  font-size:13px;
+  background:#30120b;
+  color:#fff;
+  padding:12px 20px;
+  border-radius:30px;
+  transition:.3s;
+  max-width:90%;
+  text-align:center;
 }
 
 #toast.show{
   opacity:1;
-  transform:translateY(0);
+  transform:translate(-50%,0);
 }
 
-/* FOOTER */
-footer{
-  background:#421015;
-  color:white;
-  padding:30px 0;
-  text-align:center;
-  border-top:3px solid var(--gold);
-}
+/* ================= MOBILE ================= */
 
-footer h3{
-  color:#f1ca68;
-  margin-bottom:5px;
-}
+@media(max-width:850px){
 
-footer p{
-  font-size:13px;
-  opacity:.82;
-}
-
-/* MOBILE */
-@media(max-width:800px){
-  .header-inner{
-    flex-direction:column;
-    padding:12px 0;
+  .grid,
+  .galleryGrid{
+    grid-template-columns:repeat(2,1fr);
   }
 
-  nav{
-    justify-content:center;
-  }
+}
 
-  nav a{
-    font-size:12px;
-    padding:7px 8px;
-  }
+@media(max-width:650px){
 
   .hero{
-    min-height:360px;
+    min-height:455px;
+    padding:35px 13px;
   }
 
-  .hero:before{
-    inset:10px;
+  .om{
+    font-size:42px;
   }
 
-  section{
-    padding:42px 0;
+  .templeLogo{
+    width:220px;
+    height:155px;
+    transform:scale(1);
+    margin-bottom:18px;
   }
 
-  .cards,
-  .news-list{
+  .templeBody{
+    left:37px;
+    right:37px;
+    height:84px;
+  }
+
+  .templeDoor{
+    left:86px;
+    width:48px;
+    height:67px;
+  }
+
+  .templeRoof{
+    top:34px;
+    left:24px;
+    right:24px;
+    height:58px;
+  }
+
+  .templeRoof2{
+    top:57px;
+    left:47px;
+    right:47px;
+    height:45px;
+  }
+
+  .templeFlagPole{
+    left:108px;
+    height:48px;
+  }
+
+  .templeFlag{
+    left:113px;
+    width:44px;
+    height:24px;
+  }
+
+  .grid,
+  .galleryGrid,
+  .newsGrid,
+  .formGrid{
     grid-template-columns:1fr;
   }
 
-  .form-grid{
-    grid-template-columns:1fr;
-  }
-
-  .field.full{
+  .full{
     grid-column:auto;
   }
 
-  .admin-top{
-    flex-direction:column;
-    align-items:flex-start;
+  .appInfo{
+    grid-template-columns:1fr;
   }
 
-  .admin-tools{
-    flex-direction:column;
+  .container{
+    padding:45px 13px;
   }
 
-  .admin-tools input,
-  .admin-tools select{
-    max-width:none;
+  .sectionHead h2{
+    font-size:26px;
+  }
+
+  .hero h1{
+    font-size:29px;
+  }
+
+  nav a{
+    padding:8px 11px;
   }
 }
 </style>
@@ -632,474 +766,519 @@ footer p{
 
 <body>
 
-<!-- HEADER -->
-<header>
-  <div class="container header-inner">
+<!-- ================= HERO ================= -->
 
-    <a href="#home" class="brand">
-      <div class="logo">🚩</div>
-      <div>
-        <h1>श्री राम जानकी मंदिर दुर्गा पूजा सेवा समिति</h1>
-        <p>Siswa Bazar</p>
-      </div>
-    </a>
+<header class="hero" id="home">
 
-    <nav>
-      <a href="#home">Home</a>
-      <a href="#news">Latest News</a>
-      <a href="#volunteer">Volunteer</a>
-      <a href="#committee">Committee</a>
-      <a href="#admin">Admin Panel</a>
-    </nav>
-
-  </div>
-</header>
-
-
-<!-- HOME -->
-<section id="home" class="hero">
-  <div class="container hero-content">
+  <div class="heroContent">
 
     <div class="om">ॐ</div>
 
-    <h2>जय श्री राम 🚩</h2>
+    <div class="templeLogo">
+      <div class="templeFlagPole"></div>
+      <div class="templeFlag"></div>
+      <div class="templeRoof"></div>
+      <div class="templeRoof2"></div>
+      <div class="templeBody"></div>
+      <div class="templeDoor"></div>
+    </div>
 
-    <h3>श्री राम जानकी मंदिर दुर्गा पूजा सेवा समिति</h3>
+    <h1>श्री राम जानकी मंदिर</h1>
+
+    <div class="heroSub">
+      दुर्गा पूजा सेवा समिति
+    </div>
+
+    <div class="location">
+      Siswa Bazar
+    </div>
+
+    <div class="jai">
+      जय श्री राम 🚩
+    </div>
+
+  </div>
+
+</header>
+
+<!-- ================= NAVIGATION ================= -->
+
+<nav>
+  <div class="navInner">
+    <a href="#home">Home</a>
+    <a href="#news">Latest News</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#volunteer">Volunteer</a>
+    <a href="#committee">Committee</a>
+    <a href="#admin">Admin Panel</a>
+  </div>
+</nav>
+
+<!-- ================= WELCOME ================= -->
+
+<section class="container">
+
+  <div class="card welcome">
+
+    <div class="welcomeBadge">
+      WELCOME
+    </div>
+
+    <h2>श्री राम जानकी मंदिर दुर्गा पूजा सेवा समिति</h2>
 
     <p>
-      सेवा, संस्कार और समाज के प्रति समर्पण के साथ
-      मंदिर एवं धार्मिक आयोजनों में सहयोग करें।
+      श्री राम जानकी मंदिर दुर्गा पूजा सेवा समिति की
+      official website पर आपका हार्दिक स्वागत है।
     </p>
 
-    <a href="#volunteer" class="hero-btn">
-      Volunteer बनें
-    </a>
+    <p style="margin-top:8px">
+      धार्मिक सेवा, सामाजिक सहयोग और मंदिर से संबंधित
+      latest updates यहाँ प्राप्त करें।
+    </p>
 
   </div>
-</section>
 
+  <div class="grid" style="margin-top:22px">
 
-<!-- WELCOME -->
-<section>
-  <div class="container">
-
-    <div class="welcome-box">
-      <h2>आपका हार्दिक स्वागत है 🙏</h2>
-
-      <div class="gold-line"></div>
-
-      <p>
-        श्री राम जानकी मंदिर दुर्गा पूजा सेवा समिति,
-        Siswa Bazar की आधिकारिक वेबसाइट पर आपका स्वागत है।
-        धार्मिक सेवा, मंदिर व्यवस्था एवं दुर्गा पूजा आयोजन में
-        अपना सहयोग देने के लिए Volunteer या Committee Member के रूप में
-        आवेदन कर सकते हैं।
-      </p>
+    <div class="card feature">
+      <div class="featureIcon">🛕</div>
+      <h3>मंदिर सेवा</h3>
+      <p>मंदिर एवं धार्मिक कार्यक्रमों में सहयोग करें।</p>
     </div>
 
-  </div>
-</section>
-
-
-<!-- SERVICES -->
-<section>
-  <div class="container">
-
-    <div class="section-title">
-      <h2>हमारी सेवाएँ</h2>
-      <div class="gold-line"></div>
-      <p>मंदिर और धार्मिक आयोजनों में सहयोग के प्रमुख क्षेत्र</p>
+    <div class="card feature">
+      <div class="featureIcon">🙏</div>
+      <h3>Volunteer</h3>
+      <p>अपनी रुचि के अनुसार सेवा में योगदान दें।</p>
     </div>
 
-    <div class="cards">
-
-      <div class="card">
-        <div class="card-icon">🛕</div>
-        <h3>Temple Service</h3>
-        <p>
-          मंदिर की व्यवस्था, साफ-सफाई और धार्मिक सेवा में सहयोग।
-        </p>
-      </div>
-
-      <div class="card">
-        <div class="card-icon">🤝</div>
-        <h3>Volunteer</h3>
-        <p>
-          विभिन्न सेवा कार्यों के लिए Volunteer के रूप में आवेदन करें।
-        </p>
-      </div>
-
-      <div class="card">
-        <div class="card-icon">🙏</div>
-        <h3>Durga Puja</h3>
-        <p>
-          दुर्गा पूजा एवं अन्य धार्मिक आयोजनों की व्यवस्था में सहयोग।
-        </p>
-      </div>
-
+    <div class="card feature">
+      <div class="featureIcon">🎪</div>
+      <h3>दुर्गा पूजा</h3>
+      <p>आयोजन एवं व्यवस्था में अपना सहयोग दें।</p>
     </div>
 
   </div>
+
 </section>
 
+<!-- ================= NEWS ================= -->
 
-<!-- NEWS -->
-<section id="news">
-  <div class="container">
+<section id="news" class="container">
 
-    <div class="section-title">
-      <h2>Latest News</h2>
-      <div class="gold-line"></div>
-      <p>समिति की नवीनतम जानकारी और घोषणाएँ</p>
-    </div>
-
-    <div id="newsList" class="news-list">
-      <div class="news-card">
-        <h3>News Loading...</h3>
-        <p>कृपया कुछ क्षण प्रतीक्षा करें।</p>
-      </div>
-    </div>
-
+  <div class="sectionHead">
+    <div class="smallTitle">Latest Updates</div>
+    <h2>📰 नवीनतम समाचार</h2>
+    <p>मंदिर समिति की latest information</p>
   </div>
+
+  <div id="publicNews" class="newsGrid">
+    <div class="card">News loading...</div>
+  </div>
+
 </section>
 
+<!-- ================= GALLERY ================= -->
 
-<!-- VOLUNTEER -->
-<section id="volunteer">
-  <div class="container">
+<section id="gallery" class="container">
 
-    <div class="section-title">
-      <h2>Volunteer Application</h2>
-      <div class="gold-line"></div>
-      <p>समिति की सेवा के लिए अपना आवेदन भेजें</p>
-    </div>
+  <div class="sectionHead">
+    <div class="smallTitle">Photo Gallery</div>
+    <h2>🖼️ मंदिर गैलरी</h2>
+    <p>मंदिर एवं समिति की झलकियाँ</p>
+  </div>
 
-    <div class="form-box">
+  <div id="galleryGrid" class="galleryGrid"></div>
 
-      <form id="volunteerForm">
+</section>
 
-        <div class="form-grid">
+<!-- ================= VOLUNTEER ================= -->
 
-          <div class="field">
-            <label>पूरा नाम *</label>
-            <input id="vName" required>
-          </div>
+<section id="volunteer" class="container">
 
-          <div class="field">
-            <label>मोबाइल नंबर *</label>
-            <input id="vMobile"
-                   type="tel"
-                   maxlength="10"
-                   pattern="[0-9]{10}"
-                   required>
-          </div>
+  <div class="sectionHead">
+    <div class="smallTitle">Join Our Team</div>
+    <h2>🙏 Volunteer Application</h2>
+    <p>मंदिर सेवा के लिए अपना application submit करें।</p>
+  </div>
 
-          <div class="field">
-            <label>आयु *</label>
-            <input id="vAge" type="number" min="1" max="100" required>
-          </div>
+  <div class="card">
 
-          <div class="field">
-            <label>सेवा का प्रकार *</label>
+    <form id="volunteerForm">
+
+      <div class="formGrid">
+
+        <div class="field">
+          <label>पूरा नाम *</label>
+          <input id="vName" required maxlength="100" placeholder="अपना पूरा नाम">
+        </div>
+
+        <div class="field">
+          <label>Mobile Number *</label>
+          <input id="vMobile" required maxlength="10" inputmode="numeric" placeholder="10 अंकों का मोबाइल नंबर">
+        </div>
+
+        <div class="field">
+          <label>आयु *</label>
+          <input id="vAge" required type="number" min="1" max="100" placeholder="Age">
+        </div>
+
+        <div class="field">
+          <label>पता *</label>
+          <input id="vAddress" required maxlength="250" placeholder="पूरा पता">
+        </div>
+
+        <div class="field full">
+
+          <div class="supportBox">
+
+            <label>आप किस प्रकार से सहयोग करना चाहते हैं? *</label>
+
             <select id="vSupport" required>
-              <option value="">Select Service</option>
-              <option>पूजा / धार्मिक सेवा</option>
-              <option>मंदिर व्यवस्था</option>
-              <option>दुर्गा पूजा आयोजन</option>
-              <option>साफ-सफाई / व्यवस्था</option>
-              <option>प्रचार-प्रसार</option>
-              <option>सोशल मीडिया / ऑनलाइन कार्य</option>
-              <option>आर्थिक सहयोग</option>
-              <option>भोजन / प्रसाद व्यवस्था</option>
-              <option>सुरक्षा / भीड़ व्यवस्था</option>
-              <option>अन्य सेवा</option>
+
+              <option value="">-- Select Service Type --</option>
+              <option value="पूजा / धार्मिक सेवा">🛕 पूजा / धार्मिक सेवा</option>
+              <option value="मंदिर व्यवस्था">🛕 मंदिर व्यवस्था</option>
+              <option value="दुर्गा पूजा आयोजन">🎪 दुर्गा पूजा आयोजन</option>
+              <option value="साफ-सफाई / व्यवस्था">🧹 साफ-सफाई / व्यवस्था</option>
+              <option value="प्रचार-प्रसार">📢 प्रचार-प्रसार</option>
+              <option value="सोशल मीडिया / ऑनलाइन कार्य">💻 Social Media / Online Work</option>
+              <option value="आर्थिक सहयोग">💰 आर्थिक सहयोग</option>
+              <option value="भोजन / प्रसाद व्यवस्था">🍲 भोजन / प्रसाद व्यवस्था</option>
+              <option value="सुरक्षा / भीड़ व्यवस्था">🤝 सुरक्षा / भीड़ व्यवस्था</option>
+              <option value="अन्य सेवा">✨ अन्य सेवा</option>
+
             </select>
-          </div>
 
-          <div class="field full">
-            <label>पूरा पता *</label>
-            <textarea id="vAddress" required></textarea>
-          </div>
-
-          <div class="field full">
-            <label>योगदान / अनुभव</label>
-            <input id="vContribution"
-                   placeholder="आप किस प्रकार सहयोग करना चाहते हैं?">
-          </div>
-
-          <div class="field">
-            <label>Photo URL</label>
-            <input id="vPhoto"
-                   type="url"
-                   placeholder="https://...">
-          </div>
-
-          <div class="field">
-            <label>PDF Application Link</label>
-            <input id="vPdf"
-                   type="url"
-                   placeholder="https://...">
-          </div>
-
-          <div class="field full">
-            <label>अन्य जानकारी / संदेश</label>
-            <textarea id="vMessage"></textarea>
           </div>
 
         </div>
 
-        <div class="submit-row">
-          <button class="btn btn-primary" type="submit">
-            Volunteer Application भेजें
-          </button>
+        <div class="field">
+          <label>योगदान / Contribution</label>
+          <input id="vContribution" maxlength="150" placeholder="समय, श्रम, आर्थिक सहयोग आदि">
         </div>
 
-      </form>
+        <div class="field">
+          <label>Photo URL</label>
+          <input id="vPhoto" type="url" placeholder="https://...">
+        </div>
+
+        <div class="field full">
+
+          <label>PDF Application Link</label>
+
+          <input id="vPdf" type="url" placeholder="PDF का link">
+
+          <div class="help">
+            PDF को पहले किसी file-sharing service पर upload करके उसका link डालें।
+          </div>
+
+        </div>
+
+        <div class="field full">
+
+          <label>अन्य जानकारी / Message</label>
+
+          <textarea id="vMessage" maxlength="1000" placeholder="अपने बारे में या सेवा से संबंधित जानकारी"></textarea>
+
+        </div>
+
+      </div>
+
+      <div class="formActions">
+        <button class="btn" type="submit">Submit Application</button>
+      </div>
+
+    </form>
+
+  </div>
+
+</section>
+
+<!-- ================= COMMITTEE ================= -->
+
+<section id="committee" class="container">
+
+  <div class="sectionHead">
+    <div class="smallTitle">Committee Membership</div>
+    <h2>👥 समिति सदस्य आवेदन</h2>
+    <p>समिति में शामिल होने के लिए application submit करें।</p>
+  </div>
+
+  <div class="card">
+
+    <form id="committeeForm">
+
+      <div class="formGrid">
+
+        <div class="field">
+          <label>पूरा नाम *</label>
+          <input id="cName" required maxlength="100" placeholder="पूरा नाम">
+        </div>
+
+        <div class="field">
+          <label>Mobile Number *</label>
+          <input id="cMobile" required maxlength="10" inputmode="numeric" placeholder="10 अंकों का मोबाइल नंबर">
+        </div>
+
+        <div class="field">
+          <label>आयु *</label>
+          <input id="cAge" required type="number" min="1" max="100" placeholder="Age">
+        </div>
+
+        <div class="field">
+          <label>पता *</label>
+          <input id="cAddress" required maxlength="250" placeholder="पूरा पता">
+        </div>
+
+        <div class="field full">
+          <label>योगदान / Experience</label>
+          <input id="cContribution" maxlength="250" placeholder="आप किस प्रकार सहयोग कर सकते हैं?">
+        </div>
+
+        <div class="field">
+          <label>Photo URL</label>
+          <input id="cPhoto" type="url" placeholder="https://...">
+        </div>
+
+        <div class="field full">
+          <label>Message</label>
+          <textarea id="cMessage" maxlength="1000" placeholder="अन्य जानकारी"></textarea>
+        </div>
+
+      </div>
+
+      <div class="formActions">
+        <button class="btn" type="submit">Submit Committee Application</button>
+      </div>
+
+    </form>
+
+  </div>
+
+</section>
+
+<!-- ================= ADMIN ================= -->
+
+<section id="admin" class="container">
+
+  <div class="sectionHead">
+    <div class="smallTitle">Administration</div>
+    <h2>🔐 Admin Panel</h2>
+    <p>Applications, News और Gallery manage करें।</p>
+  </div>
+
+  <div id="adminLogin" class="card adminLogin">
+
+    <div class="field">
+
+      <label>Admin Password</label>
+
+      <input id="adminPassword" type="password" placeholder="Enter password">
+
+    </div>
+
+    <div class="formActions">
+
+      <button class="btn" onclick="adminLogin()">
+        Login
+      </button>
 
     </div>
 
   </div>
-</section>
 
+  <div id="adminPanel" class="adminPanel">
 
-<!-- COMMITTEE -->
-<section id="committee">
-  <div class="container">
+    <div class="card">
 
-    <div class="section-title">
-      <h2>Committee Application</h2>
-      <div class="gold-line"></div>
-      <p>समिति से जुड़ने के लिए आवेदन करें</p>
-    </div>
-
-    <div class="form-box">
-
-      <form id="committeeForm">
-
-        <div class="form-grid">
-
-          <div class="field">
-            <label>पूरा नाम *</label>
-            <input id="cName" required>
-          </div>
-
-          <div class="field">
-            <label>मोबाइल नंबर *</label>
-            <input id="cMobile"
-                   type="tel"
-                   maxlength="10"
-                   pattern="[0-9]{10}"
-                   required>
-          </div>
-
-          <div class="field">
-            <label>आयु *</label>
-            <input id="cAge" type="number" min="1" max="100" required>
-          </div>
-
-          <div class="field full">
-            <label>पूरा पता *</label>
-            <textarea id="cAddress" required></textarea>
-          </div>
-
-          <div class="field full">
-            <label>योगदान / अनुभव</label>
-            <textarea id="cContribution"></textarea>
-          </div>
-
-          <div class="field">
-            <label>Photo URL</label>
-            <input id="cPhoto"
-                   type="url"
-                   placeholder="https://...">
-          </div>
-
-          <div class="field full">
-            <label>अन्य जानकारी / संदेश</label>
-            <textarea id="cMessage"></textarea>
-          </div>
-
-        </div>
-
-        <div class="submit-row">
-          <button class="btn btn-primary" type="submit">
-            Committee Application भेजें
-          </button>
-        </div>
-
-      </form>
-
-    </div>
-
-  </div>
-</section>
-
-
-<!-- ADMIN -->
-<section id="admin">
-  <div class="container">
-
-    <div class="section-title">
-      <h2>Admin Panel</h2>
-      <div class="gold-line"></div>
-      <p>Applications और News manage करें</p>
-    </div>
-
-    <!-- LOGIN -->
-    <div id="adminLoginBox" class="admin-login">
-
-      <div class="field">
-        <label>Admin Password</label>
-
-        <input id="adminPassword"
-               type="password"
-               placeholder="Password">
-      </div>
-
-      <div class="submit-row">
-        <button class="btn btn-primary"
-                onclick="adminLogin()">
-          Login
-        </button>
-      </div>
-
-    </div>
-
-
-    <!-- ADMIN PANEL -->
-    <div id="adminPanel" class="admin-panel" style="display:none;">
-
-      <div class="admin-top">
+      <div class="adminHeader">
 
         <div>
           <h3>Admin Dashboard</h3>
-          <div class="admin-help">
-            Manage Applications • News
+          <div class="help">
+            Manage Applications • News • Gallery
           </div>
         </div>
 
-        <button class="btn btn-gold"
-                onclick="adminLogout()">
+        <button class="btn gray" onclick="adminLogout()">
           Logout
         </button>
 
       </div>
 
+    </div>
 
-      <!-- APPLICATIONS -->
-      <div>
+    <!-- APPLICATIONS -->
 
-        <div class="section-title" style="text-align:left;margin-bottom:15px;">
-          <h2 style="font-size:23px;">Applications</h2>
-          <p>Volunteer और Committee applications</p>
-        </div>
+    <div class="card" style="margin-top:20px">
 
-        <div class="admin-tools">
+      <h3>📋 Applications</h3>
 
-          <input id="applicationSearch"
-                 placeholder="Name / Mobile search..."
-                 oninput="renderApplications()">
+      <div class="filters">
 
-          <select id="applicationFilter"
-                  onchange="renderApplications()">
-            <option value="all">All</option>
-            <option value="pending">Pending</option>
-            <option value="accepted">Accepted</option>
-            <option value="rejected">Rejected</option>
-          </select>
+        <input
+          id="searchApplication"
+          placeholder="Search by name or mobile"
+          oninput="renderApplications()">
 
-        </div>
+        <select id="statusFilter" onchange="renderApplications()">
 
-        <div id="applicationsList" class="admin-list"></div>
+          <option value="all">All Applications</option>
+          <option value="pending">Pending</option>
+          <option value="accepted">Accepted</option>
+          <option value="rejected">Rejected</option>
+
+        </select>
 
       </div>
 
-
-      <!-- NEWS ADMIN -->
-      <div class="news-admin">
-
-        <h3>News Management</h3>
-
-        <form id="newsForm">
-
-          <input type="hidden" id="newsEditId">
-
-          <div class="form-grid">
-
-            <div class="field full">
-              <label>News Title *</label>
-              <input id="newsTitle"
-                     maxlength="150"
-                     required>
-            </div>
-
-            <div class="field full">
-              <label>News Details *</label>
-              <textarea id="newsDetails"
-                        maxlength="1000"
-                        required></textarea>
-            </div>
-
-          </div>
-
-          <div class="submit-row">
-
-            <button type="button"
-                    class="btn btn-gray"
-                    onclick="clearNewsForm()">
-              Clear
-            </button>
-
-            <button type="submit"
-                    class="btn btn-primary">
-              <span id="newsSaveText">Add News</span>
-            </button>
-
-          </div>
-
-        </form>
-
-        <div id="adminNewsList"
-             class="admin-list"
-             style="margin-top:20px;">
-        </div>
-
+      <div id="applicationsList">
+        Applications loading...
       </div>
 
     </div>
 
+    <!-- NEWS MANAGEMENT -->
+
+    <div class="card" style="margin-top:20px">
+
+      <h3>📰 Manage News</h3>
+
+      <form id="newsForm" style="margin-top:16px">
+
+        <input type="hidden" id="editNewsId">
+
+        <div class="formGrid">
+
+          <div class="field full">
+
+            <label>News Title</label>
+
+            <input
+              id="newsTitle"
+              required
+              maxlength="150"
+              placeholder="News title">
+
+          </div>
+
+          <div class="field full">
+
+            <label>News Details</label>
+
+            <textarea
+              id="newsDetails"
+              required
+              maxlength="1000"
+              placeholder="News details"></textarea>
+
+          </div>
+
+        </div>
+
+        <div class="formActions">
+
+          <button class="btn" type="submit">
+            Save News
+          </button>
+
+          <button
+            type="button"
+            class="btn gray"
+            onclick="clearNewsForm()">
+            Clear
+          </button>
+
+        </div>
+
+      </form>
+
+      <div id="adminNewsList"></div>
+
+    </div>
+
+    <!-- GALLERY MANAGEMENT -->
+
+    <div class="card" style="margin-top:20px">
+
+      <h3>🖼️ Manage Gallery</h3>
+
+      <form id="galleryForm" style="margin-top:16px">
+
+        <div class="formGrid">
+
+          <div class="field">
+
+            <label>Image URL</label>
+
+            <input
+              id="galleryUrl"
+              type="url"
+              required
+              placeholder="https://...">
+
+          </div>
+
+          <div class="field">
+
+            <label>Caption</label>
+
+            <input
+              id="galleryCaption"
+              maxlength="100"
+              placeholder="Photo caption">
+
+          </div>
+
+        </div>
+
+        <div class="formActions">
+
+          <button class="btn" type="submit">
+            Add to Gallery
+          </button>
+
+        </div>
+
+      </form>
+
+    </div>
+
   </div>
+
 </section>
 
+<!-- ================= FOOTER ================= -->
 
-<!-- FOOTER -->
 <footer>
-  <div class="container">
 
-    <h3>श्री राम जानकी मंदिर दुर्गा पूजा सेवा समिति</h3>
+  <p>
+    <strong>
+      श्री राम जानकी मंदिर दुर्गा पूजा सेवा समिति
+    </strong>
+  </p>
 
-    <p>Siswa Bazar</p>
+  <p>Siswa Bazar</p>
 
-    <p style="margin-top:8px;">
-      जय श्री राम 🚩 • सेवा ही समर्पण है
-    </p>
+  <p style="margin-top:8px">
+    जय श्री राम 🚩
+  </p>
 
-    <p style="margin-top:12px;font-size:11px;">
-      © 2026 Shree Ram Janki Mandir Durga Puja Seva Samiti
-    </p>
+  <p style="font-size:12px;margin-top:10px;opacity:.7">
+    Official Website • Temple & Community Service
+  </p>
 
-  </div>
 </footer>
-
 
 <div id="toast"></div>
 
-
 <script>
 
-/* =========================
-   FIREBASE CONFIG
-========================= */
+/* =====================================================
+   FIREBASE
+===================================================== */
 
 const firebaseConfig = {
   apiKey: "AIzaSyDLonsbRwdlq3Ru4NIvhfQqLzjKEUaPnzfc",
@@ -1116,28 +1295,20 @@ firebase.initializeApp(firebaseConfig);
 
 const db = firebase.database();
 
+const ADMIN_PASSWORD = "SRJM2026";
 
-/* =========================
-   HELPERS
-========================= */
+let isAdmin = false;
 
-function toast(message){
 
-  const el = document.getElementById("toast");
-
-  el.textContent = message;
-
-  el.classList.add("show");
-
-  setTimeout(()=>{
-    el.classList.remove("show");
-  },3000);
-}
-
+/* ================= HELPERS ================= */
 
 function escapeHTML(value){
 
-  return String(value ?? "")
+  if(value===undefined || value===null){
+    return "";
+  }
+
+  return String(value)
     .replace(/&/g,"&amp;")
     .replace(/</g,"&lt;")
     .replace(/>/g,"&gt;")
@@ -1148,15 +1319,16 @@ function escapeHTML(value){
 
 function safeURL(url){
 
-  if(!url) return "";
+  if(!url)return "";
 
   try{
 
     const u = new URL(url);
 
-    if(u.protocol === "http:" ||
-       u.protocol === "https:"){
-
+    if(
+      u.protocol==="http:" ||
+      u.protocol==="https:"
+    ){
       return u.href;
     }
 
@@ -1166,149 +1338,94 @@ function safeURL(url){
 }
 
 
-function formatDate(value){
+function showToast(message){
 
-  if(!value) return "";
+  const toast=document.getElementById("toast");
 
-  const d = new Date(value);
+  toast.textContent=message;
 
-  if(isNaN(d.getTime())) return "";
+  toast.classList.add("show");
 
-  return d.toLocaleString("en-IN",{
-    dateStyle:"medium",
-    timeStyle:"short"
-  });
-}
-
-
-/* =========================
-   NEWS - PUBLIC
-========================= */
-
-function loadNews(){
-
-  db.ref("news").on("value",(snapshot)=>{
-
-    const list = document.getElementById("newsList");
-
-    list.innerHTML = "";
-
-    const data = snapshot.val();
-
-    if(!data){
-
-      list.innerHTML = `
-        <div class="news-card">
-          <h3>अभी कोई News नहीं है</h3>
-          <p>
-            नई जानकारी जल्द ही यहाँ दिखाई जाएगी।
-          </p>
-        </div>
-      `;
-
-      return;
-    }
-
-    const news = Object.entries(data)
-      .map(([id,item])=>({
-        id,
-        ...item
-      }))
-      .sort((a,b)=>
-        Number(b.createdAt || 0) -
-        Number(a.createdAt || 0)
-      );
-
-    news.forEach(item=>{
-
-      const card = document.createElement("div");
-
-      card.className = "news-card";
-
-      card.innerHTML = `
-        <h3>${escapeHTML(item.title)}</h3>
-
-        <div class="news-date">
-          ${escapeHTML(formatDate(item.createdAt))}
-        </div>
-
-        <div class="news-details">
-          ${escapeHTML(item.details)}
-        </div>
-
-        <div class="read-more">
-          Read More →
-        </div>
-      `;
-
-      list.appendChild(card);
-
-    });
-
-  },(error)=>{
-
-    document.getElementById("newsList").innerHTML = `
-      <div class="news-card">
-        <h3>News load नहीं हो पाई</h3>
-        <p>Firebase connection/rules check करें।</p>
-      </div>
-    `;
-
-    console.error(error);
-
-  });
+  setTimeout(()=>{
+    toast.classList.remove("show");
+  },3000);
 
 }
 
 
-/* =========================
-   VOLUNTEER FORM
-========================= */
+function currentDate(){
 
-document.getElementById("volunteerForm")
+  return new Date().toLocaleString("hi-IN");
+
+}
+
+
+/* ================= VOLUNTEER ================= */
+
+document
+.getElementById("volunteerForm")
 .addEventListener("submit",async function(e){
 
   e.preventDefault();
 
-  const mobile =
+  const mobile=
     document.getElementById("vMobile").value.trim();
 
   if(!/^[0-9]{10}$/.test(mobile)){
 
-    toast("सही 10 digit mobile number डालें।");
+    showToast("सही 10 अंकों का mobile number डालें।");
 
     return;
   }
 
-  const data = {
+  const support=
+    document.getElementById("vSupport").value;
+
+  if(!support){
+
+    showToast("Service Type select करें।");
+
+    return;
+  }
+
+  const data={
 
     type:"volunteer",
 
-    name:document.getElementById("vName").value.trim(),
+    name:
+      document.getElementById("vName").value.trim(),
 
-    mobile:mobile,
+    mobile,
 
-    age:document.getElementById("vAge").value.trim(),
+    age:
+      document.getElementById("vAge").value.trim(),
 
-    address:document.getElementById("vAddress").value.trim(),
+    address:
+      document.getElementById("vAddress").value.trim(),
 
-    support:document.getElementById("vSupport").value,
+    supportType:support,
 
     contribution:
       document.getElementById("vContribution").value.trim(),
 
     photo:
-      document.getElementById("vPhoto").value.trim(),
+      safeURL(
+        document.getElementById("vPhoto").value.trim()
+      ),
 
     pdf:
-      document.getElementById("vPdf").value.trim(),
+      safeURL(
+        document.getElementById("vPdf").value.trim()
+      ),
 
     message:
       document.getElementById("vMessage").value.trim(),
 
     status:"pending",
 
-    createdAt:Date.now()
+    createdAt:Date.now(),
+
+    createdText:currentDate()
 
   };
 
@@ -1316,64 +1433,70 @@ document.getElementById("volunteerForm")
 
     await db.ref("applications").push(data);
 
-    this.reset();
+    showToast("Application successfully submitted!");
 
-    toast("Volunteer application successfully भेज दी गई।");
+    this.reset();
 
   }catch(error){
 
     console.error(error);
 
-    toast("Application submit नहीं हुई। Firebase rules check करें।");
+    showToast("Application submit नहीं हुआ।");
 
   }
 
 });
 
 
-/* =========================
-   COMMITTEE FORM
-========================= */
+/* ================= COMMITTEE ================= */
 
-document.getElementById("committeeForm")
+document
+.getElementById("committeeForm")
 .addEventListener("submit",async function(e){
 
   e.preventDefault();
 
-  const mobile =
+  const mobile=
     document.getElementById("cMobile").value.trim();
 
   if(!/^[0-9]{10}$/.test(mobile)){
 
-    toast("सही 10 digit mobile number डालें।");
+    showToast("सही 10 अंकों का mobile number डालें।");
 
     return;
   }
 
-  const data = {
+  const data={
 
     type:"committee",
 
-    name:document.getElementById("cName").value.trim(),
+    name:
+      document.getElementById("cName").value.trim(),
 
-    mobile:mobile,
+    mobile,
 
-    age:document.getElementById("cAge").value.trim(),
+    age:
+      document.getElementById("cAge").value.trim(),
 
-    address:document.getElementById("cAddress").value.trim(),
+    address:
+      document.getElementById("cAddress").value.trim(),
 
     contribution:
       document.getElementById("cContribution").value.trim(),
 
     photo:
-      document.getElementById("cPhoto").value.trim(),
+      safeURL(
+        document.getElementById("cPhoto").value.trim()
+      ),
 
     message:
       document.getElementById("cMessage").value.trim(),
 
     status:"pending",
 
-    createdAt:Date.now()
+    createdAt:Date.now(),
+
+    createdText:currentDate()
 
   };
 
@@ -1381,426 +1504,473 @@ document.getElementById("committeeForm")
 
     await db.ref("applications").push(data);
 
-    this.reset();
+    showToast("Committee application submitted!");
 
-    toast("Committee application successfully भेज दी गई।");
+    this.reset();
 
   }catch(error){
 
     console.error(error);
 
-    toast("Application submit नहीं हुई। Firebase rules check करें।");
+    showToast("Application submit नहीं हुआ।");
 
   }
 
 });
 
 
-/* =========================
-   ADMIN LOGIN
-========================= */
+/* ================= NEWS PUBLIC ================= */
 
-function adminLogin(){
+function loadNews(){
 
-  const password =
-    document.getElementById("adminPassword").value;
+  db.ref("news").on("value",snapshot=>{
 
-  if(password !== "SRJM2026"){
+    const data=snapshot.val() || {};
 
-    toast("गलत Admin Password!");
-
-    return;
-  }
-
-  sessionStorage.setItem("srjmAdmin","true");
-
-  document.getElementById("adminLoginBox").style.display="none";
-
-  document.getElementById("adminPanel").style.display="block";
-
-  renderApplications();
-
-  renderAdminNews();
-
-  toast("Admin Panel खुल गया।");
-}
-
-
-function adminLogout(){
-
-  sessionStorage.removeItem("srjmAdmin");
-
-  document.getElementById("adminLoginBox").style.display="block";
-
-  document.getElementById("adminPanel").style.display="none";
-
-  document.getElementById("adminPassword").value="";
-
-  toast("Admin logout हो गया।");
-}
-
-
-/* =========================
-   APPLICATIONS
-========================= */
-
-let applicationsCache = {};
-
-
-function renderApplications(){
-
-  if(sessionStorage.getItem("srjmAdmin") !== "true") return;
-
-  db.ref("applications").once("value")
-  .then(snapshot=>{
-
-    const data = snapshot.val() || {};
-
-    applicationsCache = data;
-
-    const search =
-      document.getElementById("applicationSearch")
-      .value
-      .trim()
-      .toLowerCase();
-
-    const filter =
-      document.getElementById("applicationFilter").value;
-
-    const list =
-      document.getElementById("applicationsList");
-
-    list.innerHTML = "";
-
-    let items = Object.entries(data)
+    const list=
+      Object.entries(data)
       .map(([id,item])=>({
         id,
         ...item
       }))
       .sort((a,b)=>
-        Number(b.createdAt || 0) -
-        Number(a.createdAt || 0)
+        (b.createdAt||0) -
+        (a.createdAt||0)
       );
 
-    items = items.filter(item=>{
+    const box=
+      document.getElementById("publicNews");
 
-      const matchesSearch =
-        !search ||
-        String(item.name || "")
-          .toLowerCase()
-          .includes(search) ||
-        String(item.mobile || "")
-          .toLowerCase()
-          .includes(search);
+    if(!list.length){
 
-      const matchesFilter =
-        filter === "all" ||
-        item.status === filter;
-
-      return matchesSearch && matchesFilter;
-
-    });
-
-
-    if(items.length === 0){
-
-      list.innerHTML = `
-        <div class="admin-item">
-          कोई application नहीं मिली।
+      box.innerHTML=`
+        <div class="card">
+          अभी कोई latest news उपलब्ध नहीं है।
         </div>
       `;
 
       return;
     }
 
+    box.innerHTML=list.map(item=>`
 
-    items.forEach(item=>{
+      <article class="card newsCard">
 
-      const status =
-        item.status || "pending";
-
-      const statusClass =
-        status === "accepted"
-          ? "status-accepted"
-          : status === "rejected"
-          ? "status-rejected"
-          : "status-pending";
-
-
-      const photoURL =
-        safeURL(item.photo);
-
-      const pdfURL =
-        safeURL(item.pdf);
-
-
-      const div =
-        document.createElement("div");
-
-      div.className="admin-item";
-
-
-      div.innerHTML = `
-
-        <h4>
-          ${escapeHTML(item.name)}
-        </h4>
-
-        <div class="admin-meta">
-          Type:
-          <b>${escapeHTML(
-            item.type === "committee"
-              ? "Committee"
-              : "Volunteer"
-          )}</b>
-          <br>
-
-          Mobile:
-          <b>${escapeHTML(item.mobile)}</b>
-          <br>
-
-          Age:
-          ${escapeHTML(item.age)}
-          <br>
-
-          Date:
-          ${escapeHTML(formatDate(item.createdAt))}
+        <div class="newsDate">
+          ${escapeHTML(
+            item.date ||
+            item.createdText ||
+            ""
+          )}
         </div>
 
-        <span class="status ${statusClass}">
-          ${escapeHTML(status.toUpperCase())}
-        </span>
-
-        <p>
-          <b>Address:</b><br>
-          ${escapeHTML(item.address)}
-        </p>
-
-        ${
-          item.support
-          ? `
-            <p style="margin-top:8px;">
-              <b>Service:</b>
-              ${escapeHTML(item.support)}
-            </p>
-          `
-          : ""
-        }
-
-        ${
-          item.contribution
-          ? `
-            <p style="margin-top:8px;">
-              <b>Contribution / Experience:</b><br>
-              ${escapeHTML(item.contribution)}
-            </p>
-          `
-          : ""
-        }
-
-        ${
-          item.message
-          ? `
-            <p style="margin-top:8px;">
-              <b>Message:</b><br>
-              ${escapeHTML(item.message)}
-            </p>
-          `
-          : ""
-        }
-
-        ${
-          photoURL
-          ? `
-            <p style="margin-top:8px;">
-              <a href="${photoURL}"
-                 target="_blank"
-                 rel="noopener"
-                 class="btn btn-gray"
-                 style="display:inline-block;">
-                 View Photo
-              </a>
-            </p>
-          `
-          : ""
-        }
-
-        ${
-          pdfURL
-          ? `
-            <p style="margin-top:8px;">
-              <a href="${pdfURL}"
-                 target="_blank"
-                 rel="noopener"
-                 class="btn btn-gray"
-                 style="display:inline-block;">
-                 View PDF
-              </a>
-            </p>
-          `
-          : ""
-        }
-
-        <div class="admin-actions">
-
-          <button
-            class="btn btn-green"
-            onclick="updateApplicationStatus('${item.id}','accepted')">
-            Accept
-          </button>
-
-          <button
-            class="btn btn-red"
-            onclick="updateApplicationStatus('${item.id}','rejected')">
-            Reject
-          </button>
-
-          <button
-            class="btn btn-gray"
-            onclick="deleteApplication('${item.id}')">
-            Delete
-          </button>
-
+        <div class="newsTitle">
+          ${escapeHTML(item.title)}
         </div>
-      `;
 
-      list.appendChild(div);
+        <div class="newsText">
+          ${escapeHTML(item.details)}
+        </div>
 
-    });
+        <div class="readTag">
+          Read More →
+        </div>
 
-  })
-  .catch(error=>{
+      </article>
 
-    console.error(error);
-
-    toast("Applications load नहीं हुईं।");
+    `).join("");
 
   });
 
 }
 
 
-async function updateApplicationStatus(id,status){
+/* ================= ADMIN ================= */
 
-  if(sessionStorage.getItem("srjmAdmin") !== "true")
-    return;
+function adminLogin(){
 
-  try{
+  const password=
+    document.getElementById("adminPassword").value;
 
-    await db.ref("applications/"+id)
-      .update({
-        status:status,
-        updatedAt:Date.now()
+  if(password===ADMIN_PASSWORD){
+
+    isAdmin=true;
+
+    document.getElementById("adminLogin")
+      .style.display="none";
+
+    document.getElementById("adminPanel")
+      .style.display="block";
+
+    showToast("Welcome Admin!");
+
+    renderApplications();
+
+    renderAdminNews();
+
+    loadGallery();
+
+  }else{
+
+    showToast("Incorrect password.");
+
+  }
+
+}
+
+
+function adminLogout(){
+
+  isAdmin=false;
+
+  document.getElementById("adminLogin")
+    .style.display="block";
+
+  document.getElementById("adminPanel")
+    .style.display="none";
+
+  document.getElementById("adminPassword")
+    .value="";
+
+}
+
+
+/* ================= APPLICATIONS ================= */
+
+function renderApplications(){
+
+  if(!isAdmin)return;
+
+  db.ref("applications")
+    .once("value")
+    .then(snapshot=>{
+
+      const data=snapshot.val() || {};
+
+      let list=
+        Object.entries(data)
+        .map(([id,item])=>({
+          id,
+          ...item
+        }))
+        .sort((a,b)=>
+          (b.createdAt||0) -
+          (a.createdAt||0)
+        );
+
+      const search=
+        document.getElementById(
+          "searchApplication"
+        ).value.trim().toLowerCase();
+
+      const filter=
+        document.getElementById(
+          "statusFilter"
+        ).value;
+
+      list=list.filter(item=>{
+
+        const searchMatch=
+          !search ||
+          String(item.name||"")
+          .toLowerCase()
+          .includes(search) ||
+          String(item.mobile||"")
+          .includes(search);
+
+        const statusMatch=
+          filter==="all" ||
+          (item.status||"pending")===filter;
+
+        return searchMatch && statusMatch;
+
       });
 
-    renderApplications();
+      const box=
+        document.getElementById("applicationsList");
 
-    toast(
-      status === "accepted"
-      ? "Application Accept कर दी गई।"
-      : "Application Reject कर दी गई।"
-    );
+      if(!list.length){
 
-  }catch(error){
+        box.innerHTML=`
+          <div class="application">
+            No applications found.
+          </div>
+        `;
 
-    console.error(error);
+        return;
+      }
 
-    toast("Status update नहीं हुआ।");
+      box.innerHTML=list.map(item=>{
 
-  }
+        const status=
+          item.status||"pending";
+
+        const photo=
+          safeURL(item.photo);
+
+        const pdf=
+          safeURL(item.pdf);
+
+        return`
+
+          <div class="application">
+
+            <div class="appTop">
+
+              <div>
+
+                <h3>
+                  ${escapeHTML(item.name)}
+                </h3>
+
+                <div class="help">
+                  ${
+                    item.type==="committee"
+                    ? "👥 Committee Member"
+                    : "🙏 Volunteer"
+                  }
+                </div>
+
+              </div>
+
+              <span class="status ${status}">
+                ${status.toUpperCase()}
+              </span>
+
+            </div>
+
+            <div class="appInfo">
+
+              <div>
+                <b>Mobile:</b>
+                ${escapeHTML(item.mobile)}
+              </div>
+
+              <div>
+                <b>Age:</b>
+                ${escapeHTML(item.age)}
+              </div>
+
+              <div>
+                <b>Address:</b>
+                ${escapeHTML(item.address)}
+              </div>
+
+              ${
+                item.supportType
+                ? `
+                <div>
+                  <b>Service:</b>
+                  ${escapeHTML(item.supportType)}
+                </div>
+                `
+                :""
+              }
+
+              <div>
+                <b>Contribution:</b>
+                ${escapeHTML(item.contribution||"-")}
+              </div>
+
+              <div>
+                <b>Applied:</b>
+                ${escapeHTML(item.createdText||"-")}
+              </div>
+
+            </div>
+
+            ${
+              item.message
+              ? `
+              <div style="margin-top:12px">
+                <b>Message:</b><br>
+                ${escapeHTML(item.message)}
+              </div>
+              `
+              :""
+            }
+
+            ${
+              photo
+              ? `
+              <div style="margin-top:10px">
+                <a
+                  href="${photo}"
+                  target="_blank"
+                  rel="noopener">
+                  📷 View Photo
+                </a>
+              </div>
+              `
+              :""
+            }
+
+            ${
+              pdf
+              ? `
+              <div style="margin-top:7px">
+                <a
+                  href="${pdf}"
+                  target="_blank"
+                  rel="noopener">
+                  📄 Open PDF
+                </a>
+              </div>
+              `
+              :""
+            }
+
+            <div class="appButtons">
+
+              ${
+                status!=="accepted"
+                ? `
+                <button
+                  class="btn green"
+                  onclick="updateApplication(
+                    '${item.id}',
+                    'accepted'
+                  )">
+                  ✓ Accept
+                </button>
+                `
+                :""
+              }
+
+              ${
+                status!=="rejected"
+                ? `
+                <button
+                  class="btn red"
+                  onclick="updateApplication(
+                    '${item.id}',
+                    'rejected'
+                  )">
+                  ✕ Reject
+                </button>
+                `
+                :""
+              }
+
+              <button
+                class="btn gray"
+                onclick="deleteApplication(
+                  '${item.id}'
+                )">
+                Delete
+              </button>
+
+            </div>
+
+          </div>
+
+        `;
+
+      }).join("");
+
+    })
+    .catch(error=>{
+      console.error(error);
+      document.getElementById("applicationsList").innerHTML=
+        `<div class="application">Applications load नहीं हुईं।</div>`;
+    });
 
 }
 
 
-async function deleteApplication(id){
+function updateApplication(id,status){
 
-  if(sessionStorage.getItem("srjmAdmin") !== "true")
-    return;
+  db.ref("applications/"+id)
+    .update({
+      status,
+      updatedAt:Date.now()
+    })
+    .then(()=>{
 
-  if(!confirm("क्या आप इस application को delete करना चाहते हैं?"))
-    return;
+      showToast(
+        status==="accepted"
+        ? "Application Accepted"
+        : "Application Rejected"
+      );
 
-  try{
+      renderApplications();
 
-    await db.ref("applications/"+id).remove();
-
-    renderApplications();
-
-    toast("Application delete हो गई।");
-
-  }catch(error){
-
-    console.error(error);
-
-    toast("Application delete नहीं हुई।");
-
-  }
+    })
+    .catch(error=>{
+      console.error(error);
+      showToast("Status update नहीं हुआ।");
+    });
 
 }
 
 
-/* =========================
-   ADMIN NEWS
-========================= */
+function deleteApplication(id){
 
-document.getElementById("newsForm")
+  if(!confirm(
+    "क्या आप यह application delete करना चाहते हैं?"
+  )){
+    return;
+  }
+
+  db.ref("applications/"+id)
+    .remove()
+    .then(()=>{
+
+      showToast("Application deleted");
+
+      renderApplications();
+
+    })
+    .catch(error=>{
+      console.error(error);
+      showToast("Delete नहीं हुआ।");
+    });
+
+}
+
+
+/* ================= NEWS ADMIN ================= */
+
+document
+.getElementById("newsForm")
 .addEventListener("submit",async function(e){
 
   e.preventDefault();
 
-  if(sessionStorage.getItem("srjmAdmin") !== "true"){
-    toast("पहले Admin Login करें।");
-    return;
-  }
+  if(!isAdmin)return;
 
+  const id=
+    document.getElementById("editNewsId").value;
 
-  const id =
-    document.getElementById("newsEditId").value;
+  const data={
 
-  const title =
-    document.getElementById("newsTitle")
-    .value
-    .trim();
+    title:
+      document.getElementById("newsTitle").value.trim(),
 
-  const details =
-    document.getElementById("newsDetails")
-    .value
-    .trim();
+    details:
+      document.getElementById("newsDetails").value.trim(),
 
+    date:currentDate(),
 
-  if(!title || !details){
+    updatedAt:Date.now()
 
-    toast("Title और Details दोनों भरें।");
-
-    return;
-  }
-
+  };
 
   try{
 
     if(id){
 
-      await db.ref("news/"+id).update({
+      await db.ref("news/"+id).update(data);
 
-        title:title,
-        details:details,
-        updatedAt:Date.now()
-
-      });
-
-      toast("News update हो गई।");
+      showToast("News updated!");
 
     }else{
 
-      await db.ref("news").push({
+      data.createdAt=Date.now();
 
-        title:title,
-        details:details,
-        createdAt:Date.now()
+      await db.ref("news").push(data);
 
-      });
-
-      toast("News successfully add हो गई।");
+      showToast("News added!");
 
     }
 
@@ -1812,7 +1982,7 @@ document.getElementById("newsForm")
 
     console.error(error);
 
-    toast("News save नहीं हुई।");
+    showToast("News save नहीं हुई।");
 
   }
 
@@ -1821,198 +1991,336 @@ document.getElementById("newsForm")
 
 function clearNewsForm(){
 
-  document.getElementById("newsForm").reset();
+  document.getElementById("editNewsId").value="";
 
-  document.getElementById("newsEditId").value="";
+  document.getElementById("newsTitle").value="";
 
-  document.getElementById("newsSaveText")
-    .textContent="Add News";
+  document.getElementById("newsDetails").value="";
 
 }
 
 
 function renderAdminNews(){
 
-  if(sessionStorage.getItem("srjmAdmin") !== "true")
-    return;
+  if(!isAdmin)return;
 
+  db.ref("news")
+    .once("value")
+    .then(snapshot=>{
 
-  db.ref("news").once("value")
-  .then(snapshot=>{
+      const data=snapshot.val() || {};
 
-    const data = snapshot.val() || {};
+      const list=
+        Object.entries(data)
+        .map(([id,item])=>({
+          id,
+          ...item
+        }))
+        .sort((a,b)=>
+          (b.createdAt||0) -
+          (a.createdAt||0)
+        );
 
-    const list =
-      document.getElementById("adminNewsList");
+      const box=
+        document.getElementById("adminNewsList");
 
-    list.innerHTML="";
+      if(!list.length){
 
+        box.innerHTML=`
+          <p class="help" style="margin-top:20px">
+            अभी कोई news नहीं है।
+          </p>
+        `;
 
-    const news = Object.entries(data)
-      .map(([id,item])=>({
-        id,
-        ...item
-      }))
-      .sort((a,b)=>
-        Number(b.createdAt || 0) -
-        Number(a.createdAt || 0)
-      );
+        return;
+      }
 
+      box.innerHTML=list.map(item=>`
 
-    if(news.length === 0){
+        <div class="application">
 
-      list.innerHTML=`
-        <div class="admin-item">
-          अभी कोई News नहीं है।
-        </div>
-      `;
+          <h3>
+            ${escapeHTML(item.title)}
+          </h3>
 
-      return;
-    }
+          <div class="help">
+            ${escapeHTML(item.date||"")}
+          </div>
 
+          <p style="margin-top:8px;white-space:pre-wrap">
+            ${escapeHTML(item.details)}
+          </p>
 
-    news.forEach(item=>{
+          <div class="appButtons">
 
-      const div =
-        document.createElement("div");
+            <button
+              class="btn"
+              onclick="editNews('${item.id}')">
+              Edit
+            </button>
 
-      div.className="admin-item";
+            <button
+              class="btn red"
+              onclick="deleteNews('${item.id}')">
+              Delete
+            </button>
 
-      div.innerHTML=`
-
-        <h4>
-          ${escapeHTML(item.title)}
-        </h4>
-
-        <div class="admin-meta">
-          ${escapeHTML(formatDate(item.createdAt))}
-        </div>
-
-        <p style="white-space:pre-wrap;">
-          ${escapeHTML(item.details)}
-        </p>
-
-        <div class="admin-actions">
-
-          <button
-            class="btn btn-gold"
-            onclick="editNews('${item.id}')">
-            Edit
-          </button>
-
-          <button
-            class="btn btn-red"
-            onclick="deleteNews('${item.id}')">
-            Delete
-          </button>
+          </div>
 
         </div>
 
-      `;
-
-      list.appendChild(div);
+      `).join("");
 
     });
-
-  })
-  .catch(error=>{
-
-    console.error(error);
-
-    toast("Admin News load नहीं हुई।");
-
-  });
 
 }
 
 
 function editNews(id){
 
-  if(sessionStorage.getItem("srjmAdmin") !== "true")
-    return;
+  db.ref("news/"+id)
+    .once("value")
+    .then(snapshot=>{
 
+      const item=snapshot.val();
 
-  db.ref("news/"+id).once("value")
-  .then(snapshot=>{
+      if(!item)return;
 
-    const item = snapshot.val();
+      document.getElementById("editNewsId").value=id;
 
-    if(!item) return;
+      document.getElementById("newsTitle").value=
+        item.title||"";
 
+      document.getElementById("newsDetails").value=
+        item.details||"";
 
-    document.getElementById("newsEditId")
-      .value=id;
+      document.getElementById("newsTitle")
+        .scrollIntoView({
+          behavior:"smooth",
+          block:"center"
+        });
 
-    document.getElementById("newsTitle")
-      .value=item.title || "";
-
-    document.getElementById("newsDetails")
-      .value=item.details || "";
-
-    document.getElementById("newsSaveText")
-      .textContent="Update News";
-
-
-    document.getElementById("newsTitle")
-      .scrollIntoView({
-        behavior:"smooth",
-        block:"center"
-      });
-
-  });
+    });
 
 }
 
 
-async function deleteNews(id){
+function deleteNews(id){
 
-  if(sessionStorage.getItem("srjmAdmin") !== "true")
+  if(!confirm(
+    "क्या आप यह news delete करना चाहते हैं?"
+  )){
     return;
+  }
+
+  db.ref("news/"+id)
+    .remove()
+    .then(()=>{
+
+      showToast("News deleted!");
+
+      renderAdminNews();
+
+    })
+    .catch(error=>{
+      console.error(error);
+      showToast("News delete नहीं हुई।");
+    });
+
+}
 
 
-  if(!confirm("क्या आप इस News को delete करना चाहते हैं?"))
+/* ================= GALLERY ================= */
+
+const defaultGallery=[
+  "श्री राम जानकी मंदिर",
+  "मंदिर सेवा",
+  "दुर्गा पूजा सेवा समिति"
+];
+
+
+function templeImage(){
+
+  return`
+    <div class="templeIllustration">
+      <div class="miniTemple"></div>
+    </div>
+  `;
+
+}
+
+
+function loadGallery(){
+
+  db.ref("gallery")
+    .on("value",snapshot=>{
+
+      const data=snapshot.val() || {};
+
+      const custom=
+        Object.entries(data)
+        .map(([id,item])=>({
+          id,
+          ...item
+        }))
+        .sort((a,b)=>
+          (b.createdAt||0) -
+          (a.createdAt||0)
+        );
+
+      const box=
+        document.getElementById("galleryGrid");
+
+      let html="";
+
+      defaultGallery.forEach(caption=>{
+
+        html+=`
+
+          <div class="galleryItem">
+
+            ${templeImage()}
+
+            <div class="galleryCaption">
+              ${escapeHTML(caption)}
+            </div>
+
+          </div>
+
+        `;
+
+      });
+
+      custom.forEach(item=>{
+
+        const url=safeURL(item.url);
+
+        if(!url)return;
+
+        html+=`
+
+          <div class="galleryItem">
+
+            <img
+              src="${url}"
+              alt="${escapeHTML(item.caption||"Temple Photo")}"
+              loading="lazy">
+
+            <div class="galleryCaption">
+
+              ${escapeHTML(item.caption||"Temple Photo")}
+
+              ${
+                isAdmin
+                ? `
+                <div style="margin-top:8px">
+
+                  <button
+                    class="btn red"
+                    onclick="deleteGallery('${item.id}')">
+                    Delete
+                  </button>
+
+                </div>
+                `
+                :""
+              }
+
+            </div>
+
+          </div>
+
+        `;
+
+      });
+
+      box.innerHTML=html;
+
+    });
+
+}
+
+
+document
+.getElementById("galleryForm")
+.addEventListener("submit",async function(e){
+
+  e.preventDefault();
+
+  if(!isAdmin)return;
+
+  const url=
+    safeURL(
+      document.getElementById("galleryUrl").value.trim()
+    );
+
+  if(!url){
+
+    showToast("Valid image URL डालें।");
+
     return;
+  }
 
+  const caption=
+    document.getElementById("galleryCaption").value.trim();
 
   try{
 
-    await db.ref("news/"+id).remove();
+    await db.ref("gallery").push({
 
-    renderAdminNews();
+      url,
 
-    toast("News delete हो गई।");
+      caption:caption||"Temple Photo",
+
+      createdAt:Date.now()
+
+    });
+
+    document.getElementById("galleryUrl").value="";
+
+    document.getElementById("galleryCaption").value="";
+
+    showToast("Photo added to Gallery!");
 
   }catch(error){
 
     console.error(error);
 
-    toast("News delete नहीं हुई।");
+    showToast("Photo add नहीं हुई।");
 
   }
 
+});
+
+
+function deleteGallery(id){
+
+  if(!confirm(
+    "क्या आप यह photo delete करना चाहते हैं?"
+  )){
+    return;
+  }
+
+  db.ref("gallery/"+id)
+    .remove()
+    .then(()=>{
+
+      showToast("Photo deleted!");
+
+    })
+    .catch(error=>{
+      console.error(error);
+      showToast("Photo delete नहीं हुई।");
+    });
+
 }
 
 
-/* =========================
-   START
-========================= */
+/* ================= START ================= */
 
 loadNews();
 
-
-/* Restore admin panel after refresh */
-
-if(sessionStorage.getItem("srjmAdmin") === "true"){
-
-  document.getElementById("adminLoginBox").style.display="none";
-
-  document.getElementById("adminPanel").style.display="block";
-
-  renderApplications();
-
-  renderAdminNews();
-
-}
+loadGallery();
 
 </script>
 
