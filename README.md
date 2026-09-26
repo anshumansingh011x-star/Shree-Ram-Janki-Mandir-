@@ -20,10 +20,28 @@ html{
   scroll-behavior:smooth;
 }
 
+:root{
+  --maroon:#54150d;
+  --maroon2:#761d0e;
+  --saffron:#c65b16;
+  --gold:#d8a13a;
+  --cream:#fffaf2;
+  --paper:#fffdf9;
+  --border:#eadac8;
+  --text:#321b13;
+  --muted:#76645b;
+  --green:#28783a;
+  --red:#b92b2b;
+  --shadow:0 8px 28px rgba(67,30,10,.075);
+}
+
 body{
   font-family:Arial,"Noto Sans Devanagari",sans-serif;
-  background:#fffaf2;
-  color:#32170d;
+  background:
+    radial-gradient(circle at 10% 10%,rgba(216,161,58,.06),transparent 25%),
+    radial-gradient(circle at 90% 30%,rgba(198,91,22,.05),transparent 25%),
+    var(--cream);
+  color:var(--text);
   line-height:1.6;
 }
 
@@ -39,10 +57,10 @@ a{
   text-decoration:none;
 }
 
-/* ================= HEADER ================= */
+/* ================= HERO ================= */
 
 .hero{
-  min-height:470px;
+  min-height:410px;
   position:relative;
   overflow:hidden;
   color:#fff;
@@ -50,139 +68,154 @@ a{
   align-items:center;
   justify-content:center;
   text-align:center;
-  padding:45px 18px;
+  padding:38px 16px;
   background:
-    radial-gradient(circle at 50% 18%,rgba(255,226,133,.35),transparent 23%),
-    linear-gradient(135deg,#5d120b,#a9270e 48%,#e87516);
+    radial-gradient(circle at 50% 12%,rgba(255,222,133,.22),transparent 22%),
+    linear-gradient(135deg,#430c08 0%,#68170d 48%,#9c3911 100%);
 }
 
-.hero:before{
-  content:"";
-  position:absolute;
-  width:420px;
-  height:420px;
-  border-radius:50%;
-  background:rgba(255,255,255,.06);
-  left:-170px;
-  bottom:-220px;
-}
-
+.hero:before,
 .hero:after{
   content:"";
   position:absolute;
-  width:350px;
-  height:350px;
   border-radius:50%;
-  background:rgba(255,255,255,.06);
-  right:-150px;
-  top:-190px;
+  pointer-events:none;
+}
+
+.hero:before{
+  width:430px;
+  height:430px;
+  left:-260px;
+  bottom:-280px;
+  border:1px solid rgba(255,220,150,.13);
+  box-shadow:
+    0 0 0 35px rgba(255,255,255,.025),
+    0 0 0 70px rgba(255,255,255,.02);
+}
+
+.hero:after{
+  width:340px;
+  height:340px;
+  right:-220px;
+  top:-220px;
+  border:1px solid rgba(255,220,150,.13);
 }
 
 .heroContent{
   position:relative;
   z-index:2;
-  max-width:900px;
   width:100%;
+  max-width:850px;
 }
 
 .om{
-  font-size:48px;
-  margin-bottom:8px;
+  font-size:38px;
+  color:#ffe0a0;
+  margin-bottom:2px;
+  text-shadow:0 3px 15px rgba(0,0,0,.25);
 }
 
+/* TEMPLE */
+
 .templeLogo{
-  width:210px;
-  height:145px;
+  width:180px;
+  height:122px;
   position:relative;
-  margin:5px auto 20px;
+  margin:2px auto 15px;
+  filter:drop-shadow(0 8px 12px rgba(0,0,0,.15));
 }
 
 .templeBody{
   position:absolute;
-  left:37px;
-  right:37px;
-  bottom:8px;
-  height:80px;
-  background:#fff1c9;
-  border:4px solid #e4a128;
+  left:31px;
+  right:31px;
+  bottom:5px;
+  height:67px;
+  background:#fff2ca;
+  border:3px solid #dca02d;
 }
 
 .templeDoor{
   position:absolute;
-  bottom:8px;
-  left:82px;
-  width:46px;
-  height:64px;
-  border-radius:25px 25px 0 0;
-  background:#6e160d;
-  border:3px solid #dfa027;
+  bottom:5px;
+  left:70px;
+  width:40px;
+  height:53px;
+  border-radius:22px 22px 0 0;
+  background:#64140c;
+  border:2px solid #d69a28;
 }
 
 .templeRoof{
   position:absolute;
-  top:35px;
-  left:25px;
-  right:25px;
-  height:55px;
-  background:#ffd66f;
+  top:31px;
+  left:21px;
+  right:21px;
+  height:47px;
+  background:#ffd46b;
   clip-path:polygon(50% 0,100% 100%,0 100%);
 }
 
 .templeRoof2{
   position:absolute;
-  top:57px;
-  left:47px;
-  right:47px;
-  height:45px;
-  background:#ffe6a2;
+  top:50px;
+  left:41px;
+  right:41px;
+  height:39px;
+  background:#ffe6a0;
   clip-path:polygon(50% 0,100% 100%,0 100%);
 }
 
 .templeFlagPole{
   position:absolute;
   top:0;
-  left:103px;
-  width:5px;
-  height:48px;
-  background:#f8d17a;
+  left:88px;
+  width:4px;
+  height:42px;
+  background:#f6d079;
 }
 
 .templeFlag{
   position:absolute;
   top:3px;
-  left:107px;
-  width:42px;
-  height:23px;
-  background:#ef3d17;
+  left:92px;
+  width:38px;
+  height:21px;
+  background:#ed4019;
   clip-path:polygon(0 0,100% 25%,72% 50%,100% 75%,0 100%);
 }
 
 .hero h1{
-  font-size:clamp(28px,6vw,48px);
-  line-height:1.2;
-  text-shadow:0 3px 10px rgba(0,0,0,.3);
+  font-size:clamp(28px,5vw,45px);
+  line-height:1.18;
+  letter-spacing:.2px;
+  text-shadow:0 3px 12px rgba(0,0,0,.3);
 }
 
 .heroSub{
-  margin-top:10px;
+  margin-top:8px;
   font-size:18px;
-  opacity:.96;
+  color:#ffe4b1;
 }
 
 .location{
-  margin-top:5px;
-  font-size:15px;
-  opacity:.9;
+  margin-top:2px;
+  font-size:14px;
+  opacity:.86;
 }
 
 .jai{
-  display:inline-block;
-  margin-top:17px;
-  padding:8px 22px;
-  border:1px solid rgba(255,255,255,.5);
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  margin-top:15px;
+  padding:7px 19px;
+  border:1px solid rgba(255,230,180,.35);
   border-radius:30px;
-  background:rgba(255,255,255,.12);
+  background:rgba(255,255,255,.08);
+  backdrop-filter:blur(5px);
   font-weight:bold;
+  font-size:14px;
 }
 
 /* ================= NAV ================= */
@@ -191,77 +224,86 @@ nav{
   position:sticky;
   top:0;
   z-index:100;
-  background:#481009;
-  box-shadow:0 3px 15px rgba(0,0,0,.2);
+  background:rgba(66,14,8,.97);
+  border-bottom:1px solid rgba(216,161,58,.2);
+  box-shadow:0 4px 18px rgba(0,0,0,.15);
 }
 
 .navInner{
-  max-width:1150px;
+  max-width:1080px;
   margin:auto;
-  padding:8px 12px;
+  padding:7px 10px;
   display:flex;
   justify-content:center;
-  gap:5px;
+  gap:4px;
   overflow-x:auto;
+  scrollbar-width:none;
+}
+
+.navInner::-webkit-scrollbar{
+  display:none;
 }
 
 nav a{
-  color:#fff;
+  color:#fff7e9;
   white-space:nowrap;
-  padding:9px 14px;
-  border-radius:22px;
-  font-size:14px;
-  transition:.2s;
+  padding:8px 13px;
+  border-radius:20px;
+  font-size:13px;
+  transition:.2s ease;
 }
 
 nav a:hover{
-  background:#c65b14;
+  background:rgba(216,161,58,.18);
+  color:#ffd98a;
 }
 
 /* ================= COMMON ================= */
 
 .container{
-  max-width:1120px;
+  max-width:1080px;
   margin:auto;
-  padding:60px 16px;
+  padding:48px 16px;
 }
 
 .sectionHead{
   text-align:center;
-  margin-bottom:30px;
+  margin-bottom:24px;
 }
 
 .sectionHead .smallTitle{
-  color:#c45a13;
-  font-size:13px;
+  color:var(--saffron);
+  font-size:11px;
   font-weight:bold;
-  letter-spacing:1px;
+  letter-spacing:1.5px;
   text-transform:uppercase;
 }
 
 .sectionHead h2{
-  color:#7e200e;
-  font-size:30px;
-  margin-top:4px;
+  color:var(--maroon2);
+  font-size:28px;
+  line-height:1.25;
+  margin-top:3px;
 }
 
 .sectionHead p{
-  color:#766258;
+  color:var(--muted);
   margin-top:5px;
+  font-size:14px;
 }
 
 .card{
-  background:#fff;
-  border:1px solid #f0dfcc;
-  border-radius:18px;
-  box-shadow:0 6px 25px rgba(74,31,9,.08);
-  padding:24px;
+  background:rgba(255,255,255,.94);
+  border:1px solid var(--border);
+  border-radius:16px;
+  box-shadow:var(--shadow);
+  padding:21px;
 }
 
 .grid{
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:20px;
+  gap:16px;
 }
 
 /* ================= WELCOME ================= */
@@ -274,42 +316,47 @@ nav a:hover{
 
 .welcomeBadge{
   display:inline-block;
-  padding:6px 14px;
+  padding:5px 13px;
   border-radius:20px;
-  background:#fff1dc;
-  color:#a64210;
-  font-size:13px;
+  background:#fff3df;
+  color:#a84b12;
+  font-size:11px;
   font-weight:bold;
-  margin-bottom:12px;
+  letter-spacing:.7px;
+  margin-bottom:9px;
 }
 
 .welcome h2{
-  color:#7e200e;
-  font-size:28px;
-  margin-bottom:10px;
+  color:var(--maroon2);
+  font-size:25px;
+  line-height:1.35;
+  margin-bottom:8px;
 }
 
 .welcome p{
-  color:#604b40;
+  color:#604f46;
+  font-size:14px;
 }
 
 .feature{
   text-align:center;
+  padding:19px 15px;
 }
 
 .featureIcon{
-  font-size:37px;
-  margin-bottom:8px;
+  font-size:32px;
+  margin-bottom:5px;
 }
 
 .feature h3{
-  color:#7e200e;
-  margin-bottom:5px;
+  color:var(--maroon2);
+  font-size:17px;
+  margin-bottom:3px;
 }
 
 .feature p{
   color:#735f55;
-  font-size:14px;
+  font-size:13px;
 }
 
 /* ================= NEWS ================= */
@@ -317,108 +364,46 @@ nav a:hover{
 .newsGrid{
   display:grid;
   grid-template-columns:repeat(2,1fr);
-  gap:18px;
+  gap:15px;
 }
 
 .newsCard{
-  border-left:5px solid #d86c18;
+  border-left:4px solid var(--gold);
+  padding:19px;
+  transition:.2s ease;
+}
+
+.newsCard:hover{
+  transform:translateY(-2px);
+  box-shadow:0 11px 30px rgba(67,30,10,.10);
 }
 
 .newsDate{
-  font-size:12px;
-  color:#9a7867;
+  font-size:11px;
+  color:#9b7d6c;
   margin-bottom:5px;
 }
 
 .newsTitle{
-  color:#81200d;
-  font-size:21px;
+  color:#7b200e;
+  font-size:19px;
   font-weight:bold;
-  margin-bottom:7px;
+  line-height:1.35;
+  margin-bottom:6px;
 }
 
 .newsText{
   color:#59463d;
+  font-size:14px;
   white-space:pre-wrap;
 }
 
 .readTag{
   display:inline-block;
-  margin-top:12px;
+  margin-top:10px;
   color:#b34c10;
-  font-size:13px;
+  font-size:12px;
   font-weight:bold;
-}
-
-/* ================= GALLERY ================= */
-
-.galleryGrid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:18px;
-}
-
-.galleryItem{
-  background:#fff;
-  border-radius:16px;
-  overflow:hidden;
-  border:1px solid #eedcc8;
-  box-shadow:0 5px 20px rgba(60,25,8,.09);
-}
-
-.galleryItem img{
-  display:block;
-  width:100%;
-  height:220px;
-  object-fit:cover;
-}
-
-.galleryCaption{
-  padding:12px;
-  text-align:center;
-  font-weight:bold;
-  color:#71301d;
-}
-
-.templeIllustration{
-  height:220px;
-  position:relative;
-  overflow:hidden;
-  background:
-    radial-gradient(circle at 50% 30%,#fff1a9 0 7%,transparent 8%),
-    linear-gradient(#e9781b,#9c1d0d);
-}
-
-.miniTemple{
-  position:absolute;
-  left:15%;
-  right:15%;
-  bottom:20px;
-  height:120px;
-  background:#fff0c7;
-  border:5px solid #e0a027;
-}
-
-.miniTemple:before{
-  content:"";
-  position:absolute;
-  left:5%;
-  right:5%;
-  top:-55px;
-  height:60px;
-  background:#ffd66d;
-  clip-path:polygon(50% 0,100% 100%,0 100%);
-}
-
-.miniTemple:after{
-  content:"";
-  position:absolute;
-  left:41%;
-  bottom:0;
-  width:18%;
-  height:70px;
-  background:#74160c;
-  border-radius:30px 30px 0 0;
 }
 
 /* ================= FORM ================= */
@@ -426,13 +411,13 @@ nav a:hover{
 .formGrid{
   display:grid;
   grid-template-columns:repeat(2,1fr);
-  gap:16px;
+  gap:13px 15px;
 }
 
 .field{
   display:flex;
   flex-direction:column;
-  gap:6px;
+  gap:5px;
 }
 
 .full{
@@ -440,73 +425,86 @@ nav a:hover{
 }
 
 label{
-  color:#502619;
+  color:#512a1d;
   font-weight:bold;
-  font-size:14px;
+  font-size:13px;
 }
 
 input,
 textarea,
 select{
   width:100%;
-  padding:12px 13px;
-  border:1px solid #dec8b2;
-  border-radius:10px;
+  padding:10px 12px;
+  border:1px solid #ddc9b5;
+  border-radius:9px;
   background:#fffdfa;
   color:#352016;
   outline:none;
+  font-size:14px;
+  transition:.2s;
+}
+
+input::placeholder,
+textarea::placeholder{
+  color:#a18e83;
 }
 
 input:focus,
 textarea:focus,
 select:focus{
   border-color:#c85e15;
-  box-shadow:0 0 0 3px rgba(200,94,21,.09);
+  box-shadow:0 0 0 3px rgba(200,94,21,.08);
 }
 
 textarea{
-  min-height:110px;
+  min-height:100px;
   resize:vertical;
 }
 
 .supportBox{
-  background:#fff7e8;
-  border:1px solid #f0d6ac;
-  border-radius:12px;
-  padding:14px;
+  background:#fff8ea;
+  border:1px solid #efd8b4;
+  border-radius:11px;
+  padding:12px;
+}
+
+.supportBox select{
+  margin-top:6px;
 }
 
 .help{
-  font-size:12px;
-  color:#806b60;
+  font-size:11px;
+  color:#806c60;
 }
 
 .formActions{
   text-align:center;
-  margin-top:20px;
+  margin-top:18px;
 }
 
 .btn{
   border:0;
-  border-radius:10px;
-  padding:11px 18px;
+  border-radius:9px;
+  padding:10px 16px;
   color:#fff;
-  background:linear-gradient(135deg,#9d270f,#d96816);
+  background:linear-gradient(135deg,#8d210e,#ca5d15);
   font-weight:bold;
-  transition:.2s;
+  font-size:13px;
+  transition:.2s ease;
+  box-shadow:0 3px 8px rgba(100,35,10,.12);
 }
 
 .btn:hover{
   transform:translateY(-1px);
-  box-shadow:0 5px 14px rgba(120,45,10,.2);
+  box-shadow:0 6px 14px rgba(100,35,10,.18);
 }
 
 .btn.green{
-  background:#23843a;
+  background:#287a3b;
 }
 
 .btn.red{
-  background:#bd2929;
+  background:#b92d2d;
 }
 
 .btn.gray{
@@ -516,7 +514,7 @@ textarea{
 /* ================= ADMIN ================= */
 
 .adminLogin{
-  max-width:430px;
+  max-width:410px;
   margin:auto;
 }
 
@@ -530,17 +528,17 @@ textarea{
   align-items:center;
   gap:15px;
   flex-wrap:wrap;
-  margin-bottom:20px;
 }
 
 .adminHeader h3{
-  color:#7d200d;
+  color:var(--maroon2);
+  font-size:20px;
 }
 
 .filters{
   display:flex;
-  gap:10px;
-  margin:15px 0;
+  gap:9px;
+  margin:14px 0;
   flex-wrap:wrap;
 }
 
@@ -552,9 +550,9 @@ textarea{
 .application{
   background:#fffdfa;
   border:1px solid #ead9c8;
-  border-radius:14px;
-  padding:17px;
-  margin-top:14px;
+  border-radius:13px;
+  padding:15px;
+  margin-top:12px;
 }
 
 .appTop{
@@ -562,20 +560,22 @@ textarea{
   justify-content:space-between;
   gap:12px;
   flex-wrap:wrap;
-  padding-bottom:10px;
+  padding-bottom:9px;
   border-bottom:1px solid #eadfd5;
 }
 
 .appTop h3{
   color:#74200f;
+  font-size:17px;
 }
 
 .status{
   display:inline-block;
-  padding:4px 11px;
+  padding:4px 10px;
   border-radius:20px;
-  font-size:11px;
+  font-size:10px;
   font-weight:bold;
+  height:max-content;
 }
 
 .pending{
@@ -596,9 +596,9 @@ textarea{
 .appInfo{
   display:grid;
   grid-template-columns:repeat(2,1fr);
-  gap:8px 20px;
-  margin-top:12px;
-  font-size:14px;
+  gap:7px 18px;
+  margin-top:11px;
+  font-size:13px;
 }
 
 .appInfo b{
@@ -607,22 +607,40 @@ textarea{
 
 .appButtons{
   display:flex;
-  gap:8px;
+  gap:7px;
   flex-wrap:wrap;
-  margin-top:15px;
+  margin-top:13px;
+}
+
+/* ================= ADMIN NEWS ================= */
+
+#adminNewsList{
+  margin-top:17px;
+}
+
+#adminNewsList .application p{
+  font-size:14px;
+  color:#59463d;
 }
 
 /* ================= FOOTER ================= */
 
 footer{
-  background:#390d08;
-  color:#f9d9ae;
+  background:
+    linear-gradient(135deg,#350a06,#4d1009);
+  color:#f5d6aa;
   text-align:center;
-  padding:32px 15px;
+  padding:28px 15px;
+  border-top:1px solid rgba(216,161,58,.18);
 }
 
 footer strong{
   color:#fff;
+  font-size:14px;
+}
+
+footer p{
+  font-size:13px;
 }
 
 /* ================= TOAST ================= */
@@ -631,16 +649,18 @@ footer strong{
   position:fixed;
   z-index:500;
   left:50%;
-  bottom:25px;
+  bottom:22px;
   transform:translate(-50%,120px);
   opacity:0;
-  background:#30120b;
+  background:#2d1009;
   color:#fff;
-  padding:12px 20px;
-  border-radius:30px;
+  padding:10px 18px;
+  border-radius:25px;
   transition:.3s;
   max-width:90%;
   text-align:center;
+  font-size:13px;
+  box-shadow:0 8px 25px rgba(0,0,0,.2);
 }
 
 #toast.show{
@@ -652,9 +672,8 @@ footer strong{
 
 @media(max-width:850px){
 
-  .grid,
-  .galleryGrid{
-    grid-template-columns:repeat(2,1fr);
+  .grid{
+    grid-template-columns:repeat(3,1fr);
   }
 
 }
@@ -662,11 +681,29 @@ footer strong{
 @media(max-width:650px){
 
   .hero{
-    min-height:430px;
+    min-height:385px;
+    padding:30px 14px;
+  }
+
+  .om{
+    font-size:32px;
+  }
+
+  .templeLogo{
+    transform:scale(.9);
+    margin-top:-3px;
+    margin-bottom:7px;
+  }
+
+  .hero h1{
+    font-size:28px;
+  }
+
+  .heroSub{
+    font-size:16px;
   }
 
   .grid,
-  .galleryGrid,
   .newsGrid,
   .formGrid{
     grid-template-columns:1fr;
@@ -681,19 +718,68 @@ footer strong{
   }
 
   .container{
-    padding:45px 13px;
+    padding:38px 12px;
+  }
+
+  .card{
+    padding:17px;
+    border-radius:14px;
+  }
+
+  .sectionHead{
+    margin-bottom:20px;
   }
 
   .sectionHead h2{
-    font-size:26px;
+    font-size:24px;
   }
 
-  .hero h1{
-    font-size:29px;
+  .welcome h2{
+    font-size:22px;
   }
 
   nav a{
-    padding:8px 11px;
+    padding:7px 10px;
+    font-size:12px;
+  }
+
+  .navInner{
+    justify-content:flex-start;
+  }
+
+  .filters{
+    flex-direction:column;
+  }
+
+  .filters input{
+    min-width:0;
+  }
+
+  .adminHeader{
+    align-items:flex-start;
+  }
+}
+
+/* ================= SMALL PHONE ================= */
+
+@media(max-width:380px){
+
+  .hero h1{
+    font-size:25px;
+  }
+
+  .heroSub{
+    font-size:15px;
+  }
+
+  .container{
+    padding-left:10px;
+    padding-right:10px;
+  }
+
+  .btn{
+    padding:9px 13px;
+    font-size:12px;
   }
 }
 </style>
@@ -746,7 +832,6 @@ footer strong{
 
     <a href="#home">Home</a>
     <a href="#news">Latest News</a>
-    <a href="#gallery">Gallery</a>
     <a href="#volunteer">Volunteer</a>
     <a href="#committee">Committee</a>
     <a href="#admin">Admin Panel</a>
@@ -762,24 +847,26 @@ footer strong{
   <div class="card welcome">
 
     <div class="welcomeBadge">
-      WELCOME
+      OFFICIAL WEBSITE
     </div>
 
-    <h2>श्री राम जानकी मंदिर दुर्गा पूजा सेवा समिति</h2>
+    <h2>
+      श्री राम जानकी मंदिर दुर्गा पूजा सेवा समिति
+    </h2>
 
     <p>
       श्री राम जानकी मंदिर दुर्गा पूजा सेवा समिति की
       official website पर आपका हार्दिक स्वागत है।
     </p>
 
-    <p style="margin-top:8px">
+    <p style="margin-top:6px">
       धार्मिक सेवा, सामाजिक सहयोग और मंदिर से संबंधित
       latest updates यहाँ प्राप्त करें।
     </p>
 
   </div>
 
-  <div class="grid" style="margin-top:22px">
+  <div class="grid" style="margin-top:17px">
 
     <div class="card feature">
 
@@ -846,28 +933,6 @@ footer strong{
     </div>
 
   </div>
-
-</section>
-
-<!-- ================= GALLERY ================= -->
-
-<section id="gallery" class="container">
-
-  <div class="sectionHead">
-
-    <div class="smallTitle">
-      Photo Gallery
-    </div>
-
-    <h2>🖼️ मंदिर गैलरी</h2>
-
-    <p>
-      मंदिर एवं समिति की झलकियाँ
-    </p>
-
-  </div>
-
-  <div id="galleryGrid" class="galleryGrid"></div>
 
 </section>
 
@@ -1207,7 +1272,7 @@ footer strong{
     <h2>🔐 Admin Panel</h2>
 
     <p>
-      Applications, News और Gallery manage करें।
+      Applications और News manage करें।
     </p>
 
   </div>
@@ -1246,7 +1311,7 @@ footer strong{
           <h3>Admin Dashboard</h3>
 
           <div class="help">
-            Manage Applications • News • Gallery
+            Manage Applications • News
           </div>
 
         </div>
@@ -1263,7 +1328,7 @@ footer strong{
 
     <!-- APPLICATIONS -->
 
-    <div class="card" style="margin-top:20px">
+    <div class="card" style="margin-top:18px">
 
       <h3>📋 Applications</h3>
 
@@ -1306,11 +1371,11 @@ footer strong{
 
     <!-- NEWS MANAGEMENT -->
 
-    <div class="card" style="margin-top:20px">
+    <div class="card" style="margin-top:18px">
 
       <h3>📰 Manage News</h3>
 
-      <form id="newsForm" style="margin-top:16px">
+      <form id="newsForm" style="margin-top:14px">
 
         <input
           type="hidden"
@@ -1365,53 +1430,6 @@ footer strong{
 
     </div>
 
-    <!-- GALLERY MANAGEMENT -->
-
-    <div class="card" style="margin-top:20px">
-
-      <h3>🖼️ Manage Gallery</h3>
-
-      <form id="galleryForm" style="margin-top:16px">
-
-        <div class="formGrid">
-
-          <div class="field">
-
-            <label>Image URL</label>
-
-            <input
-              id="galleryUrl"
-              type="url"
-              required
-              placeholder="https://...">
-
-          </div>
-
-          <div class="field">
-
-            <label>Caption</label>
-
-            <input
-              id="galleryCaption"
-              maxlength="100"
-              placeholder="Photo caption">
-
-          </div>
-
-        </div>
-
-        <div class="formActions">
-
-          <button class="btn" type="submit">
-            Add to Gallery
-          </button>
-
-        </div>
-
-      </form>
-
-    </div>
-
   </div>
 
 </section>
@@ -1428,11 +1446,11 @@ footer strong{
 
   <p>Siswa Bazar</p>
 
-  <p style="margin-top:8px">
+  <p style="margin-top:6px">
     जय श्री राम 🚩
   </p>
 
-  <p style="font-size:12px;margin-top:10px;opacity:.7">
+  <p style="font-size:11px;margin-top:8px;opacity:.65">
     Official Website • Temple & Community Service
   </p>
 
@@ -1803,8 +1821,6 @@ function adminLogin(){
 
     renderAdminNews();
 
-    loadGallery();
-
   }else{
 
     showToast("Incorrect password.");
@@ -1983,7 +1999,7 @@ function renderApplications(){
             ${
               item.message
               ? `
-              <div style="margin-top:12px">
+              <div style="margin-top:10px">
                 <b>Message:</b><br>
                 ${escapeHTML(item.message)}
               </div>
@@ -1994,7 +2010,7 @@ function renderApplications(){
             ${
               photo
               ? `
-              <div style="margin-top:10px">
+              <div style="margin-top:9px">
                 <a
                   href="${photo}"
                   target="_blank"
@@ -2009,7 +2025,7 @@ function renderApplications(){
             ${
               pdf
               ? `
-              <div style="margin-top:7px">
+              <div style="margin-top:6px">
                 <a
                   href="${pdf}"
                   target="_blank"
@@ -2069,6 +2085,19 @@ function renderApplications(){
 
       }).join("");
 
+    })
+    .catch(error=>{
+
+      console.error(error);
+
+      document.getElementById(
+        "applicationsList"
+      ).innerHTML=`
+        <div class="application">
+          Applications load नहीं हो पाए।
+        </div>
+      `;
+
     });
 
 }
@@ -2091,6 +2120,13 @@ function updateApplication(id,status){
 
       renderApplications();
 
+    })
+    .catch(error=>{
+
+      console.error(error);
+
+      showToast("Status update नहीं हुआ।");
+
     });
 
 }
@@ -2112,6 +2148,13 @@ function deleteApplication(id){
 
       renderApplications();
 
+    })
+    .catch(error=>{
+
+      console.error(error);
+
+      showToast("Delete नहीं हुआ।");
+
     });
 
 }
@@ -2131,15 +2174,27 @@ document
     document.getElementById("editNewsId")
     .value;
 
+  const title=
+    document.getElementById("newsTitle")
+    .value.trim();
+
+  const details=
+    document.getElementById("newsDetails")
+    .value.trim();
+
+  if(!title || !details){
+
+    showToast("Title और Details भरें।");
+
+    return;
+
+  }
+
   const data={
 
-    title:
-      document.getElementById("newsTitle")
-      .value.trim(),
+    title,
 
-    details:
-      document.getElementById("newsDetails")
-      .value.trim(),
+    details,
 
     date:currentDate(),
 
@@ -2222,7 +2277,7 @@ function renderAdminNews(){
       if(!list.length){
 
         box.innerHTML=`
-          <p class="help" style="margin-top:20px">
+          <p class="help" style="margin-top:18px">
             अभी कोई news नहीं है।
           </p>
         `;
@@ -2243,7 +2298,7 @@ function renderAdminNews(){
           </div>
 
           <p style="
-            margin-top:8px;
+            margin-top:7px;
             white-space:pre-wrap">
             ${escapeHTML(item.details)}
           </p>
@@ -2323,208 +2378,12 @@ function deleteNews(id){
 
       renderAdminNews();
 
-    });
+    })
+    .catch(error=>{
 
-}
+      console.error(error);
 
-
-/* ================= GALLERY ================= */
-
-const defaultGallery=[
-  "श्री राम जानकी मंदिर",
-  "मंदिर सेवा",
-  "दुर्गा पूजा सेवा समिति"
-];
-
-
-function templeImage(){
-
-  return`
-    <div class="templeIllustration">
-      <div class="miniTemple"></div>
-    </div>
-  `;
-
-}
-
-
-function loadGallery(){
-
-  db.ref("gallery")
-    .on("value",snapshot=>{
-
-      const data=snapshot.val() || {};
-
-      const custom=
-        Object.entries(data)
-        .map(([id,item])=>({
-          id,
-          ...item
-        }))
-        .sort((a,b)=>
-          (b.createdAt||0) -
-          (a.createdAt||0)
-        );
-
-      const box=
-        document.getElementById(
-          "galleryGrid"
-        );
-
-      let html="";
-
-      defaultGallery.forEach(caption=>{
-
-        html+=`
-
-          <div class="galleryItem">
-
-            ${templeImage()}
-
-            <div class="galleryCaption">
-              ${escapeHTML(caption)}
-            </div>
-
-          </div>
-
-        `;
-
-      });
-
-      custom.forEach(item=>{
-
-        const url=safeURL(item.url);
-
-        if(!url)return;
-
-        html+=`
-
-          <div class="galleryItem">
-
-            <img
-              src="${url}"
-              alt="${escapeHTML(
-                item.caption||"Temple Photo"
-              )}"
-              loading="lazy">
-
-            <div class="galleryCaption">
-
-              ${escapeHTML(
-                item.caption||"Temple Photo"
-              )}
-
-              ${
-                isAdmin
-                ? `
-                <div style="margin-top:8px">
-
-                  <button
-                    class="btn red"
-                    onclick="deleteGallery(
-                      '${item.id}'
-                    )">
-                    Delete
-                  </button>
-
-                </div>
-                `
-                :""
-              }
-
-            </div>
-
-          </div>
-
-        `;
-
-      });
-
-      box.innerHTML=html;
-
-    });
-
-}
-
-
-document
-.getElementById("galleryForm")
-.addEventListener("submit",async function(e){
-
-  e.preventDefault();
-
-  if(!isAdmin)return;
-
-  const url=
-    safeURL(
-      document.getElementById(
-        "galleryUrl"
-      ).value.trim()
-    );
-
-  if(!url){
-
-    showToast("Valid image URL डालें।");
-
-    return;
-  }
-
-  const caption=
-    document.getElementById(
-      "galleryCaption"
-    ).value.trim();
-
-  try{
-
-    await db.ref("gallery").push({
-
-      url,
-
-      caption:
-        caption||"Temple Photo",
-
-      createdAt:Date.now()
-
-    });
-
-    document.getElementById(
-      "galleryUrl"
-    ).value="";
-
-    document.getElementById(
-      "galleryCaption"
-    ).value="";
-
-    showToast(
-      "Photo added to Gallery!"
-    );
-
-  }catch(error){
-
-    console.error(error);
-
-    showToast(
-      "Photo add नहीं हुई।"
-    );
-
-  }
-
-});
-
-
-function deleteGallery(id){
-
-  if(!confirm(
-    "क्या आप यह photo delete करना चाहते हैं?"
-  )){
-    return;
-  }
-
-  db.ref("gallery/"+id)
-    .remove()
-    .then(()=>{
-
-      showToast("Photo deleted!");
+      showToast("News delete नहीं हुई।");
 
     });
 
@@ -2534,8 +2393,6 @@ function deleteGallery(id){
 /* ================= START ================= */
 
 loadNews();
-
-loadGallery();
 
 </script>
 
