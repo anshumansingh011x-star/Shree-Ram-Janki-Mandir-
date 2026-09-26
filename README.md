@@ -2,82 +2,70 @@
 <html lang="hi">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Shree Ram Janki Mandir Durga Puja Seva Samiti</title>
 
-<!-- Firebase -->
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-database-compat.js"></script>
 
 <style>
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-  font-family:Arial,sans-serif;
-}
-
+*{box-sizing:border-box}
 body{
-  background:#fff8ef;
-  color:#222;
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#fff8ed;
+  color:#3d2100;
 }
-
 header{
-  background:linear-gradient(135deg,#8b0000,#d35400);
+  background:linear-gradient(135deg,#8b1e00,#e85d04,#ffb703);
   color:white;
-  padding:22px 15px;
   text-align:center;
+  padding:25px 15px;
 }
-
-header h1{
-  font-size:25px;
-  margin-bottom:7px;
-}
-
-header p{
-  font-size:14px;
-}
+header h1{margin:0;font-size:25px}
+header p{margin:8px 0 0;font-size:17px}
 
 nav{
-  background:#fff;
-  padding:10px;
-  display:flex;
-  justify-content:center;
-  gap:8px;
-  flex-wrap:wrap;
-  box-shadow:0 2px 8px #0002;
   position:sticky;
   top:0;
   z-index:10;
+  background:#5b1600;
+  display:flex;
+  overflow-x:auto;
 }
-
 nav button{
+  flex:1;
+  min-width:110px;
+  padding:14px 8px;
   border:0;
-  background:#8b0000;
-  color:#fff;
-  padding:9px 14px;
-  border-radius:20px;
+  background:none;
+  color:white;
+  font-weight:bold;
   cursor:pointer;
 }
 
-section{
-  max-width:900px;
+.container{
+  max-width:1000px;
   margin:auto;
-  padding:28px 15px;
+  padding:20px 14px;
 }
+
+.page{display:none}
+.page.active{display:block}
 
 .card{
   background:white;
-  padding:20px;
+  border-radius:16px;
+  padding:18px;
   margin:15px 0;
-  border-radius:15px;
-  box-shadow:0 3px 12px #0002;
+  box-shadow:0 4px 15px #0002;
 }
 
 h2{
-  color:#8b0000;
-  margin-bottom:15px;
+  color:#a52a00;
+  border-bottom:2px solid #ffb703;
+  padding-bottom:8px;
 }
 
 input,textarea,select{
@@ -85,130 +73,84 @@ input,textarea,select{
   padding:12px;
   margin:7px 0 12px;
   border:1px solid #ccc;
-  border-radius:8px;
+  border-radius:9px;
   font-size:15px;
 }
 
-textarea{
-  min-height:90px;
-  resize:vertical;
-}
+textarea{min-height:100px;resize:vertical}
 
-.btn{
-  background:#8b0000;
-  color:white;
+button.action{
   border:0;
-  padding:11px 18px;
-  border-radius:8px;
+  padding:12px 18px;
+  border-radius:9px;
+  background:#e85d04;
+  color:white;
+  font-weight:bold;
   cursor:pointer;
-  font-size:15px;
+  margin:4px;
 }
 
-.btn.green{
-  background:#16803c;
-}
-
-.btn.red{
-  background:#b00020;
-}
-
-.btn.orange{
-  background:#d35400;
-}
-
-.hidden{
-  display:none!important;
-}
-
-.news{
-  border-left:5px solid #d35400;
-  padding:12px;
-  margin:10px 0;
-  background:#fff7ee;
-  border-radius:8px;
-}
-
-.application{
-  border:1px solid #ddd;
-  padding:15px;
-  border-radius:10px;
-  margin:12px 0;
-  background:#fff;
-}
+button.green{background:#198754}
+button.red{background:#c1121f}
+button.dark{background:#5b1600}
 
 .status{
   display:inline-block;
   padding:5px 10px;
-  border-radius:15px;
+  border-radius:20px;
   font-size:12px;
-  background:#eee;
+  font-weight:bold;
 }
-
-.status.pending{
-  background:#fff0b3;
-}
-
-.status.accepted{
-  background:#c9f7d5;
-  color:#12652c;
-}
-
-.status.rejected{
-  background:#ffd0d0;
-  color:#8b0000;
-}
-
-footer{
-  background:#222;
-  color:white;
-  text-align:center;
-  padding:25px 15px;
-  margin-top:30px;
-}
-
-.notice{
-  padding:12px;
-  margin:10px 0;
-  border-radius:8px;
-  background:#fff3cd;
-  color:#664d03;
-}
-
-.success{
-  background:#d1e7dd;
-  color:#0f5132;
-}
-
-.error{
-  background:#f8d7da;
-  color:#842029;
-}
-
-.loading{
-  text-align:center;
-  padding:20px;
-  color:#777;
-}
+.pending{background:#fff3cd;color:#856404}
+.accepted{background:#d1e7dd;color:#0f5132}
+.rejected{background:#f8d7da;color:#842029}
 
 .gallery{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
   gap:12px;
 }
-
 .gallery img{
   width:100%;
-  height:150px;
+  height:170px;
   object-fit:cover;
-  border-radius:10px;
+  border-radius:12px;
 }
 
-.admin-top{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:10px;
-  flex-wrap:wrap;
+.adminBox{
+  background:#fff3cd;
+  border:1px solid #ffc107;
+  padding:15px;
+  border-radius:12px;
+}
+
+.application{
+  border:1px solid #ddd;
+  border-radius:12px;
+  padding:15px;
+  margin:12px 0;
+  background:#fffdf8;
+}
+
+.application p{margin:7px 0}
+
+.small{
+  font-size:13px;
+  color:#666;
+}
+
+footer{
+  background:#5b1600;
+  color:white;
+  text-align:center;
+  padding:20px;
+  margin-top:30px;
+}
+
+#loading{
+  text-align:center;
+  padding:20px;
+  font-weight:bold;
 }
 </style>
 </head>
@@ -216,938 +158,914 @@ footer{
 <body>
 
 <header>
-  <h1>🚩 श्री राम जानकी मंदिर दुर्गा पूजा सेवा समिति</h1>
-  <p>Siswa Bazar</p>
-  <p>सेवा • सहयोग • संस्कार • समाज</p>
+  <h1>श्री राम जानकी मंदिर दुर्गा पूजा सेवा समिति</h1>
+  <p>Shree Ram Janki Mandir Durga Puja Seva Samiti</p>
+  <p>📍 Siswa Bazar</p>
+  <h3>जय श्री राम 🚩</h3>
 </header>
 
 <nav>
-  <button onclick="showSection('home')">Home</button>
-  <button onclick="showSection('volunteer')">Volunteer</button>
-  <button onclick="showSection('member')">Committee</button>
-  <button onclick="showSection('news')">News</button>
-  <button onclick="showSection('gallery')">Gallery</button>
-  <button onclick="showSection('admin')">Admin</button>
+  <button onclick="showPage('home')">🏠 Home</button>
+  <button onclick="showPage('news')">📰 News</button>
+  <button onclick="showPage('gallery')">🖼️ Gallery</button>
+  <button onclick="showPage('volunteer')">🙋 Volunteer</button>
+  <button onclick="showPage('committee')">👥 Committee</button>
+  <button onclick="showPage('admin')">🔐 Admin</button>
 </nav>
 
+<div class="container">
+
 <!-- HOME -->
-<section id="home">
-  <div class="card">
-    <h2>🙏 स्वागत है</h2>
-    <p>
-      श्री राम जानकी मंदिर दुर्गा पूजा सेवा समिति की आधिकारिक वेबसाइट
-      पर आपका हार्दिक स्वागत है।
-    </p>
-    <br>
-    <p>
-      आप समिति से जुड़ने के लिए Volunteer या Committee Member के रूप में
-      आवेदन कर सकते हैं।
-    </p>
-  </div>
+<section id="home" class="page active">
 
-  <div class="card">
-    <h2>📢 नवीनतम सूचना</h2>
-    <div id="homeNews">
-      <div class="loading">News loading...</div>
-    </div>
-  </div>
+<div class="card">
+<h2>🙏 स्वागत है</h2>
+<p>
+श्री राम जानकी मंदिर दुर्गा पूजा सेवा समिति में आपका हार्दिक स्वागत है।
+धार्मिक एवं सामाजिक सेवा कार्यों में सहभागिता के लिए हमारे साथ जुड़ें।
+</p>
+</div>
+
+<div class="card">
+<h2>🚩 हमारा उद्देश्य</h2>
+<p>
+समाज में धार्मिक, सामाजिक एवं सेवा कार्यों को बढ़ावा देना तथा
+सभी सदस्यों और स्वयंसेवकों के सहयोग से कार्यक्रमों को सफल बनाना।
+</p>
+</div>
+
 </section>
 
-<!-- VOLUNTEER -->
-<section id="volunteer" class="hidden">
-  <div class="card">
-    <h2>🙋 Volunteer Registration</h2>
-
-    <div id="volunteerMsg"></div>
-
-    <input id="vName" placeholder="पूरा नाम">
-    <input id="vPhone" placeholder="मोबाइल नंबर" maxlength="10">
-    <input id="vVillage" placeholder="गांव / शहर">
-    <input id="vAge" type="number" placeholder="उम्र">
-    <textarea id="vReason" placeholder="आप समिति से क्यों जुड़ना चाहते हैं?"></textarea>
-
-    <button class="btn" onclick="submitVolunteer()">
-      आवेदन भेजें
-    </button>
-  </div>
-</section>
-
-<!-- MEMBER -->
-<section id="member" class="hidden">
-  <div class="card">
-    <h2>👥 Committee Member Registration</h2>
-
-    <div id="memberMsg"></div>
-
-    <input id="mName" placeholder="पूरा नाम">
-    <input id="mPhone" placeholder="मोबाइल नंबर" maxlength="10">
-    <input id="mVillage" placeholder="गांव / शहर">
-    <input id="mAge" type="number" placeholder="उम्र">
-
-    <select id="mRole">
-      <option value="">भूमिका चुनें</option>
-      <option>Committee Member</option>
-      <option>Volunteer Coordinator</option>
-      <option>Event Coordinator</option>
-      <option>Social Media</option>
-      <option>Other</option>
-    </select>
-
-    <textarea id="mAbout" placeholder="अपने बारे में"></textarea>
-
-    <button class="btn" onclick="submitMember()">
-      आवेदन भेजें
-    </button>
-  </div>
-</section>
 
 <!-- NEWS -->
-<section id="news" class="hidden">
-  <div class="card">
-    <h2>📰 Latest News</h2>
-    <div id="newsList">
-      <div class="loading">News loading...</div>
-    </div>
-  </div>
+<section id="news" class="page">
+
+<div class="card">
+<h2>📰 Latest News</h2>
+<div id="newsList">
+<div id="loading">News loading...</div>
+</div>
+</div>
+
 </section>
+
 
 <!-- GALLERY -->
-<section id="gallery" class="hidden">
-  <div class="card">
-    <h2>📸 Gallery</h2>
+<section id="gallery" class="page">
 
-    <div class="gallery" id="galleryList">
-      <p>Gallery में अभी कोई फोटो नहीं है।</p>
-    </div>
-  </div>
+<div class="card">
+<h2>🖼️ Gallery</h2>
+
+<div id="galleryList" class="gallery">
+<div>Gallery loading...</div>
+</div>
+
+</div>
+
 </section>
+
+
+<!-- VOLUNTEER -->
+<section id="volunteer" class="page">
+
+<div class="card">
+<h2>🙋 Volunteer Registration</h2>
+
+<p class="small">
+नीचे अपनी जानकारी भरें। PDF document optional है।
+PDF की अधिकतम size 500 KB रखी गई है।
+</p>
+
+<input id="vName" placeholder="पूरा नाम">
+<input id="vMobile" maxlength="10" placeholder="10 अंकों का मोबाइल नंबर">
+<input id="vAddress" placeholder="पूरा पता">
+<input id="vAge" type="number" placeholder="उम्र">
+
+<select id="vContribution">
+<option value="">योगदान चुनें</option>
+<option>धार्मिक सेवा</option>
+<option>कार्यक्रम व्यवस्था</option>
+<option>सफाई व्यवस्था</option>
+<option>प्रसाद व्यवस्था</option>
+<option>सुरक्षा व्यवस्था</option>
+<option>अन्य</option>
+</select>
+
+<textarea id="vMessage" placeholder="अन्य जानकारी / संदेश"></textarea>
+
+<label><b>📄 PDF Document</b></label>
+<input id="vPdf" type="file" accept="application/pdf">
+
+<button class="action" onclick="submitVolunteer()">
+Submit Volunteer Application
+</button>
+
+<p id="volunteerMsg"></p>
+
+</div>
+
+</section>
+
+
+<!-- COMMITTEE -->
+<section id="committee" class="page">
+
+<div class="card">
+
+<h2>👥 Committee Member Application</h2>
+
+<input id="cName" placeholder="पूरा नाम">
+<input id="cMobile" maxlength="10" placeholder="10 अंकों का मोबाइल नंबर">
+<input id="cAddress" placeholder="पूरा पता">
+<input id="cAge" type="number" placeholder="उम्र">
+
+<textarea id="cContribution"
+placeholder="आप समिति में किस प्रकार योगदान देना चाहते हैं?"></textarea>
+
+<textarea id="cMessage"
+placeholder="अन्य जानकारी / संदेश"></textarea>
+
+<label><b>📄 PDF Document (Optional)</b></label>
+<input id="cPdf" type="file" accept="application/pdf">
+
+<button class="action" onclick="submitCommittee()">
+Submit Committee Application
+</button>
+
+<p id="committeeMsg"></p>
+
+</div>
+
+</section>
+
 
 <!-- ADMIN -->
-<section id="admin" class="hidden">
-  <div class="card" id="adminLogin">
-    <h2>🔐 Admin Panel</h2>
+<section id="admin" class="page">
 
-    <div id="adminMsg"></div>
+<div class="card" id="adminLogin">
 
-    <input
-      id="adminPassword"
-      type="password"
-      placeholder="Admin Password"
-    >
+<h2>🔐 Admin Login</h2>
 
-    <button class="btn" onclick="adminLoginCheck()">
-      Login
-    </button>
-  </div>
+<input id="adminPassword" type="password" placeholder="Admin Password">
 
-  <div class="card hidden" id="adminPanel">
+<button class="action dark" onclick="adminLogin()">
+Login
+</button>
 
-    <div class="admin-top">
-      <h2>⚙️ Admin Dashboard</h2>
-      <button class="btn red" onclick="adminLogout()">Logout</button>
-    </div>
+<p id="loginMsg"></p>
 
-    <hr><br>
+</div>
 
-    <h2>🙋 Volunteer Applications</h2>
-    <div id="volunteerApplications">
-      <div class="loading">Loading...</div>
-    </div>
 
-    <hr><br>
+<div id="adminPanel" style="display:none">
 
-    <h2>👥 Committee Applications</h2>
-    <div id="memberApplications">
-      <div class="loading">Loading...</div>
-    </div>
+<div class="card">
+<h2>⚙️ Admin Dashboard</h2>
 
-    <hr><br>
+<button class="action dark" onclick="loadApplications()">
+🔄 Refresh Applications
+</button>
 
-    <h2>📰 Add News</h2>
+<button class="action" onclick="showAdminSection('volunteersAdmin')">
+🙋 Volunteers
+</button>
 
-    <input id="newsTitle" placeholder="News Title">
-    <textarea id="newsText" placeholder="News Description"></textarea>
+<button class="action" onclick="showAdminSection('committeeAdmin')">
+👥 Committee
+</button>
 
-    <button class="btn orange" onclick="addNews()">
-      Add News
-    </button>
+<button class="action" onclick="showAdminSection('newsAdmin')">
+📰 News
+</button>
 
-    <div id="adminNewsList"></div>
+<button class="action" onclick="showAdminSection('galleryAdmin')">
+🖼️ Gallery
+</button>
 
-  </div>
+<button class="action red" onclick="adminLogout()">
+Logout
+</button>
+
+</div>
+
+
+<!-- VOLUNTEER ADMIN -->
+<div class="card" id="volunteersAdmin">
+
+<h2>🙋 Volunteer Applications</h2>
+
+<select id="volunteerFilter" onchange="loadApplications()">
+<option value="all">All</option>
+<option value="pending">Pending</option>
+<option value="accepted">Accepted</option>
+<option value="rejected">Rejected</option>
+</select>
+
+<input id="volunteerSearch"
+oninput="loadApplications()"
+placeholder="नाम या मोबाइल से Search">
+
+<div id="volunteerApplications"></div>
+
+</div>
+
+
+<!-- COMMITTEE ADMIN -->
+<div class="card" id="committeeAdmin" style="display:none">
+
+<h2>👥 Committee Applications</h2>
+
+<select id="committeeFilter" onchange="loadApplications()">
+<option value="all">All</option>
+<option value="pending">Pending</option>
+<option value="accepted">Accepted</option>
+<option value="rejected">Rejected</option>
+</select>
+
+<input id="committeeSearch"
+oninput="loadApplications()"
+placeholder="नाम या मोबाइल से Search">
+
+<div id="committeeApplications"></div>
+
+</div>
+
+
+<!-- NEWS ADMIN -->
+<div class="card" id="newsAdmin" style="display:none">
+
+<h2>📰 Add News</h2>
+
+<input id="newsTitle" maxlength="150" placeholder="News Title">
+
+<textarea id="newsDetails"
+maxlength="1000"
+placeholder="News Details"></textarea>
+
+<button class="action" onclick="addNews()">
+➕ Add News
+</button>
+
+<div id="adminNewsList"></div>
+
+</div>
+
+
+<!-- GALLERY ADMIN -->
+<div class="card" id="galleryAdmin" style="display:none">
+
+<h2>🖼️ Add Gallery Photo</h2>
+
+<p class="small">
+Image 300 KB से छोटी रखें क्योंकि photo Realtime Database में save होगी।
+</p>
+
+<input id="galleryTitle" placeholder="Photo Title">
+
+<input id="galleryPhoto" type="file" accept="image/*">
+
+<button class="action" onclick="addGalleryPhoto()">
+📤 Upload Photo
+</button>
+
+<p id="galleryMsg"></p>
+
+<div id="adminGalleryList"></div>
+
+</div>
+
+</div>
+
 </section>
 
+</div>
+
 <footer>
-  <p>© 2026 Shree Ram Janki Mandir Durga Puja Seva Samiti</p>
-  <p>सभी अधिकार सुरक्षित</p>
+जय श्री राम 🚩 | Shree Ram Janki Mandir Durga Puja Seva Samiti
 </footer>
+
 
 <script>
 
-/* =========================================================
+/* =====================================================
    FIREBASE CONFIG
-========================================================= */
+   ===================================================== */
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDLonsbRwdlq3Ru4NIvhFqLzjKEUaPnzfc",
-  authDomain: "shree-ram-janki-mandir-durga.firebaseapp.com",
-  databaseURL: "https://shree-ram-janki-mandir-durga-default-rtdb.asia-southeast1.firebasedatabase.app",
-  projectId: "shree-ram-janki-mandir-durga",
-  storageBucket: "shree-ram-janki-mandir-durga.firebasestorage.app",
-  messagingSenderId: "603852207772",
-  appId: "1:603852207772:web:a27f2828d95284a4c69f59",
-  measurementId: "G-9QQJJEMH1V"
+
+  apiKey: "YAHAN_APNI_API_KEY_PASTE_KARO",
+
+  authDomain:
+  "shree-ram-janki-mandir-durga.firebaseapp.com",
+
+  databaseURL:
+  "https://shree-ram-janki-mandir-durga-default-rtdb.asia-southeast1.firebasedatabase.app",
+
+  projectId:
+  "shree-ram-janki-mandir-durga",
+
+  storageBucket:
+  "shree-ram-janki-mandir-durga.firebasestorage.app",
+
+  messagingSenderId:
+  "YAHAN_APNA_MESSAGING_SENDER_ID",
+
+  appId:
+  "YAHAN_APNA_APP_ID"
+
 };
 
+firebase.initializeApp(firebaseConfig);
 
-/* =========================================================
-   FIREBASE INITIALIZATION
-========================================================= */
-
-let db = null;
-let firebaseReady = false;
-
-try {
-
-  if (!firebase.apps.length) {
-    firebase.initializeApp(firebaseConfig);
-  }
-
-  db = firebase.database();
-  firebaseReady = true;
-
-  console.log("Firebase connected successfully");
-
-} catch(error) {
-
-  console.error("Firebase initialization error:", error);
-
-  document.body.insertAdjacentHTML(
-    "afterbegin",
-    `<div class="notice error">
-      Firebase connection error. Website का basic interface फिर भी काम करेगा।
-    </div>`
-  );
-}
+const db = firebase.database();
 
 
-/* =========================================================
-   SECTION SYSTEM
-========================================================= */
+/* =====================================================
+   ADMIN PASSWORD
+   ===================================================== */
 
-function showSection(id){
+const ADMIN_PASSWORD = "SRJM2026";
 
-  const sections = [
-    "home",
-    "volunteer",
-    "member",
-    "news",
-    "gallery",
-    "admin"
-  ];
+let isAdmin = false;
 
-  sections.forEach(section => {
 
-    const element = document.getElementById(section);
+/* =====================================================
+   PAGE SYSTEM
+   ===================================================== */
 
-    if(element){
-      element.classList.add("hidden");
-    }
+function showPage(page){
 
-  });
+  document.querySelectorAll(".page")
+  .forEach(p => p.classList.remove("active"));
 
-  const selected = document.getElementById(id);
-
-  if(selected){
-    selected.classList.remove("hidden");
-  }
+  document.getElementById(page)
+  .classList.add("active");
 
   window.scrollTo({
     top:0,
     behavior:"smooth"
   });
+
 }
 
 
-/* =========================================================
-   HELPERS
-========================================================= */
-
-function message(id,text,type=""){
-
-  const element = document.getElementById(id);
-
-  if(!element) return;
-
-  element.innerHTML =
-    `<div class="notice ${type}">${text}</div>`;
-}
-
-
-function clean(value){
-
-  return String(value || "")
-    .replace(/[<>]/g,"")
-    .trim();
-}
-
-
-function validPhone(phone){
-
-  return /^[6-9][0-9]{9}$/.test(phone);
-}
-
-
-function requireFirebase(){
-
-  if(!firebaseReady || !db){
-
-    alert(
-      "Firebase अभी connected नहीं है। Firebase configuration और Database Rules check करें।"
-    );
-
-    return false;
-  }
-
-  return true;
-}
-
-
-/* =========================================================
-   VOLUNTEER SUBMIT
-========================================================= */
-
-async function submitVolunteer(){
-
-  if(!requireFirebase()) return;
-
-  const name = clean(document.getElementById("vName").value);
-  const phone = clean(document.getElementById("vPhone").value);
-  const village = clean(document.getElementById("vVillage").value);
-  const age = clean(document.getElementById("vAge").value);
-  const reason = clean(document.getElementById("vReason").value);
-
-  if(!name || !phone){
-
-    message(
-      "volunteerMsg",
-      "कृपया नाम और मोबाइल नंबर भरें।",
-      "error"
-    );
-
-    return;
-  }
-
-  if(!validPhone(phone)){
-
-    message(
-      "volunteerMsg",
-      "कृपया सही 10 digit मोबाइल नंबर डालें।",
-      "error"
-    );
-
-    return;
-  }
-
-  try{
-
-    const ref = db.ref("volunteers").push();
-
-    await ref.set({
-
-      name:name,
-      phone:phone,
-      village:village,
-      age:age,
-      reason:reason,
-
-      status:"pending",
-
-      createdAt:Date.now()
-
-    });
-
-    message(
-      "volunteerMsg",
-      "✅ आपका Volunteer आवेदन सफलतापूर्वक भेज दिया गया है। Admin verification के बाद status update होगा।",
-      "success"
-    );
-
-    document.getElementById("vName").value="";
-    document.getElementById("vPhone").value="";
-    document.getElementById("vVillage").value="";
-    document.getElementById("vAge").value="";
-    document.getElementById("vReason").value="";
-
-  }catch(error){
-
-    console.error(error);
-
-    message(
-      "volunteerMsg",
-      "आवेदन भेजने में समस्या हुई: " + error.message,
-      "error"
-    );
-  }
-}
-
-
-/* =========================================================
-   MEMBER SUBMIT
-========================================================= */
-
-async function submitMember(){
-
-  if(!requireFirebase()) return;
-
-  const name = clean(document.getElementById("mName").value);
-  const phone = clean(document.getElementById("mPhone").value);
-  const village = clean(document.getElementById("mVillage").value);
-  const age = clean(document.getElementById("mAge").value);
-  const role = clean(document.getElementById("mRole").value);
-  const about = clean(document.getElementById("mAbout").value);
-
-  if(!name || !phone){
-
-    message(
-      "memberMsg",
-      "कृपया नाम और मोबाइल नंबर भरें।",
-      "error"
-    );
-
-    return;
-  }
-
-  if(!validPhone(phone)){
-
-    message(
-      "memberMsg",
-      "कृपया सही 10 digit मोबाइल नंबर डालें।",
-      "error"
-    );
-
-    return;
-  }
-
-  try{
-
-    const ref = db.ref("committeeMembers").push();
-
-    await ref.set({
-
-      name:name,
-      phone:phone,
-      village:village,
-      age:age,
-      role:role,
-      about:about,
-
-      status:"pending",
-
-      createdAt:Date.now()
-
-    });
-
-    message(
-      "memberMsg",
-      "✅ आपका Committee Member आवेदन सफलतापूर्वक भेज दिया गया है।",
-      "success"
-    );
-
-    document.getElementById("mName").value="";
-    document.getElementById("mPhone").value="";
-    document.getElementById("mVillage").value="";
-    document.getElementById("mAge").value="";
-    document.getElementById("mRole").value="";
-    document.getElementById("mAbout").value="";
-
-  }catch(error){
-
-    console.error(error);
-
-    message(
-      "memberMsg",
-      "आवेदन भेजने में समस्या हुई: " + error.message,
-      "error"
-    );
-  }
-}
-
-
-/* =========================================================
+/* =====================================================
    ADMIN LOGIN
-========================================================= */
+   ===================================================== */
 
-function adminLoginCheck(){
+function adminLogin(){
 
   const password =
-    document.getElementById("adminPassword").value;
+  document.getElementById("adminPassword").value;
 
-  /*
-    Current admin password:
-    SRJM2026
-  */
+  if(password === ADMIN_PASSWORD){
 
-  if(password === "SRJM2026"){
+    isAdmin = true;
 
-    localStorage.setItem("srjm_admin","true");
+    document.getElementById("adminLogin")
+    .style.display="none";
 
-    document
-      .getElementById("adminLogin")
-      .classList.add("hidden");
+    document.getElementById("adminPanel")
+    .style.display="block";
 
-    document
-      .getElementById("adminPanel")
-      .classList.remove("hidden");
-
-    loadAdminData();
+    loadApplications();
+    loadAdminNews();
+    loadAdminGallery();
 
   }else{
 
-    message(
-      "adminMsg",
-      "❌ गलत Admin Password",
-      "error"
-    );
+    document.getElementById("loginMsg")
+    .innerHTML =
+    "❌ गलत Admin Password";
+
   }
+
 }
 
 
 function adminLogout(){
 
-  localStorage.removeItem("srjm_admin");
+  isAdmin=false;
 
-  document
-    .getElementById("adminPanel")
-    .classList.add("hidden");
+  document.getElementById("adminPanel")
+  .style.display="none";
 
-  document
-    .getElementById("adminLogin")
-    .classList.remove("hidden");
+  document.getElementById("adminLogin")
+  .style.display="block";
 
   document.getElementById("adminPassword").value="";
+
 }
 
 
-/* =========================================================
+function showAdminSection(section){
+
+  document.getElementById("volunteersAdmin")
+  .style.display="none";
+
+  document.getElementById("committeeAdmin")
+  .style.display="none";
+
+  document.getElementById("newsAdmin")
+  .style.display="none";
+
+  document.getElementById("galleryAdmin")
+  .style.display="none";
+
+  document.getElementById(section)
+  .style.display="block";
+
+}
+
+
+/* =====================================================
+   FILE TO BASE64
+   ===================================================== */
+
+function fileToBase64(file){
+
+  return new Promise((resolve,reject)=>{
+
+    const reader = new FileReader();
+
+    reader.onload = () =>
+    resolve(reader.result);
+
+    reader.onerror = reject;
+
+    reader.readAsDataURL(file);
+
+  });
+
+}
+
+
+/* =====================================================
+   VOLUNTEER SUBMIT
+   ===================================================== */
+
+async function submitVolunteer(){
+
+  const name =
+  document.getElementById("vName").value.trim();
+
+  const mobile =
+  document.getElementById("vMobile").value.trim();
+
+  const address =
+  document.getElementById("vAddress").value.trim();
+
+  const age =
+  document.getElementById("vAge").value.trim();
+
+  const contribution =
+  document.getElementById("vContribution").value;
+
+  const message =
+  document.getElementById("vMessage").value.trim();
+
+  const pdf =
+  document.getElementById("vPdf").files[0];
+
+  const msg =
+  document.getElementById("volunteerMsg");
+
+
+  if(!name || !mobile || !address || !age){
+
+    msg.innerHTML =
+    "⚠️ कृपया सभी जरूरी जानकारी भरें।";
+
+    return;
+
+  }
+
+  if(!/^[0-9]{10}$/.test(mobile)){
+
+    msg.innerHTML =
+    "⚠️ मोबाइल नंबर 10 अंकों का होना चाहिए।";
+
+    return;
+
+  }
+
+  if(pdf && pdf.size > 500 * 1024){
+
+    msg.innerHTML =
+    "⚠️ PDF 500 KB से छोटी रखें।";
+
+    return;
+
+  }
+
+  msg.innerHTML="⏳ Submit हो रहा है...";
+
+
+  try{
+
+    let pdfData="";
+
+    if(pdf){
+
+      pdfData =
+      await fileToBase64(pdf);
+
+    }
+
+    const id =
+    db.ref("volunteers").push().key;
+
+    await db.ref("volunteers/"+id).set({
+
+      id:id,
+
+      name:name,
+
+      mobile:mobile,
+
+      address:address,
+
+      age:age,
+
+      contribution:contribution,
+
+      message:message,
+
+      pdf:pdfData,
+
+      pdfName:pdf ? pdf.name : "",
+
+      status:"pending",
+
+      createdAt:Date.now()
+
+    });
+
+
+    msg.innerHTML =
+    "✅ आपका Volunteer Application सफलतापूर्वक submit हो गया।";
+
+    document.getElementById("vName").value="";
+    document.getElementById("vMobile").value="";
+    document.getElementById("vAddress").value="";
+    document.getElementById("vAge").value="";
+    document.getElementById("vContribution").value="";
+    document.getElementById("vMessage").value="";
+    document.getElementById("vPdf").value="";
+
+
+  }catch(error){
+
+    console.error(error);
+
+    msg.innerHTML =
+    "❌ Submit नहीं हुआ: "+error.message;
+
+  }
+
+}
+
+
+/* =====================================================
+   COMMITTEE SUBMIT
+   ===================================================== */
+
+async function submitCommittee(){
+
+  const name =
+  document.getElementById("cName").value.trim();
+
+  const mobile =
+  document.getElementById("cMobile").value.trim();
+
+  const address =
+  document.getElementById("cAddress").value.trim();
+
+  const age =
+  document.getElementById("cAge").value.trim();
+
+  const contribution =
+  document.getElementById("cContribution").value.trim();
+
+  const message =
+  document.getElementById("cMessage").value.trim();
+
+  const pdf =
+  document.getElementById("cPdf").files[0];
+
+  const msg =
+  document.getElementById("committeeMsg");
+
+
+  if(!name || !mobile || !address || !age){
+
+    msg.innerHTML =
+    "⚠️ कृपया सभी जरूरी जानकारी भरें।";
+
+    return;
+
+  }
+
+  if(!/^[0-9]{10}$/.test(mobile)){
+
+    msg.innerHTML =
+    "⚠️ मोबाइल नंबर 10 अंकों का होना चाहिए।";
+
+    return;
+
+  }
+
+  if(pdf && pdf.size > 500 * 1024){
+
+    msg.innerHTML =
+    "⚠️ PDF 500 KB से छोटी रखें।";
+
+    return;
+
+  }
+
+  msg.innerHTML="⏳ Submit हो रहा है...";
+
+
+  try{
+
+    let pdfData="";
+
+    if(pdf){
+
+      pdfData =
+      await fileToBase64(pdf);
+
+    }
+
+    const id =
+    db.ref("committee").push().key;
+
+    await db.ref("committee/"+id).set({
+
+      id:id,
+
+      name:name,
+
+      mobile:mobile,
+
+      address:address,
+
+      age:age,
+
+      contribution:contribution,
+
+      message:message,
+
+      pdf:pdfData,
+
+      pdfName:pdf ? pdf.name : "",
+
+      status:"pending",
+
+      createdAt:Date.now()
+
+    });
+
+
+    msg.innerHTML =
+    "✅ Committee application successfully submit हो गया।";
+
+    document.getElementById("cName").value="";
+    document.getElementById("cMobile").value="";
+    document.getElementById("cAddress").value="";
+    document.getElementById("cAge").value="";
+    document.getElementById("cContribution").value="";
+    document.getElementById("cMessage").value="";
+    document.getElementById("cPdf").value="";
+
+
+  }catch(error){
+
+    console.error(error);
+
+    msg.innerHTML =
+    "❌ Submit नहीं हुआ: "+error.message;
+
+  }
+
+}
+
+
+/* =====================================================
    ADMIN APPLICATIONS
-========================================================= */
+   ===================================================== */
 
-function loadAdminData(){
+function loadApplications(){
 
-  if(!requireFirebase()) return;
+  if(!isAdmin) return;
 
   loadVolunteers();
-  loadMembers();
-  loadAdminNews();
+  loadCommittee();
+
 }
 
 
 function loadVolunteers(){
 
-  db.ref("volunteers").on("value",snapshot=>{
+  db.ref("volunteers").once("value")
+  .then(snapshot=>{
 
-    const container =
-      document.getElementById("volunteerApplications");
-
-    if(!snapshot.exists()){
-
-      container.innerHTML =
-        "<p>अभी कोई Volunteer application नहीं है।";
-
-      return;
-    }
-
-    let html="";
+    const data=[];
 
     snapshot.forEach(child=>{
 
-      const data = child.val();
-      const id = child.key;
-
-      html += applicationHTML(
-        id,
-        data,
-        "volunteer"
-      );
+      data.push(child.val());
 
     });
 
-    container.innerHTML=html;
+    const filter =
+    document.getElementById("volunteerFilter").value;
 
-  });
-}
+    const search =
+    document.getElementById("volunteerSearch").value
+    .toLowerCase();
 
+    const list =
+    document.getElementById("volunteerApplications");
 
-function loadMembers(){
+    list.innerHTML="";
 
-  db.ref("committeeMembers").on("value",snapshot=>{
+    data.reverse().forEach(v=>{
 
-    const container =
-      document.getElementById("memberApplications");
+      if(filter!=="all" && v.status!==filter)
+        return;
 
-    if(!snapshot.exists()){
-
-      container.innerHTML =
-        "<p>अभी कोई Committee application नहीं है।";
-
-      return;
-    }
-
-    let html="";
-
-    snapshot.forEach(child=>{
-
-      const data=child.val();
-      const id=child.key;
-
-      html += applicationHTML(
-        id,
-        data,
-        "member"
-      );
-
-    });
-
-    container.innerHTML=html;
-
-  });
-}
+      if(search &&
+        !v.name.toLowerCase().includes(search) &&
+        !v.mobile.includes(search))
+        return;
 
 
-function applicationHTML(id,data,type){
+      const div =
+      document.createElement("div");
 
-  const status =
-    data.status || "pending";
+      div.className="application";
 
-  let extra="";
+      div.innerHTML=`
 
-  if(type==="volunteer"){
+        <h3>🙋 ${escapeHTML(v.name)}</h3>
 
-    extra = `
-      <p><b>उद्देश्य:</b> ${clean(data.reason)}</p>
-    `;
+        <p><b>📱 Mobile:</b>
+        ${escapeHTML(v.mobile)}</p>
 
-  }else{
+        <p><b>🏠 Address:</b>
+        ${escapeHTML(v.address)}</p>
 
-    extra = `
-      <p><b>भूमिका:</b> ${clean(data.role)}</p>
-      <p><b>About:</b> ${clean(data.about)}</p>
-    `;
-  }
+        <p><b>🎂 Age:</b>
+        ${escapeHTML(v.age)}</p>
 
-  return `
-    <div class="application">
+        <p><b>🤝 Contribution:</b>
+        ${escapeHTML(v.contribution || "-")}</p>
 
-      <p><b>नाम:</b> ${clean(data.name)}</p>
+        <p><b>📝 Message:</b>
+        ${escapeHTML(v.message || "-")}</p>
 
-      <p><b>मोबाइल:</b> ${clean(data.phone)}</p>
-
-      <p><b>गांव/शहर:</b> ${clean(data.village)}</p>
-
-      <p><b>उम्र:</b> ${clean(data.age)}</p>
-
-      ${extra}
-
-      <p>
+        <p>
         <b>Status:</b>
-        <span class="status ${status}">
-          ${status.toUpperCase()}
+        <span class="status ${v.status}">
+        ${v.status.toUpperCase()}
         </span>
-      </p>
+        </p>
 
-      <br>
+        ${
+          v.pdf
+          ?
+          `<p>
+          <button class="action"
+          onclick="viewPDF('${v.id}','volunteers')">
+          📄 View PDF
+          </button>
+          </p>`
+          :
+          `<p class="small">📄 No PDF submitted</p>`
+        }
 
-      <button
-        class="btn green"
-        onclick="updateApplication('${type}','${id}','accepted')"
-      >
-        ✓ Accept
-      </button>
+        ${
+          v.status==="pending"
+          ?
+          `
+          <button class="action green"
+          onclick="updateStatus('volunteers','${v.id}','accepted')">
+          ✅ Accept
+          </button>
 
-      <button
-        class="btn red"
-        onclick="updateApplication('${type}','${id}','rejected')"
-      >
-        ✕ Reject
-      </button>
+          <button class="action red"
+          onclick="updateStatus('volunteers','${v.id}','rejected')">
+          ❌ Reject
+          </button>
+          `
+          :
+          ""
+        }
 
-      <button
-        class="btn"
-        onclick="deleteApplication('${type}','${id}')"
-      >
-        Delete
-      </button>
+      `;
 
-    </div>
-  `;
-}
-
-
-/* =========================================================
-   ACCEPT / REJECT
-========================================================= */
-
-async function updateApplication(type,id,status){
-
-  if(!requireFirebase()) return;
-
-  const path =
-    type==="volunteer"
-      ? "volunteers/"
-      : "committeeMembers/";
-
-  try{
-
-    await db.ref(path + id).update({
-
-      status:status,
-      updatedAt:Date.now()
+      list.appendChild(div);
 
     });
 
-    alert(
-      status==="accepted"
-        ? "Application Accepted ✅"
-        : "Application Rejected ❌"
-    );
+  });
 
-  }catch(error){
-
-    alert(
-      "Status update failed: " +
-      error.message
-    );
-  }
 }
 
 
-async function deleteApplication(type,id){
+/* =====================================================
+   COMMITTEE ADMIN
+   ===================================================== */
 
-  if(!requireFirebase()) return;
+function loadCommittee(){
 
-  if(!confirm("क्या आप इस application को delete करना चाहते हैं?")){
-    return;
-  }
+  db.ref("committee").once("value")
+  .then(snapshot=>{
 
-  const path =
-    type==="volunteer"
-      ? "volunteers/"
-      : "committeeMembers/";
+    const data=[];
 
-  try{
+    snapshot.forEach(child=>{
 
-    await db.ref(path + id).remove();
-
-  }catch(error){
-
-    alert(
-      "Delete failed: " +
-      error.message
-    );
-  }
-}
-
-
-/* =========================================================
-   NEWS
-========================================================= */
-
-async function addNews(){
-
-  if(!requireFirebase()) return;
-
-  const title =
-    clean(document.getElementById("newsTitle").value);
-
-  const text =
-    clean(document.getElementById("newsText").value);
-
-  if(!title || !text){
-
-    alert("News title और description भरें।");
-
-    return;
-  }
-
-  try{
-
-    const ref = db.ref("news").push();
-
-    await ref.set({
-
-      title:title,
-      text:text,
-      createdAt:Date.now()
+      data.push(child.val());
 
     });
 
-    document.getElementById("newsTitle").value="";
-    document.getElementById("newsText").value="";
+    const filter =
+    document.getElementById("committeeFilter").value;
 
-    alert("News successfully added ✅");
+    const search =
+    document.getElementById("committeeSearch").value
+    .toLowerCase();
 
-  }catch(error){
+    const list =
+    document.getElementById("committeeApplications");
 
-    alert(
-      "News add failed: " +
-      error.message
-    );
-  }
-}
+    list.innerHTML="";
 
+    data.reverse().forEach(v=>{
 
-function loadNews(){
+      if(filter!=="all" && v.status!==filter)
+        return;
 
-  if(!firebaseReady || !db) return;
-
-  db.ref("news")
-    .orderByChild("createdAt")
-    .on("value",snapshot=>{
-
-      let html="";
-
-      const items=[];
-
-      snapshot.forEach(child=>{
-
-        items.push({
-          id:child.key,
-          ...child.val()
-        });
-
-      });
-
-      items.reverse();
-
-      if(items.length===0){
-
-        html="<p>अभी कोई news उपलब्ध नहीं है।";
-
-      }else{
-
-        items.forEach(item=>{
-
-          html += `
-            <div class="news">
-              <h3>${clean(item.title)}</h3>
-              <p>${clean(item.text)}</p>
-            </div>
-          `;
-
-        });
-      }
-
-      const list =
-        document.getElementById("newsList");
-
-      const home =
-        document.getElementById("homeNews");
-
-      if(list) list.innerHTML=html;
-      if(home) home.innerHTML=html;
-
-    });
-}
+      if(search &&
+        !v.name.toLowerCase().includes(search) &&
+        !v.mobile.includes(search))
+        return;
 
 
-function loadAdminNews(){
+      const div =
+      document.createElement("div");
 
-  if(!firebaseReady || !db) return;
+      div.className="application";
 
-  db.ref("news")
-    .orderByChild("createdAt")
-    .on("value",snapshot=>{
+      div.innerHTML=`
 
-      const container =
-        document.getElementById("adminNewsList");
+        <h3>👥 ${escapeHTML(v.name)}</h3>
 
-      if(!container) return;
+        <p><b>📱 Mobile:</b>
+        ${escapeHTML(v.mobile)}</p>
 
-      let html="";
+        <p><b>🏠 Address:</b>
+        ${escapeHTML(v.address)}</p>
 
-      snapshot.forEach(child=>{
+        <p><b>🎂 Age:</b>
+        ${escapeHTML(v.age)}</p>
 
-        const data=child.val();
-        const id=child.key;
+        <p><b>🤝 Contribution:</b>
+        ${escapeHTML(v.contribution || "-")}</p>
 
-        html += `
-          <div class="application">
+        <p><b>📝 Message:</b>
+        ${escapeHTML(v.message || "-")}</p>
 
-            <h3>${clean(data.title)}</h3>
+        <p>
+        <b>Status:</b>
+        <span class="status ${v.status}">
+        ${v.status.toUpperCase()}
+        </span>
+        </p>
 
-            <p>${clean(data.text)}</p>
+        ${
+          v.pdf
+          ?
+          `<button class="action"
+          onclick="viewPDF('${v.id}','committee')">
+          📄 View PDF
+          </button>`
+          :
+          `<p class="small">📄 No PDF submitted</p>`
+        }
 
-            <br>
+        ${
+          v.status==="pending"
+          ?
+          `
+          <button class="action green"
+          onclick="updateStatus('committee','${v.id}','accepted')">
+          ✅ Accept
+          </button>
 
-            <button
-              class="btn red"
-              onclick="deleteNews('${id}')"
-            >
-              Delete News
-            </button>
-
-          </div>
-        `;
-
-      });
-
-      container.innerHTML =
-        html || "<p>No news.</p>";
-
-    });
-}
-
-
-async function deleteNews(id){
-
-  if(!requireFirebase()) return;
-
-  if(!confirm("News delete करें?")){
-    return;
-  }
-
-  try{
-
-    await db.ref("news/" + id).remove();
-
-  }catch(error){
-
-    alert(error.message);
-
-  }
-}
-
-
-/* =========================================================
-   STARTUP
-========================================================= */
-
-document.addEventListener("DOMContentLoaded",()=>{
-
-  loadNews();
-
-  if(localStorage.getItem("srjm_admin")==="true"){
-
-    document
-      .getElementById("adminLogin")
-      .classList.add("hidden");
-
-    document
-      .getElementById("adminPanel")
-      .classList.remove("hidden");
-
-    loadAdminData();
-
-  }
-
-  console.log(
-    "Shree Ram Janki Mandir website loaded."
-  );
-
-});
-
-</script>
-
-</body>
-</html>
+          <button class="action red"
+          onclick="updateStatus('committee','${v.id}','rejected')">
+       
