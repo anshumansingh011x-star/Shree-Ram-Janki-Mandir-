@@ -1291,4 +1291,276 @@ function renderApplications(){
     document.getElementById("applicationSearch")
       .value
       .trim()
-      .toLo
+      .toLowerCase();
+
+
+  let data =
+    allApplications.filter(function(item){
+
+      const status =
+        item.status || "pending";
+
+      const matchesStatus =
+        filter==="all" || status===filter;
+
+
+      const name =
+        String(item.name||"")
+          .toLowerCase();
+
+      const mobile =
+        String(item.mobile||"")
+          .toLowerCase();
+
+
+      const matchesSearch =
+        !search ||
+        name.includes(search) ||
+        mobile.includes(search);
+
+
+      return matchesStatus && matchesSearch;
+
+    });
+
+
+  list.innerHTML="";
+
+
+  if(data.length===0){
+
+    list.innerHTML =
+      "<p>कोई application नहीं मिली।</p>";
+
+    return;
+  }
+
+
+  data.forEach(function(item){
+
+    const div =
+      document.createElement("div");
+
+    div.className="application";
+
+
+    const status =
+      item.status || "pending";
+
+
+    const statusText =
+      status==="accepted"
+      ? "Accepted"
+      : status==="rejected"
+      ? "Rejected"
+      : "Pending";
+
+
+    const date =
+      item.createdAt
+      ? new Date(item.createdAt)
+          .toLocaleString("hi-IN")
+      : "";
+
+
+    let pdfHTML="";
+
+
+    if(item.pdfLink){
+
+      pdfHTML = `
+
+        <p>
+          📄 <b>PDF:</b>
+          <a href="${escapeHTML(item.pdfLink)}"
+             target="_blank"
+             rel="noopener">
+             Open PDF
+          </a>
+        </p>
+
+      `;
+
+    }
+
+
+    div.innerHTML = `
+
+      <h3>
+        ${escapeHTML(item.type)}
+      </h3>
+
+      <p>
+        <b>Name:</b>
+        ${escapeHTML(item.name)}
+      </p>
+
+      <p>
+        <b>Mobile:</b>
+        ${escapeHTML(item.mobile)}
+      </p>
+
+      <p>
+        <b>Age:</b>
+        ${escapeHTML(item.age)}
+      </p>
+
+      <p>
+        <b>Address:</b>
+        ${escapeHTML(item.address)}
+      </p>
+
+      ${
+        item.contribution
+        ?
+        `<p>
+          <b>Contribution:</b>
+          ${escapeHTML(item.contribution)}
+        </p>`
+        :
+        ""
+      }
+
+      ${
+        item.message
+        ?
+        `<p>
+          <b>Message:</b>
+          ${escapeHTML(item.message)}
+        </p>`
+        :
+        ""
+      }
+
+      ${pdfHTML}
+
+      <p>
+        <b>Status:</b>
+        <span class="status ${escapeHTML(status)}">
+          ${statusText}
+        </span>
+      </p>
+
+      <small>
+        Submitted: ${escapeHTML(date)}
+      </small>
+
+      <br><br>
+
+      <button
+        class="green"
+        onclick="updateApplication('${item.id}','accepted')">
+        ✅ Accept
+      </button>
+
+      <button
+        class="red"
+        onclick="updateApplication('${item.id}','rejected')">
+        ❌ Reject
+      </button>
+
+      <button
+        class="gray"
+        onclick="deleteApplication('${item.id}')">
+        🗑 Delete
+      </button>
+
+    `;
+
+
+    list.appendChild(div);
+
+  });
+
+}
+
+
+/* =========================
+   ACCEPT / REJECT
+========================= */
+
+async function updateApplication(id,status){
+
+  if(!adminLoggedIn){
+
+    alert("Admin login required.");
+
+    return;
+  }
+
+
+  try{
+
+    await db.ref("applications/"+id)
+      .update({
+
+        status:status,
+
+        updatedAt:Date.now()
+
+      });
+
+
+    alert(
+      status==="accepted"
+      ? "Application Accepted ✅"
+      : "Application Rejected ❌"
+    );
+
+  }catch(error){
+
+    console.error(error);
+
+    alert("Status update नहीं हुआ।");
+
+  }
+
+}
+
+
+/* =========================
+   DELETE APPLICATION
+========================= */
+
+async function deleteApplication(id){
+
+  if(!adminLoggedIn){
+
+    return;
+  }
+
+
+  if(!confirm("क्या आप यह application delete करना चाहते हैं?")){
+
+    return;
+  }
+
+
+  try{
+
+    await db.ref("applications/"+id)
+      .remove();
+
+  }catch(error){
+
+    console.error(error);
+
+    alert("Delete नहीं हुआ।");
+
+  }
+
+}
+
+
+/* =========================
+   START
+========================= */
+
+loadNews();
+
+loadGallery();
+
+</script>
+
+</body>
+</html>
